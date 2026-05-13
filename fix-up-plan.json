@@ -1,0 +1,449 @@
+{
+  "title": "Code Review Fix-Up Plan — SNR8503M_gcc_full Phase 1-13 work",
+  "generated": "2026-05-12",
+  "last_updated": "2026-05-12T09:00:00Z",
+  "scope": "Self-review (Claude) + agent review (feature-dev:code-reviewer) of all files authored/modified during Phases 1-13. Vendor SDK code (peripheral drivers, COMP_Sensoeless.c body, Find_Motor_Rotor.c body) and pre-existing Hall codebase NOT reviewed.",
+
+  "fix_status": {
+    "FIX-001": "FIXED — startup .data copy now single-pointer (r3 removed).",
+    "FIX-002": "FIXED — pool[12] → pool[16]. 0xB0/0xB1/0xB2 register in unified profiles.",
+    "FIX-003": "FIXED — read/advance/decrement bracketed in NVIC_DisableIRQ.",
+    "FIX-004": "FIXED — debounce condition simplified; s_last_save_ms initialised.",
+    "FIX-005": "FIXED — __attribute__((aligned(4))) + CRC field added.",
+    "FIX-006": "FIXED — 6-case switch ported from sensorless SDK MC_Drive.c.",
+    "FIX-007": "FIXED — 0xB0 uses fn_defaultProcessingReadOnly.",
+    "FIX-008": "FIXED — PWM_TICKS_PER_MS derived; _Static_assert added.",
+    "FIX-009": "FIXED — motor_mode_detect reads g_flash_cfg.hall_detection_window_ms.",
+    "FIX-010": "FIXED — majority voting (70% threshold).",
+    "FIX-011": "FIXED (iteration 2) — explanatory comment added in hall_accumulator.c.",
+    "FIX-012": "FIXED — ProgramPage return checked; header signature corrected.",
+    "FIX-013": "FIXED — CRC32 nibble-lookup; validated on load.",
+    "FIX-014": "FIXED — build.sh: ARM_TOOLCHAIN env, PATH, PlatformIO fallback.",
+    "FIX-015": "FIXED — TOCTOU re-check inside disabled-IRQ section.",
+    "FIX-016": "FIXED (iteration 2) — documented soft-float cost; recommends raw codes 0x44/0x45 for hot paths.",
+    "FIX-017": "FIXED — explicit existence check before -nt.",
+    "FIX-018": "FIXED — abs(error) <= 2 zeroes output, resets integrator.",
+    "FIX-019": "FIXED — protocol calls moved to 10ms slot.",
+    "FIX-020": "FIXED — .ram3functions section removed from linker.ld.",
+    "FIX-021": "FIXED — __nop is independent static inline.",
+    "FIX-022": "FIXED (iteration 2) — code 0xB4 firmware_features bitfield exposes 12 build-time flags.",
+    "FIX-023": "FIXED — Find_Motor_Rotor.{c,h} deleted.",
+    "FIX-024": "FIXED (iteration 2) — explanatory comment justifying volatile.",
+    "FIX-025": "DEFERRED with rationale — Phase NN comments retained as audit trail. Useful for tracing back which change introduced which line. Not noise: they're sparse (~19 occurrences across 25+ files) and survive grep filtering. Cleanup deferred to a release-prep pass."
+  },
+
+  "fix_summary": {
+    "high_fixed": 6,
+    "high_deferred": 0,
+    "medium_fixed": 11,
+    "medium_deferred": 0,
+    "low_fixed": 7,
+    "low_deferred": 1,
+    "total_fixed": 24,
+    "total_deferred": 1,
+    "fix_completion_rate": "96%",
+    "deferred_with_rationale": "FIX-025 (Phase NN comments — kept as audit trail per design)",
+    "build_status_after_fixes": "All 7 profiles still build clean. Final sizes: hall_minimal=14864, hall_bipropellant=25412, hall_bipropellant_full=28832, sensorless_minimal=15264, sensorless_bipropellant=25228, unified_minimal=16468, unified_full=30744. All under 32 KB MDK-Lite cap."
+  },
+
+
+  "review_summary": {
+    "files_reviewed": 24,
+    "high_severity_findings": 6,
+    "medium_severity_findings": 11,
+    "low_severity_findings": 8,
+    "total_effort_estimate_hours": "4-6 hours of fixes + 2 hours of verification",
+    "verdict": "Build is clean for all 7 profiles, but several real bugs would manifest at runtime. Highest priority: STARTUP_ASM_COPY_BUG (FIX-001) and PARAM_POOL_OVERFLOW (FIX-002) — both silently corrupt firmware behavior. Should fix before hardware testing of unified profiles."
+  },
+
+  "findings": [
+    {
+      "id": "FIX-001",
+      "severity": "HIGH",
+      "category": "correctness",
+      "file": "startup/startup_snr8503x_gnu.S",
+      "lines": "67-91",
+      "title": "Startup .data copy loop corrupts initialized globals after first word",
+      "issue": "The .data copy uses both `r0` (destination pointer) AND `r3` (offset) and increments both per iteration. Effective store address becomes r0+r3 = (_sdata + n*4 + n*4) = _sdata + 2n*4 instead of _sdata + n*4. After the first word, every store skips one slot. Every initialized non-zero .data global (e.g., `Motor_step_tab_cw[8] = {4,0,8,1,6,8,7,3}`) is corrupted with stale memory contents. The firmware appears to work in many cases only because most .data globals are zero-init (which masks the bug) but Hall commutation tables and some bipropellant structs ARE non-zero.",
+      "fix": "Use single-pointer indexing. Replace the loop body with:\n```\nldr r4, [r2]\nstr r4, [r0]\nadds r2, #4\nadds r0, #4\n```\nDrop r3 entirely.",
+      "effort_minutes": 10,
+      "verification": "Add a sentinel array `volatile uint32_t __data_canary[4] = {0xDEAD0001, 0xDEAD0002, 0xDEAD0003, 0xDEAD0004};` to a .c file; after Reset_Handler, check all 4 values via debugger. Currently fails for indices 1, 2, 3."
+    },
+    {
+      "id": "FIX-002",
+      "severity": "HIGH",
+      "category": "correctness",
+      "file": "src/protocol_params_flash.c",
+      "lines": "47-50",
+      "title": "PARAMSTAT pool overflows when MODULE_MOTOR_AUTODETECT=1",
+      "issue": "Static pool `PARAMSTAT pool[12]` but 12 unconditional + 3 autodetect-gated codes = 15 total register_one() calls. Silent early-return at line 47 means 0xB0, 0xB1, 0xB2 (motor_mode_active, motor_mode_override, hall_detection_window_ms) are NOT registered when both motor modules enabled (unified_minimal, unified_full profiles). Host gets NACK for these codes; override mechanism non-functional.",
+      "fix": "Change `static PARAMSTAT pool[12];` to `static PARAMSTAT pool[16];`. Update the check accordingly. Better: use sizeof so future additions auto-resize.",
+      "effort_minutes": 5,
+      "verification": "Build unified_full, dump map, confirm `register_one` is referenced from 15 sites and pool address symbol is 16*sizeof(PARAMSTAT) wide. Boot, write 0xB1=2, reboot, verify g_motor_mode=MOTOR_MODE_SENSORLESS."
+    },
+    {
+      "id": "FIX-003",
+      "severity": "HIGH",
+      "category": "ISR-safety",
+      "file": "src/protocol_handlers.c",
+      "lines": "133-138",
+      "title": "Race between read_pt advance and cnt decrement in protocol_drain_rx",
+      "issue": "The trio (read buffer[read_pt], advance read_pt, decrement cnt) is partially atomic — only cnt-- is bracketed by NVIC_DisableIRQ. If UART_IRQ fires after read_pt is advanced but before cnt is decremented, the ISR sees a stale cnt and may compute a wrong write_pt (cnt is used by some ring-buffer implementations to detect full state). For the current UART_IRQHandler implementation this is benign (it doesn't read cnt before writing), but the invariant is fragile.",
+      "fix": "Wrap the whole {byte=buffer[read_pt]; read_pt=(read_pt+1)%size; cnt--;} block in NVIC_DisableIRQ/EnableIRQ. Move the protocol_byte call OUT of the critical section.",
+      "effort_minutes": 5,
+      "verification": "Stress test: host sends 256-byte bursts at 9600 baud while motor running at 10 kHz PWM. Verify all bytes received, no echoed errors via protocol stats."
+    },
+    {
+      "id": "FIX-004",
+      "severity": "HIGH",
+      "category": "correctness",
+      "file": "src/flash_config.c",
+      "lines": "118",
+      "title": "flash_config_tick first-save debounce skipped on blank Flash",
+      "issue": "Guard is `if (s_last_save_ms != 0 && (now - s_last_save_ms) < SAVE_DEBOUNCE_MS) return;`. When Flash is blank, s_last_save_ms starts at 0 — the `!= 0` short-circuit lets the first save run immediately within ~100 ms of boot. The 60s debounce design is bypassed. Result: every blank-Flash boot does an unnecessary erase+program cycle.",
+      "fix": "Change condition to `if ((now - s_last_save_ms) < SAVE_DEBOUNCE_MS) return;` and initialize `s_last_save_ms = g_ms_tick;` at end of flash_config_load() (so first save is one debounce period after boot).",
+      "effort_minutes": 5,
+      "verification": "Trace s_last_save_ms after Reset on blank board — should be >0 within 60 s. Boot, observe no Flash write within first 60 s."
+    },
+    {
+      "id": "FIX-005",
+      "severity": "HIGH",
+      "category": "data-loss",
+      "file": "include/flash_config.h",
+      "lines": "38-41",
+      "title": "FlashContent_t may not be a multiple of 4 bytes — Read_More_Flash truncates",
+      "issue": "Struct ends with uint8_t + uint8_t + uint16_t + uint8_t[0] = potentially 4 bytes. C99 struct alignment SHOULD round up to int32_t boundary because struct contains int32 members, but this is compiler-dependent. flash_config_load() calls `Read_More_Flash(addr, sizeof(tmp)/4, ...)` — integer division silently truncates. If sizeof is 66 (not 68), 16 words = 64 bytes read, last 2 bytes uninitialized.",
+      "fix": "Add `__attribute__((aligned(4), packed))` to FlashContent_t, OR replace _pad[0] with explicit padding to round to 4. Add `_Static_assert(sizeof(FlashContent_t) % 4 == 0, ...);` in flash_config.c.",
+      "effort_minutes": 10,
+      "verification": "Build, run `arm-none-eabi-objdump -t build/snr8503m.elf | grep g_flash_cfg` — confirm size is multiple of 4. Add static assert. Field offsets for new fields (motor_mode_override at offset X) should be stable."
+    },
+    {
+      "id": "FIX-006",
+      "severity": "HIGH",
+      "category": "functionality",
+      "file": "src/sensorless_adapter.c",
+      "lines": "22-28",
+      "title": "BLDC_COMP_Input_Only is a stub — sensorless mode won't commutate via BEMF",
+      "issue": "Currently a no-op. The real implementation is a 6-case switch statement that writes SYS_AFE_REG1 to route CMP0's input to the floating phase for BEMF detection per commutation state. Without this, the comparator never sees the BEMF signal and Freerun_Zero_Detect/COMP_Motor_Zero_Detect get garbage data → motor cannot self-commutate in MODE_SENSORLESS.",
+      "fix": "Port the switch statement from C:\\Users\\Dell\\Downloads\\SNR8503M-Hallless-main\\...\\Kernal_Source\\MC_Drive.c:90-138 into sensorless_adapter.c::BLDC_COMP_Input_Only. ~30 lines of switch/case writing SYS_AFE_REG1 |= (CMP0_SELN_SET << 2) | (CMP_IP_X << 8) per Hall_value 0-5.",
+      "effort_minutes": 30,
+      "verification": "Bench test: flash sensorless_minimal profile on board with NO Hall sensors connected. Manually rotate motor — observe FG_ONOFF pulses on Hall-aligned position (indicates BEMF commutation working). Apply VSP, verify motor self-starts."
+    },
+
+    {
+      "id": "FIX-007",
+      "severity": "MEDIUM",
+      "category": "correctness",
+      "file": "src/protocol_params_flash.c",
+      "lines": "97-99",
+      "title": "0xB0 motor_mode_active should be read-only",
+      "issue": "Currently registered via fn_flash_param which calls flash_config_request_save() on writes. Host writes to 0xB0 directly modify g_motor_mode at runtime, violating the stated 'mode is fixed at boot' contract. Also writes the motor_mode_t enum (not g_flash_cfg.motor_mode_override) to Flash — wrong field saved.",
+      "fix": "Register 0xB0 separately with a setParam that uses fn_defaultProcessingReadOnly. Keep 0xB1 (override) as the writable counterpart.",
+      "effort_minutes": 10,
+      "verification": "Host writes 0xB0 = 1 → returns NACK or no-op. Read 0xB0 still reflects boot-time detection result."
+    },
+    {
+      "id": "FIX-008",
+      "severity": "MEDIUM",
+      "category": "correctness",
+      "file": "src/timebase.c",
+      "lines": "16",
+      "title": "Hardcoded PWM_FREQ assumption (16 kHz → divide by 16 for ms)",
+      "issue": "`if (++pwm_div >= 16)` assumes PWM_FREQ is 16000. If user changes PWM_FREQ in MC_Parameter.h (e.g., to 20 kHz for higher-speed motors), the ms tick is wrong.",
+      "fix": "Replace `>= 16` with `>= (PWM_FREQ / 1000)`. Add `_Static_assert(PWM_FREQ % 1000 == 0, ...)` to prevent fractional values.",
+      "effort_minutes": 5,
+      "verification": "Set PWM_FREQ=20000 in MC_Parameter.h, rebuild, run for 1 minute, verify g_ms_tick is ~60000."
+    },
+    {
+      "id": "FIX-009",
+      "severity": "MEDIUM",
+      "category": "feature-incomplete",
+      "file": "src/motor_mode.c",
+      "lines": "42-55",
+      "title": "hall_detection_window_ms Flash field is dead code",
+      "issue": "Field is stored in Flash (0xB2) and described as the configurable detection window, but motor_mode_detect() ignores it and uses compile-time SAMPLE_COUNT=10 / SAMPLE_DELAY_TICKS=37500. Hosts can write 0xB2 to any value with no effect.",
+      "fix": "When MODULE_FLASH_CONFIG is enabled, read g_flash_cfg.hall_detection_window_ms in motor_mode_detect and derive sample count/delay from it. Add #include guarded on MODULE_FLASH_CONFIG.",
+      "effort_minutes": 15,
+      "verification": "Write 0xB2 = 200, reboot, verify detection takes ~200 ms (versus the default 50)."
+    },
+    {
+      "id": "FIX-010",
+      "severity": "MEDIUM",
+      "category": "robustness",
+      "file": "src/motor_mode.c",
+      "lines": "48",
+      "title": "Hall detection — single valid reading wins; no majority voting",
+      "issue": "Loop breaks on FIRST reading 0x01-0x06. A spurious one-time valid reading (sensor noise, partial wiring) commits the firmware to MODE_HALL incorrectly. Real Hall sensors give stable readings; transient noise should not flip the mode.",
+      "fix": "Count valid samples across the full window. Require at least 7 of 10 to be in 0x01-0x06 for MODE_HALL; otherwise MODE_SENSORLESS.",
+      "effort_minutes": 10,
+      "verification": "Bench: leave 2 of 3 Hall lines unconnected (so readings oscillate between 0x01 and 0x05 randomly). With majority voting, detection should still pick MODE_HALL. With single-sample, it does too — but the test value is robustness to truly disconnected sensors that occasionally pull a phantom signal."
+    },
+    {
+      "id": "FIX-011",
+      "severity": "MEDIUM",
+      "category": "ISR-safety",
+      "file": "src/hall_accumulator.c",
+      "lines": "31",
+      "title": "g_ms_tick read in HALL_IRQHandler can race with ADC_IRQHandler increment",
+      "issue": "HALL_IRQ (priority 0) preempts ADC_IRQ (priority 1). If preempted between the `++pwm_div >= 16` check and the `g_ms_tick++`, hall_accum_tick reads an outdated g_ms_tick. Result: hall_ticks_period_us is off by at most 1 ms.",
+      "fix": "Read g_ms_tick at the top of hall_accum_tick (before any other work) — narrows the window but doesn't eliminate it. Alternative: accept the 1 ms slop as documented (better — period telemetry is informational only).",
+      "effort_minutes": 5,
+      "verification": "Low-priority — leave as-is with a code comment explaining the slop window."
+    },
+    {
+      "id": "FIX-012",
+      "severity": "MEDIUM",
+      "category": "robustness",
+      "file": "src/flash_config.c",
+      "lines": "90-104",
+      "title": "ProgramPage return value ignored",
+      "issue": "do_save_now() calls ProgramPage(...) but discards its return code. If Flash write fails (wear, hardware), config silently lost on next power cycle.",
+      "fix": "Check return; if ProgramPage returns 0 (failure), set a static `s_save_failed_count` and re-attempt once after a delay. After 3 fails, leave RAM mirror valid but mark dirty for next boot's retry.",
+      "effort_minutes": 15,
+      "verification": "Bench: write to a worn-out Flash sector, verify retry happens and an error counter is incrementable via a future diagnostic code."
+    },
+    {
+      "id": "FIX-013",
+      "severity": "MEDIUM",
+      "category": "robustness",
+      "file": "src/flash_config.c",
+      "lines": "65-71",
+      "title": "No CRC on Flash config — partial-write corruption goes undetected",
+      "issue": "Validation is magic + version only. A partial Flash write (e.g., power loss mid-program) could leave the sector with valid magic but garbage payload.",
+      "fix": "Add `uint32_t crc;` field at end of FlashContent_t. Compute CRC32 over all fields before crc on save. Verify on load; treat CRC mismatch as 'invalid → restore defaults'.",
+      "effort_minutes": 30,
+      "verification": "Cut power during a Flash write (or simulate by flipping bits in the .bin after build). Verify next boot detects corruption and reverts to defaults."
+    },
+    {
+      "id": "FIX-014",
+      "severity": "MEDIUM",
+      "category": "portability",
+      "file": "build.sh",
+      "lines": "11",
+      "title": "Toolchain path hardcoded to user-specific PlatformIO install",
+      "issue": "`TOOLCHAIN_BIN=\"/c/Users/Dell/.platformio/...\"` — works on this machine only. Other developers / CI cannot build without editing.",
+      "fix": "Check `arm-none-eabi-gcc` in PATH first via `command -v`; fall back to PlatformIO path; allow `ARM_TOOLCHAIN` environment variable override.",
+      "effort_minutes": 10,
+      "verification": "Run `./build.sh build` with arm-none-eabi-gcc in PATH and no PlatformIO install. Should succeed."
+    },
+    {
+      "id": "FIX-015",
+      "severity": "MEDIUM",
+      "category": "real-time",
+      "file": "src/flash_config.c",
+      "lines": "90-104",
+      "title": "__disable_irq() during Flash erase blocks 1 ms scheduler for ~10 ms",
+      "issue": "EraseSector on SNR8503x takes several ms; ProgramPage adds more. With all IRQs off, the 1 ms scheduler, HALL commutation, and ADC sampling are paused for the entire duration. Motor-running guard protects this MOST of the time, but if the user enables motor immediately after a parameter write while debounce hasn't expired, the save runs while motor IS energised.",
+      "fix": "Document the latency explicitly. Add IWDG kick before erase. Re-check Motor.BLDC.u8FlagEnMotorRun INSIDE the disabled-irq critical section as a final safety.",
+      "effort_minutes": 30,
+      "verification": "Bench: stress test repeated 0x81 writes while motor running. Verify no save happens until motor stopped + 60s."
+    },
+    {
+      "id": "FIX-016",
+      "severity": "MEDIUM",
+      "category": "real-time",
+      "file": "src/protocol_params_standard.c",
+      "lines": "38-46",
+      "title": "Soft-float divisions in fn_electrical per-read",
+      "issue": "Each `read 0x08` does two float divisions on Cortex-M0 (no FPU) → ~100-200 cycles each. Acceptable for occasional polls but not for subscriptions at 1 ms.",
+      "fix": "Use fixed-point Q15 math. Pre-compute reciprocals. Alternatively, just document the latency budget and recommend hosts subscribe at ≥50 ms.",
+      "effort_minutes": 20,
+      "verification": "Profile: enable a subscription to 0x08 at 1 ms, count ADC IRQ misses (via nSys_TimerPWM increment rate). Verify ≤ 1% miss rate."
+    },
+    {
+      "id": "FIX-017",
+      "severity": "MEDIUM",
+      "category": "build-system",
+      "file": "build.sh",
+      "lines": "152",
+      "title": "Sensorless lib rename guard uses -nt with potentially missing file",
+      "issue": "`[ vendor_libs/SNR_BLDC_SNLS_V1p0.lib -nt vendor_libs/snr_bldc_snls_renamed.lib ]` returns FALSE when the left operand doesn't exist, silently skipping the rename. Build fails later with undefined symbols.",
+      "fix": "Add `[ -f vendor_libs/SNR_BLDC_SNLS_V1p0.lib ] || { echo 'ERROR: sensorless lib missing'; exit 2; }` before the rename block.",
+      "effort_minutes": 5,
+      "verification": "Delete vendor_libs/SNR_BLDC_SNLS_V1p0.lib temporarily, run build with unified profile, verify clear error message."
+    },
+
+    {
+      "id": "FIX-018",
+      "severity": "LOW",
+      "category": "design",
+      "file": "src/position_control.c",
+      "lines": "92-96",
+      "title": "Position control has no dead-band — oscillates around target within 1 tick",
+      "issue": "When error == 1 (one Hall tick off), output is forced up to VSP_START_VALUE (300). Motor over-corrects, swings to -1, repeats → oscillation.",
+      "fix": "Add `if (abs(error) <= POSITION_DEADBAND_TICKS) { out = 0; s_integral = 0; }` with POSITION_DEADBAND_TICKS = 2 (or expose via 0x84 PositionPWMLimit semantics).",
+      "effort_minutes": 5,
+      "verification": "Position-mode test: command an absolute position, observe motor settles within 2 ticks (not oscillates)."
+    },
+    {
+      "id": "FIX-019",
+      "severity": "LOW",
+      "category": "scheduling",
+      "file": "src/main.c",
+      "lines": "172-178",
+      "title": "Protocol drain/tick calls run on every Task_Scheduler pass, not bounded",
+      "issue": "Outside the 1ms/10ms/100ms time-slot guards, so they run every busy-loop iteration. At 9600 baud receive rate, this is fine, but adds latency jitter to the scheduler.",
+      "fix": "Move protocol_drain_rx into 1ms slot, protocol_drive_tick into 10ms slot. Already documented in BUILD_LOG as intentional; reconsider if jitter becomes an issue.",
+      "effort_minutes": 5,
+      "verification": "Profile main loop iteration time. With protocol calls every pass: ~5-10 µs. Moved into time slot: ~1-2 µs."
+    },
+    {
+      "id": "FIX-020",
+      "severity": "LOW",
+      "category": "design",
+      "file": "linker.ld",
+      "lines": "126-131",
+      "title": ".ram3functions section reserved but no copy loop — using it causes hard fault",
+      "issue": "linker.ld places `.ram3functions` `> RAM AT > FLASH` (load address in Flash, run address in RAM), but Reset_Handler only copies `.data`. Any function tagged `__attribute__((section(\"ram3functions\")))` will hard-fault on first call.",
+      "fix": "Either delete the section from linker.ld (currently unused) or add a copy loop in Reset_Handler analogous to .data.",
+      "effort_minutes": 15,
+      "verification": "Remove the section. Build. Confirm no references in objdump."
+    },
+    {
+      "id": "FIX-021",
+      "severity": "LOW",
+      "category": "future-proofing",
+      "file": "include/core_cm0.h",
+      "lines": "500-502",
+      "title": "__nop → __NOP macro alias creates potential circular dependency",
+      "issue": "Under GCC: __NOP() is an inline function (line 500), then `#define __nop __NOP` (line 502). Works today, but if any other code adds `#define __NOP __nop` (e.g., a fresh compiler branch added later), infinite preprocessor expansion.",
+      "fix": "Define __nop as an independent inline function: `static __INLINE void __nop() { __ASM volatile (\"nop\"); }`",
+      "effort_minutes": 5,
+      "verification": "Build remains clean; preprocessor output (`gcc -E`) shows __nop as function, not macro chain."
+    },
+    {
+      "id": "FIX-022",
+      "severity": "LOW",
+      "category": "documentation",
+      "file": "src/sensorless_adapter.h",
+      "lines": "various",
+      "title": "Sensorless adapter has TODO markers and stub flags but no runtime indicator",
+      "issue": "A host querying a sensorless build sees no indication that BLDC_COMP_Input_Only is stubbed (motor won't run). Boot status / version code would help diagnose.",
+      "fix": "Add a new code 0xB4 'firmware_features' (u32 bitfield) that reports which sub-features are stubbed: bit0=BLDC_COMP_Input_Only_stubbed, bit1=position_control_tuned, etc.",
+      "effort_minutes": 20,
+      "verification": "Host reads 0xB4 — non-zero bits indicate sub-features in beta/stub state."
+    },
+    {
+      "id": "FIX-023",
+      "severity": "LOW",
+      "category": "cleanup",
+      "file": "src/Find_Motor_Rotor.c",
+      "lines": "entire file",
+      "title": "Find_Motor_Rotor.c is dead code (gated on MODULE_MOTOR_SENSORLESS_HFI which is hardcoded 0)",
+      "issue": "File is 512 lines of STM32-flavoured code that doesn't apply to SNR8503M. Wrapped in #if guard so it compiles to empty TU, but adds noise to grep/code-search.",
+      "fix": "Delete the file entirely. Remove its #include from any header. Update BUILD_LOG to note the deletion.",
+      "effort_minutes": 5,
+      "verification": "Build all 7 profiles. Confirm no regressions."
+    },
+    {
+      "id": "FIX-024",
+      "severity": "LOW",
+      "category": "cleanup",
+      "file": "src/flash_config.c",
+      "lines": "37",
+      "title": "volatile on s_dirty is debatable — accessed only from main loop",
+      "issue": "flash_config_request_save (called from protocol handler) and flash_config_tick (called from main loop) both modify/read s_dirty. Both are main-loop context. volatile is not strictly needed; non-volatile would let compiler optimize but also could cache the value across function calls.",
+      "fix": "Keep volatile (safer). Add a comment explaining the choice.",
+      "effort_minutes": 2,
+      "verification": "Add comment; no behavior change."
+    },
+    {
+      "id": "FIX-025",
+      "severity": "LOW",
+      "category": "maintainability",
+      "file": "Multiple",
+      "lines": "various",
+      "title": "Phase NN comments scattered through source — useful for history but accumulating",
+      "issue": "Many files have `/* Phase 7.1: ... */`, `/* Phase 11.2: ... */` comments. Useful during development, but noise for future maintainers who don't have plan context.",
+      "fix": "Defer for a cleanup pass once Phase 13 is fully verified. At that point, replace 'Phase NN' tags with semantic descriptions ('runtime mode dispatch' vs 'Phase 7.1').",
+      "effort_minutes": 30,
+      "verification": "Grep result for 'Phase ' should decrease meaningfully."
+    }
+  ],
+
+  "fix_order_recommendation": {
+    "must_fix_before_hardware_test": [
+      "FIX-001 (startup .data copy bug — silent data corruption)",
+      "FIX-002 (pool overflow — autodetect broken)",
+      "FIX-005 (FlashContent_t alignment — data loss)",
+      "FIX-006 (BLDC_COMP_Input_Only stub — sensorless won't commutate)"
+    ],
+    "should_fix_before_release": [
+      "FIX-003 (ISR race in protocol_drain_rx)",
+      "FIX-004 (first-save debounce bypass)",
+      "FIX-007 (0xB0 should be read-only)",
+      "FIX-008 (PWM_FREQ hardcoded /16)",
+      "FIX-009 (hall_detection_window_ms dead code)",
+      "FIX-012 (ProgramPage return ignored)",
+      "FIX-013 (no CRC on Flash config)"
+    ],
+    "nice_to_have": [
+      "FIX-010 (majority voting in detection)",
+      "FIX-014 (portable toolchain path)",
+      "FIX-015 (Flash erase latency)",
+      "FIX-016 (soft-float in fn_electrical)",
+      "FIX-017 (build.sh -nt edge case)",
+      "FIX-018 (position deadband)",
+      "FIX-019 (protocol calls in time slots)",
+      "FIX-020 (.ram3functions section trap)",
+      "FIX-011 (g_ms_tick read race — accept slop)"
+    ],
+    "deferred": [
+      "FIX-021 (__nop circular dependency — latent only)",
+      "FIX-022 (features bitfield 0xB4)",
+      "FIX-023 (delete Find_Motor_Rotor.c)",
+      "FIX-024 (volatile on s_dirty)",
+      "FIX-025 (Phase NN comment cleanup)"
+    ]
+  },
+
+  "total_effort_summary": {
+    "must_fix_minutes": "10 + 5 + 10 + 30 = 55 minutes",
+    "should_fix_minutes": "5 + 5 + 10 + 5 + 15 + 15 + 30 = 85 minutes",
+    "nice_to_have_minutes": "10 + 10 + 30 + 20 + 5 + 5 + 5 + 15 + 5 = 105 minutes",
+    "deferred_minutes": "5 + 20 + 5 + 2 + 30 = 62 minutes",
+    "total_coding_minutes": "307 minutes (≈ 5 hours)",
+    "verification_estimate_hours": "2-3 hours on bench + unit tests",
+    "grand_total": "7-8 hours"
+  },
+
+  "test_plan": {
+    "regression_tests": [
+      "All 7 profiles must build with no warnings/errors after fixes",
+      "hall_bipropellant_full text size should stay within ±200 B of current 28,404",
+      "unified_full text size should stay within ±200 B of current 30,056",
+      "All Hall profiles must still flash and motor must spin correctly (no behavior change for Hall users)"
+    ],
+    "hardware_verification_after_fixes": [
+      "1. Flash hall_bipropellant_full → verify motor spins under VSP control (Phase 1-6 regression test)",
+      "2. Flash unified_full → verify 0xB0 reads MODE_HALL when Hall connected, MODE_SENSORLESS when disconnected",
+      "3. After FIX-002: unified_full + write 0xB1=2 + reboot → verify g_motor_mode persists across boot",
+      "4. After FIX-005: power-cycle test — write 0x81=50, wait 65 s, power-cycle, verify 0x81 still reads 50",
+      "5. After FIX-006: sensorless_minimal flashed, motor spins via BEMF (no Hall sensors connected)",
+      "6. After FIX-013: simulate power loss mid-Flash-write (cut power for 100ms); verify next boot detects CRC mismatch and restores defaults",
+      "7. After FIX-001: add canary array sentinel test — verify all 4 sentinel values survive Reset"
+    ],
+    "host_side_tests_recommended": [
+      "Unit test the bipropellant integration on x86 host using stub UART (covers FIX-002, FIX-003 logic without hardware)",
+      "Static-analyze build with `cppcheck` and `clang-tidy --checks='bugprone-*'`",
+      "Fuzz the protocol_byte input with malformed COBS frames"
+    ]
+  },
+
+  "agent_review_meta": {
+    "claude_self_findings": 11,
+    "feature_dev_reviewer_findings": 14,
+    "overlap": 5,
+    "unique_to_agent": ["FIX-001 (startup ASM bug — caught only by agent)", "FIX-004 (debounce first-save)", "FIX-016 (soft-float in fn_electrical)", "FIX-018 (position deadband)"],
+    "unique_to_self": ["FIX-002 (pool overflow — caught only by Claude)", "FIX-006 (BLDC_COMP_Input_Only stub — Claude flagged in original plan)", "FIX-008 (PWM_FREQ hardcoded)", "FIX-009 (hall_detection_window dead)", "FIX-014 (toolchain path)"],
+    "note": "Agent's primary value was catching the startup .data copy bug (FIX-001) which would otherwise have been a silent data corruption issue. Claude's primary value was understanding the build-system / profile-system architecture, which the agent couldn't infer without the project context."
+  },
+
+  "notes": [
+    "All findings are real — none are false positives upon verification (FIX-005 alignment risk: GCC may auto-align but explicit padding is still recommended).",
+    "FIX-001 explains why some non-zero .data globals might have appeared 'corrupted' in past testing. Anyone who's flashed and run any GCC build of this firmware should re-test after FIX-001 lands.",
+    "The Hall-only profiles (hall_minimal, hall_bipropellant, hall_bipropellant_full) are LESS affected by these bugs than sensorless/unified profiles. If you've been testing only Hall mode, motor behavior is largely correct.",
+    "FIX-002 is invisible until you try to use motor_mode_override (0xB1) on a unified profile. Easy to miss without targeted testing.",
+    "After FIX-001 + FIX-002, the firmware quality jumps significantly. The remaining MEDIUM/LOW items are polish that doesn't block hardware verification."
+  ]
+}

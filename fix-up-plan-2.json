@@ -1,0 +1,263 @@
+{
+  "title": "Code Review Fix-Up Plan v2 — Post-Fix Review of SNR8503M_gcc_full",
+  "generated": "2026-05-12",
+  "last_updated": "2026-05-12T10:30:00Z",
+  "previous_plan": "fix-up-plan.json",
+
+  "fix_status": {
+    "FIX2-001": "FIXED — FLASH_CONFIG_VERSION bumped to 2; release note added inline in flash_config.h.",
+    "FIX2-002": "FIXED — s_last_error reset inside deadband branch alongside s_integral.",
+    "FIX2-003": "FIXED — _Static_assert((sizeof(FlashContent_t) & 3) == 0) in flash_config.c.",
+    "FIX2-004": "FIXED — rename macros now gated on SENSORLESS_ADAPTER_RENAME_TABLES, defined only in COMP_Sensoeless.c.",
+    "FIX2-005": "FIXED — motor_mode_detect early-exits once threshold reached on the valid path.",
+    "FIX2-006": "FIXED — g_sensorless_bad_phase_count counter + code 0xB6 (R, u32).",
+    "FIX2-007": "FIXED — CRC32 now uses 16-entry nibble lookup (~2x speedup, 64 B table).",
+    "FIX2-008": "FIXED — ARM_TOOLCHAIN env-var check also accepts .exe extension.",
+    "FIX2-009": "FIXED — code 0xB5 (R, u8) exposes flash_config_save_failed_count.",
+    "FIX2-010": "FIXED — comment in flash_config.h clarifies 0xB0/B1/B2 are NOT FlashContent fields.",
+    "FIX2-011": "FIXED — src/startup_canary.c with 4-word canary + startup_canary_check() called from main().",
+    "FIX2-012": "FIXED — u8FlagEnMotorRun checked first in both sensorless sub-state branches.",
+    "FIX2-013": "FIXED — timing budget documented in docs/protocol_codes.md."
+  },
+
+  "fix_summary": {
+    "total_findings": 13,
+    "total_fixed": 13,
+    "total_deferred": 0,
+    "fix_completion_rate": "100%",
+    "build_status": "All 7 profiles build clean. unified_full grew to 30,744 bytes (was 30,352 in v1 fixes; +392 B for v2 additions: canary array, diagnostic counters, features bitfield, nibble-lookup CRC table). Still 1.25 KB under 32 KB MDK-Lite cap."
+  },
+
+  "scope": "Re-review of all files modified in the iteration that applied fix-up-plan.json findings (FIX-001 through FIX-025). Looking for: (a) new issues introduced by the fixes, (b) issues missed in the first pass, (c) issues that became more visible/important after the fixes landed.",
+
+  "review_methodology": "Self-review by Claude (no external agent this iteration). Lower yield expected — first pass already found 25 findings; remaining issues are subtler.",
+
+  "post_fix_build_status": {
+    "all_7_profiles": "✓ build clean",
+    "size_deltas_vs_pre_fix": {
+      "hall_minimal": "14788 → 14788 (no change)",
+      "hall_bipropellant": "25336 → 25336 (no change)",
+      "hall_bipropellant_full": "28404 → 28536 (+132 B for CRC32 + improved Flash logic)",
+      "sensorless_minimal": "15084 → 15168 (+84 B for BLDC_COMP_Input_Only switch impl)",
+      "sensorless_bipropellant": "25048 → 25132 (+84 B)",
+      "unified_minimal": "16272 → 16360 (+88 B)",
+      "unified_full": "30056 → 30352 (+296 B — CRC + BLDC_COMP_Input_Only + new flash logic)"
+    },
+    "verdict": "All within budget. unified_full has 1.6 KB headroom under 32 KB MDK-Lite cap."
+  },
+
+  "findings": [
+    {
+      "id": "FIX2-001",
+      "severity": "MEDIUM",
+      "category": "design",
+      "file": "include/flash_config.h",
+      "title": "Adding crc field is a breaking change — old Flash configs invalidated",
+      "issue": "FIX-013 added a `uint32_t crc` field at the end of FlashContent_t. The CRC validation in flash_config_load() will reject any previously-saved config (which didn't have a CRC). Devices upgraded from a pre-fix firmware will lose their flash-stored PID gains and other tunings on first boot after the upgrade. The behavior (fall back to defaults) is correct but the user-visible result is silent loss of tunings.",
+      "fix": "Add a release note. Optionally bump FLASH_CONFIG_VERSION from 1 → 2 to make the schema change explicit; the version mismatch on old configs already triggers default-restore.",
+      "effort_minutes": 5,
+      "introduced_by": "FIX-013",
+      "verification": "Test: flash pre-fix firmware → write 0x81=99 → save → flash new firmware → read 0x81 should return 100 (default), not 99."
+    },
+    {
+      "id": "FIX2-002",
+      "severity": "MEDIUM",
+      "category": "correctness",
+      "file": "src/position_control.c",
+      "lines": "92-101 (post-fix-018)",
+      "title": "Deadband resets s_integral but not s_last_error — derivative kick on re-engage",
+      "issue": "When error enters deadband (abs <= 2), s_integral=0 but s_last_error is not reset. On exit from deadband, the first tick computes `deriv = error - s_last_error` using a stale s_last_error from before the deadband. This produces a derivative kick proportional to the cumulative error change during the settled period.",
+      "fix": "Inside the deadband branch, also `s_last_error = error;` so derivative is zero on re-engage.",
+      "effort_minutes": 2,
+      "introduced_by": "FIX-018",
+      "verification": "Bench: command position 100, motor settles to 100. Command 100 again (no error) — verify no transient. Then command 110 — verify smooth ramp, no spike at first tick."
+    },
+    {
+      "id": "FIX2-003",
+      "severity": "MEDIUM",
+      "category": "robustness",
+      "file": "include/flash_config.h",
+      "title": "No compile-time verification that FlashContent_t is 4-byte aligned",
+      "issue": "FIX-005 added `__attribute__((aligned(4)))` to FlashContent_t. GCC honors this on most targets but the attribute can be silently ignored under unusual compiler flags. The Read_More_Flash call uses sizeof/4 — if alignment fails to take effect, last bytes are lost.",
+      "fix": "Add `_Static_assert((sizeof(FlashContent_t) & 3) == 0, \"FlashContent_t must be 4-byte aligned for Read_More_Flash\");` in flash_config.c just after the struct's first use.",
+      "effort_minutes": 2,
+      "verification": "Build clean. Intentionally break alignment (remove the attribute) — verify static assert fires."
+    },
+    {
+      "id": "FIX2-004",
+      "severity": "MEDIUM",
+      "category": "ambiguity",
+      "file": "include/sensorless_adapter.h",
+      "lines": "13-16",
+      "title": "Motor_step_tab_* rename macros are visible to all consumers — footgun",
+      "issue": "The `#define Motor_step_tab_cw sns_Motor_step_tab_cw` macros are unconditional once sensorless_adapter.h is included AND MODULE_MOTOR_HALL=1. If any Hall-side code accidentally includes sensorless_adapter.h, its references to `Motor_step_tab_cw` are silently rewritten to the sensorless version. Currently safe because only sensorless code includes the header — but a future contributor adding `#include \"sensorless_adapter.h\"` to a Hall file would silently break Hall commutation.",
+      "fix": "Wrap the rename macros in `#ifdef SENSORLESS_ADAPTER_DEFINE_TABLES` and only define that token in src/COMP_Sensoeless.c just before the include. Or use prefixed names natively in COMP_Sensoeless.c at the cost of vendor-source modification.",
+      "effort_minutes": 15,
+      "verification": "Add `#include \"sensorless_adapter.h\"` to a Hall file (e.g., MC_Drive.c), build unified_full — Hall code should still use the [8] tables, not the [6] sensorless versions."
+    },
+    {
+      "id": "FIX2-005",
+      "severity": "MEDIUM",
+      "category": "correctness",
+      "file": "src/motor_mode.c",
+      "lines": "37-47 (post-fix-010)",
+      "title": "motor_mode_detect samples for the full window even if early result is decisive",
+      "issue": "FIX-010 added majority voting — but the loop now runs the full sample_count iterations regardless of intermediate results. With a 500 ms detection window (max sensible) and a clearly-valid Hall signal in sample 1, we still wait 495 ms unnecessarily. Boot-time soft-start delay grows accordingly.",
+      "fix": "Optional optimisation: after a majority decision is mathematically certain (e.g., 7 valid samples out of first 7), exit early. Trivial: `if (valid_count >= threshold) break;` after the increment. Only do this on the 'valid' side; absence of valid samples must wait the full window.",
+      "effort_minutes": 5,
+      "verification": "Bench: time motor_mode_detect with valid Hall — should now complete in 35-40 ms (7 × 5 ms) instead of 50 ms."
+    },
+    {
+      "id": "FIX2-006",
+      "severity": "LOW",
+      "category": "diagnostics",
+      "file": "src/sensorless_adapter.c",
+      "lines": "BLDC_COMP_Input_Only default case",
+      "title": "Invalid Hall_value silently disables CMP0 with no counter",
+      "issue": "Default case in the switch leaves CMP0 disconnected. If sensorless state machine ever calls with Hall_value outside 1-6 (bug or corruption), BEMF tracking silently fails. No diagnostic.",
+      "fix": "Add `static volatile uint32_t s_sensorless_bad_phase_count = 0;` and increment in default case. Expose via a new diagnostic code 0xB3 (paired with the future features-bitfield 0xB4 from FIX-022).",
+      "effort_minutes": 15,
+      "verification": "Inject bad value (force u8ControlStep=7) — counter increments. Normal operation — counter stays 0."
+    },
+    {
+      "id": "FIX2-007",
+      "severity": "LOW",
+      "category": "performance",
+      "file": "src/flash_config.c",
+      "lines": "fc_crc32 function",
+      "title": "Byte-by-byte CRC32 is slow on Cortex-M0",
+      "issue": "Reflected-polynomial CRC32 with 8 inner-loop iterations per byte = ~64 cycles/byte. For a ~120-byte FlashContent struct that's ~7,700 cycles ≈ 160 µs at 48 MHz. Called once at boot (load) and once per save. Acceptable but not great. A 256-entry table lookup would be ~10 cycles/byte (10x faster) at the cost of 1 KB of constant Flash. Or a 16-entry nibble lookup (~30 cycles/byte, 64 B table) is a good compromise.",
+      "fix": "Defer unless profiling shows it matters. Document in code comment as a known cost.",
+      "effort_minutes": 30,
+      "verification": "Profile with GPIO toggle wrapping fc_crc32 call."
+    },
+    {
+      "id": "FIX2-008",
+      "severity": "LOW",
+      "category": "portability",
+      "file": "build.sh",
+      "lines": "16-23 (post-fix-014)",
+      "title": "ARM_TOOLCHAIN env var check doesn't handle Windows .exe extension",
+      "issue": "`[ -x \"${ARM_TOOLCHAIN}/arm-none-eabi-gcc\" ]` succeeds on POSIX but fails on Windows MSYS if the binary is `arm-none-eabi-gcc.exe`. Workaround: PATH check via `command -v` does honor .exe, so the second fallback path catches this. Effective on Windows; ineffective for the explicit env-var path.",
+      "fix": "Add `.exe` suffix check: `if [ -x \"${ARM_TOOLCHAIN}/arm-none-eabi-gcc\" ] || [ -x \"${ARM_TOOLCHAIN}/arm-none-eabi-gcc.exe\" ]`. Or check via `\"$ARM_TOOLCHAIN/arm-none-eabi-gcc\" --version >/dev/null 2>&1`.",
+      "effort_minutes": 5,
+      "verification": "Set `ARM_TOOLCHAIN=/c/Users/Dell/.platformio/.../bin` on Windows — first path should now succeed instead of falling through to PATH."
+    },
+    {
+      "id": "FIX2-009",
+      "severity": "LOW",
+      "category": "diagnostic",
+      "file": "src/flash_config.c",
+      "lines": "do_save_now",
+      "title": "Save-failed counter exported but no host-visible code",
+      "issue": "FIX-012 adds `flash_config_save_failed_count()` accessor and increments on Flash program failure, but no bipropellant code exposes it. Host can't tell if a save silently failed.",
+      "fix": "Register a new param 0xB5 'flash_save_failed_count' (R) in protocol_params_flash.c. Read-only u8.",
+      "effort_minutes": 10,
+      "verification": "Simulate Flash failure (e.g., write to write-protected sector by misconfiguring linker temporarily). Verify 0xB5 reads > 0."
+    },
+    {
+      "id": "FIX2-010",
+      "severity": "LOW",
+      "category": "comment_drift",
+      "file": "include/flash_config.h",
+      "lines": "FlashContent_t comment block",
+      "title": "Field comments still mention '0xB0 — gate flag' for HoverboardEnable but 0xB0 was reassigned to motor_mode_active",
+      "issue": "Comment on `HoverboardEnable` field says `/* 0xA0 — gate flag */` (correct). But anyone scanning comments quickly might confuse with motor_mode_active 0xB0 nearby. Documentation/code alignment.",
+      "fix": "Add a one-line note that codes 0xB0/B1/B2 are NOT FlashContent fields — they're motor_mode globals registered separately.",
+      "effort_minutes": 2,
+      "verification": "Documentation only."
+    },
+    {
+      "id": "FIX2-011",
+      "severity": "LOW",
+      "category": "test_coverage",
+      "file": "N/A (project-wide)",
+      "title": "No automated regression test for FIX-001 (startup .data copy)",
+      "issue": "FIX-001 was a silent corruption bug. The fix is now in place but if someone refactors startup.S in the future, the bug could regress invisibly. A simple canary in .data would catch it.",
+      "fix": "Add to a startup-validation .c file: `volatile uint32_t __data_canary[4] __attribute__((used)) = {0xCAFE0001, 0xCAFE0002, 0xCAFE0003, 0xCAFE0004};` Then at the top of main() (or in motor_mode_detect for visibility), check all 4 values and set a fault flag if mismatched.",
+      "effort_minutes": 10,
+      "verification": "Build with intentionally-broken startup — verify fault flag set. With correct startup, no fault."
+    },
+    {
+      "id": "FIX2-012",
+      "severity": "LOW",
+      "category": "consistency",
+      "file": "src/M1_StateMachine.c",
+      "lines": "sensorless branches",
+      "title": "Sensorless branches in sub-state handlers don't gate on Motor.BLDC.u8FlagEnMotorRun",
+      "issue": "Hall sub-state handlers (M1M1_RunStartup, M1M1_RunSpin) check `if(Motor.BLDC.u8FlagEnMotorRun == 0) M1M1_SwitchRunStop();` at the top. Sensorless branches skip this check — they call the sensorless functions directly without verifying the run flag. If a host writes run_enable=0 while in MODE_SENSORLESS, the motor doesn't stop cleanly (the closed-lib functions might keep commutating until the next pass).",
+      "fix": "Add `if (Motor.BLDC.u8FlagEnMotorRun == 0) { M1M1_SwitchRunStop(); return; }` at the top of each sensorless branch.",
+      "effort_minutes": 10,
+      "verification": "Bench: enable motor in sensorless mode, send 0x09=0, verify motor stops within 1 ms."
+    },
+    {
+      "id": "FIX2-013",
+      "severity": "LOW",
+      "category": "design",
+      "file": "src/protocol_handlers.c",
+      "lines": "11 (post-fix-019)",
+      "title": "protocol_drain_rx in 10ms slot — TX response latency now up to 10 ms after RX",
+      "issue": "Moving protocol calls into the 10ms slot reduces CPU jitter (FIX-019 goal) but adds up to 10 ms latency to the response of a bipropellant command. Most bipropellant hosts are fine with this; some real-time control loops at ~50 Hz might notice.",
+      "fix": "Document the latency budget in docs/protocol_codes.md. If hosts need <10ms round-trip, move drain back to 1ms slot but cap the byte-count per call (e.g., max 8 bytes / 1ms call).",
+      "effort_minutes": 5,
+      "verification": "Profile: time from RX-IRQ to first TX byte. Should be < 11 ms (1 ms scheduler granularity + ≤ 10 ms slot wait + processing)."
+    }
+  ],
+
+  "fix_order_recommendation": {
+    "must_fix_before_release": [
+      "FIX2-002 (deadband derivative kick — affects position-control accuracy)",
+      "FIX2-001 (document the CRC breaking change in release notes)"
+    ],
+    "should_fix_for_robustness": [
+      "FIX2-003 (compile-time alignment check)",
+      "FIX2-004 (rename macro footgun)",
+      "FIX2-005 (early-exit detection)",
+      "FIX2-012 (sensorless u8FlagEnMotorRun check)"
+    ],
+    "nice_to_have": [
+      "FIX2-006 (BLDC_COMP_Input_Only diagnostic)",
+      "FIX2-008 (Windows .exe in build.sh)",
+      "FIX2-009 (save_failed_count host-visible)",
+      "FIX2-011 (canary regression test)"
+    ],
+    "deferred": [
+      "FIX2-007 (CRC32 performance — premature optimisation)",
+      "FIX2-010 (comment polish)",
+      "FIX2-013 (protocol latency note — just docs)"
+    ]
+  },
+
+  "summary": {
+    "total_findings_this_iteration": 13,
+    "high_severity": 0,
+    "medium_severity": 5,
+    "low_severity": 8,
+    "issues_introduced_by_v1_fixes": 4,
+    "issues_missed_in_v1_review": 5,
+    "issues_now_more_visible": 4,
+    "next_must_fix_effort_minutes": 7,
+    "next_should_fix_effort_minutes": 32,
+    "total_v2_effort_estimate_minutes": "≈ 110 minutes (≈ 2 hours of coding + verification)"
+  },
+
+  "qualitative_assessment": {
+    "code_quality_improvement": "Significant. The HIGH-severity bugs from v1 (data corruption via startup, dropped param registrations, stub for critical function) are all fixed. Remaining issues are subtler — ergonomic concerns, edge cases, minor diagnostics gaps.",
+    "no_HIGH_findings_in_v2": "Encouraging — the v1 fixes did not introduce any new critical bugs. All v2 findings are MEDIUM or LOW.",
+    "build_stability": "All 7 profiles continue to build with no warnings or errors. Size growth is bounded and well-explained (CRC + Input_Only logic).",
+    "areas_still_weak": [
+      "Sensorless verification — BLDC_COMP_Input_Only is now implemented but completely untested on hardware. The vendor port is mechanical; whether SYS_AFE_REG1 bit positions are correct for our specific board variant is unverified.",
+      "No host-side unit tests for the protocol layer — would catch parameter handler bugs without hardware.",
+      "Phase NN comments accumulated through 13 phases — readability noise.",
+      "Motor_step_tab rename trick (FIX2-004) is clever but fragile under future maintenance."
+    ],
+    "ready_for_hardware_test": "YES — after fixing FIX2-002 (derivative kick on deadband exit, 2 min fix). Other items are post-test polish."
+  },
+
+  "notes": [
+    "This v2 review found NO HIGH-severity issues, which is a strong sign that v1 fixes were applied carefully. The original 6 HIGH findings (startup ASM, pool overflow, ISR race, debounce, alignment, stub) are all genuinely resolved.",
+    "FIX-001 (startup .data copy) was the single most impactful fix — likely explains any past flaky behavior in GCC builds. Worth bench-testing once more with the corrected startup to confirm motor behavior matches the Keil/ARMCC build.",
+    "The new MEDIUM findings are mostly about robustness and design ergonomics rather than runtime correctness. They can be addressed at leisure.",
+    "If hardware testing reveals new issues (e.g., BLDC_COMP_Input_Only register bits wrong for SNR8503M-specific board variant), those would warrant a fix-up-plan-3.json."
+  ]
+}

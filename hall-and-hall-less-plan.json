@@ -1,0 +1,530 @@
+{
+  "title": "Modular SNR8503M Firmware — Hall + Sensorless + Pluggable Protocols",
+  "version": "2.0",
+  "generated": "2026-05-12",
+  "summary": "Refactor SNR8503M_gcc_full into a modular firmware where motor sensing (Hall, Sensorless, or both) and protocol layer (simple, binary, full=binary+ASCII) can each be selected at compile time via build profiles. A single build switch yields any of the supported configurations without touching source files.",
+
+  "modules": {
+    "motor_hall": {
+      "id": "MODULE_MOTOR_HALL",
+      "purpose": "Hall-sensored BLDC commutation (existing Phase 1-8 path)",
+      "kind": "motor_sensing",
+      "sources": [
+        "src/M1_StateMachine.c (Hall branch of sub-state handlers)",
+        "src/MC_Drive.c",
+        "src/Sensor_Control.c",
+        "src/hall_accumulator.c",
+        "src/interrupt.c HALL_IRQHandler"
+      ],
+      "headers": [
+        "include/SNR_BLDC_HALL_V1p0.h"
+      ],
+      "closed_lib": "vendor_libs/SNR_BLDC_HALL_V1p0.lib (414 B — BLDC_init, HALL_Update, ICP_Loader)",
+      "flash_cost_bytes": "approx 1500 + 414 (lib) = ~1900 B",
+      "ram_cost_bytes": "approx 28 (ICP_* state) + Motor.BLDC fields",
+      "depends_on": [],
+      "conflicts_with": [],
+      "always_available_in_phase8_baseline": true
+    },
+
+    "motor_sensorless": {
+      "id": "MODULE_MOTOR_SENSORLESS",
+      "purpose": "BEMF-comparator sensorless commutation (no Hall sensors needed)",
+      "kind": "motor_sensing",
+      "sources_to_add": [
+        "src/COMP_Sensoeless.c (copy from sensorless SDK — vendor's typo preserved)",
+        "src/Find_Motor_Rotor.c (copy from sensorless SDK)",
+        "src/sensorless_drive.c (new — wraps the open-source calls into our state machine)"
+      ],
+      "headers_to_add": [
+        "include/COMP_Sensorless.h",
+        "include/Find_Motor_Rotor.h",
+        "include/Lib_Zero_detect.h"
+      ],
+      "closed_lib": "vendor_libs/snr_bldc_snls_renamed.lib (228 B — BLDC_init_snls, COMP_Motor_Zero_Detect, Freerun_Zero_Detect; renamed via objcopy to avoid BLDC_init clash with Hall lib)",
+      "flash_cost_bytes": "approx 3000 + 228 (lib) = ~3300 B",
+      "ram_cost_bytes": "approx 150-250 (BLDC_1, BLDC_BUFF, sensorless state)",
+      "depends_on": ["motor_mode_dispatch_infrastructure"],
+      "conflicts_with": [],
+      "notes": "Can coexist with motor_hall — runtime detection chooses; or compile-time only-one-of"
+    },
+
+    "protocol_simple": {
+      "id": "MODULE_PROTOCOL_SIMPLE",
+      "purpose": "Original 9-byte AA...55 frame protocol from vendor SDK (UR_Ctrl.c)",
+      "kind": "protocol",
+      "sources": [
+        "src/UR_Ctrl.c (already present — currently bypassed in Phase 3.5)"
+      ],
+      "wire_format": "0xAA SpdHi SpdLo PwrHi PwrLo Rsv Rsv CKM 0x55 (9-byte frames; vendor's stub)",
+      "flash_cost_bytes": "~500 B",
+      "ram_cost_bytes": "256 (rxd_comm0 ring buffer — shared with bipropellant if both enabled, but they cannot coexist)",
+      "depends_on": [],
+      "conflicts_with": ["protocol_bipropellant_binary", "protocol_bipropellant_ascii"],
+      "notes": "Smallest protocol option. Use when host is a simple microcontroller without bipropellant library."
+    },
+
+    "protocol_bipropellant_binary": {
+      "id": "MODULE_PROTOCOL_BIPROPELLANT_BIN",
+      "purpose": "Bipropellant binary protocol (COBS-R framed, parameter registry, subscriptions)",
+      "kind": "protocol",
+      "sources": [
+        "third_party/bipropellant-protocol/protocol.c",
+        "third_party/bipropellant-protocol/machine_protocol.c",
+        "third_party/bipropellant-protocol/cobsr.c",
+        "src/protocol_handlers.c",
+        "src/timebase.c",
+        "src/protocol_params_*.c (registers parameter codes — see protocol_codes module below)"
+      ],
+      "headers": [
+        "third_party/bipropellant-protocol/protocol.h",
+        "third_party/bipropellant-protocol/cobsr.h",
+        "third_party/bipropellant-protocol/protocol_private.h"
+      ],
+      "wire_format": "PROTOCOL_MSG3: SOM + cmd + CI + len + COBS-R-encoded payload",
+      "flash_cost_bytes": "~6000 B",
+      "ram_cost_bytes": "~9600 B (PROTOCOL_STAT struct with 10 subscriptions + 256-entry param array)",
+      "depends_on": [],
+      "conflicts_with": ["protocol_simple"],
+      "license": "MIT (third_party — no contagion concerns)",
+      "notes": "Required for any of the protocol_params_* modules below."
+    },
+
+    "protocol_bipropellant_ascii": {
+      "id": "MODULE_PROTOCOL_BIPROPELLANT_ASCII",
+      "purpose": "ASCII variant of bipropellant on the same UART — terminal debugging convenience",
+      "kind": "protocol_addon",
+      "sources": [
+        "third_party/bipropellant-protocol/ascii_protocol.c"
+      ],
+      "wire_format": "ASCII commands like 'R08' for READ code 0x08, 'W09 01' for WRITE; coexists with binary on the same serial line",
+      "flash_cost_bytes": "~3000 B",
+      "ram_cost_bytes": "~80 (ASCII state in PROTOCOL_STAT)",
+      "depends_on": ["protocol_bipropellant_binary"],
+      "conflicts_with": ["protocol_simple"],
+      "notes": "If MODULE_PROTOCOL_BIPROPELLANT_ASCII=1 but BIN=0, the build script will force BIN=1 with a warning."
+    },
+
+    "protocol_codes_standard": {
+      "id": "MODULE_CODES_STANDARD",
+      "purpose": "Hoverboard-standard codes 0x08, 0x09, 0x0A, 0x0B, 0x21 (Phase 5.3-5.5)",
+      "kind": "protocol_addon",
+      "sources": ["src/protocol_params_standard.c"],
+      "flash_cost_bytes": "~700 B",
+      "depends_on": ["protocol_bipropellant_binary"]
+    },
+
+    "protocol_codes_snr": {
+      "id": "MODULE_CODES_SNR",
+      "purpose": "SNR custom codes 0x40-0x49 (Phase 5.1)",
+      "kind": "protocol_addon",
+      "sources": ["src/protocol_params_snr.c"],
+      "flash_cost_bytes": "~250 B",
+      "depends_on": ["protocol_bipropellant_binary"]
+    },
+
+    "protocol_codes_position": {
+      "id": "MODULE_CODES_POSITION",
+      "purpose": "Position telemetry codes 0x02, 0x04, 0x07, 0x0C (Phase 6.1)",
+      "kind": "protocol_addon",
+      "sources": ["src/protocol_params_position.c"],
+      "flash_cost_bytes": "~1500 B (includes soft-float)",
+      "depends_on": ["protocol_bipropellant_binary"]
+    },
+
+    "protocol_codes_motion": {
+      "id": "MODULE_CODES_MOTION",
+      "purpose": "Write commands 0x01, 0x03, 0x0D, 0x0E (Phase 7.2)",
+      "kind": "protocol_addon",
+      "sources": ["src/protocol_params_motion.c", "src/control_mode.c"],
+      "flash_cost_bytes": "~1500 B",
+      "depends_on": ["protocol_bipropellant_binary"]
+    },
+
+    "protocol_codes_position_control": {
+      "id": "MODULE_CODES_POSCTRL",
+      "purpose": "Position control PI loop + codes 0x05, 0x06 (Phase 7.3)",
+      "kind": "protocol_addon",
+      "sources": ["src/protocol_params_motion_pos.c", "src/position_control.c"],
+      "flash_cost_bytes": "~1200 B",
+      "depends_on": ["protocol_bipropellant_binary", "protocol_codes_motion", "module_flash_config"]
+    },
+
+    "module_flash_config": {
+      "id": "MODULE_FLASH_CONFIG",
+      "purpose": "Persistent runtime-tunable config (Phase 8) + codes 0x80-0xA0",
+      "kind": "support",
+      "sources": ["src/flash_config.c", "src/protocol_params_flash.c"],
+      "flash_cost_bytes": "~1800 B + 4 KB reserved Flash sector for config block",
+      "depends_on": ["protocol_bipropellant_binary"]
+    }
+  },
+
+  "profiles": {
+    "hall_minimal": {
+      "description": "Hall sensored BLDC + original 9-byte protocol. Smallest footprint.",
+      "modules_enabled": ["motor_hall", "protocol_simple"],
+      "modules_disabled": ["motor_sensorless", "protocol_bipropellant_binary", "protocol_bipropellant_ascii", "all protocol_codes_*", "module_flash_config"],
+      "flash_estimate_KB": "12-13",
+      "ram_estimate_KB": "1-2",
+      "use_case": "Direct replacement for the original vendor firmware; minimal binary"
+    },
+    "hall_bipropellant": {
+      "description": "Hall + bipropellant binary protocol + all standard codes (matches current SNR8503M_gcc Phase 6.1 baseline)",
+      "modules_enabled": ["motor_hall", "protocol_bipropellant_binary", "protocol_codes_standard", "protocol_codes_snr", "protocol_codes_position"],
+      "flash_estimate_KB": "24-25",
+      "ram_estimate_KB": "11-12"
+    },
+    "hall_bipropellant_full": {
+      "description": "Hall + full bipropellant (binary+ASCII) + all hoverboard-standard codes (matches current SNR8503M_gcc_full Phase 8 baseline)",
+      "modules_enabled": ["motor_hall", "protocol_bipropellant_binary", "protocol_bipropellant_ascii", "protocol_codes_standard", "protocol_codes_snr", "protocol_codes_position", "protocol_codes_motion", "protocol_codes_position_control", "module_flash_config"],
+      "flash_estimate_KB": "28-29",
+      "ram_estimate_KB": "11-12"
+    },
+    "sensorless_minimal": {
+      "description": "Sensorless BEMF + simple protocol. Drop-in for boards without Hall sensors.",
+      "modules_enabled": ["motor_sensorless", "protocol_simple"],
+      "flash_estimate_KB": "14-15",
+      "ram_estimate_KB": "1-2"
+    },
+    "sensorless_bipropellant": {
+      "description": "Sensorless + bipropellant binary",
+      "modules_enabled": ["motor_sensorless", "protocol_bipropellant_binary", "protocol_codes_standard", "protocol_codes_snr"],
+      "flash_estimate_KB": "26-27",
+      "ram_estimate_KB": "11-12"
+    },
+    "unified_minimal": {
+      "description": "Hall + Sensorless with auto-detection + simple protocol",
+      "modules_enabled": ["motor_hall", "motor_sensorless", "protocol_simple"],
+      "flash_estimate_KB": "16-17",
+      "ram_estimate_KB": "1-2"
+    },
+    "unified_full": {
+      "description": "Everything — Hall + Sensorless + binary + ASCII + all codes + flash config",
+      "modules_enabled": ["motor_hall", "motor_sensorless", "protocol_bipropellant_binary", "protocol_bipropellant_ascii", "protocol_codes_standard", "protocol_codes_snr", "protocol_codes_position", "protocol_codes_motion", "protocol_codes_position_control", "module_flash_config"],
+      "flash_estimate_KB": "32-34",
+      "ram_estimate_KB": "12-13",
+      "warning": "MAY EXCEED 32 KB MDK-Lite cap. GCC build (no cap) recommended for this profile."
+    }
+  },
+
+  "constraints": [
+    {
+      "rule": "at_least_one_motor_module",
+      "expression": "motor_hall || motor_sensorless",
+      "compile_time_check": "#if !MODULE_MOTOR_HALL && !MODULE_MOTOR_SENSORLESS\n#error \"At least one motor sensing module must be enabled\"\n#endif"
+    },
+    {
+      "rule": "exactly_one_protocol_family",
+      "expression": "protocol_simple XOR (protocol_bipropellant_binary || protocol_bipropellant_ascii)",
+      "compile_time_check": "#if MODULE_PROTOCOL_SIMPLE && (MODULE_PROTOCOL_BIPROPELLANT_BIN || MODULE_PROTOCOL_BIPROPELLANT_ASCII)\n#error \"Simple and bipropellant protocols are mutually exclusive — both share UART0\"\n#endif"
+    },
+    {
+      "rule": "ascii_requires_binary",
+      "expression": "protocol_bipropellant_ascii -> protocol_bipropellant_binary",
+      "auto_fix": "If MODULE_PROTOCOL_BIPROPELLANT_ASCII=1 but BIN=0, build script forces BIN=1 with warning"
+    },
+    {
+      "rule": "codes_require_bipropellant_binary",
+      "expression": "any protocol_codes_* -> protocol_bipropellant_binary",
+      "compile_time_check": "Per-codes-module #if guard checks parent dependency"
+    },
+    {
+      "rule": "position_control_requires_motion_and_flash",
+      "expression": "protocol_codes_position_control -> protocol_codes_motion && module_flash_config",
+      "rationale": "Position PI loop reads gains from g_flash_cfg; engages MODE_POSITION via control_mode dispatch"
+    }
+  ],
+
+  "feature_config_design": {
+    "file": "include/feature_config.h",
+    "selection_method": "Either: (a) edit feature_config.h directly to set module flags, OR (b) pass PROFILE=name to build.sh which selects from profiles dict and generates the file",
+    "preferred_method": "b — profile-driven generation; reproducible and self-documenting",
+    "c_code_skeleton": "/* AUTO-GENERATED by build.sh from PROFILE setting. Do not edit. */\n#ifndef FEATURE_CONFIG_H\n#define FEATURE_CONFIG_H\n\n/* Motor sensing */\n#define MODULE_MOTOR_HALL                 1\n#define MODULE_MOTOR_SENSORLESS           1\n\n/* Protocol family — mutually exclusive groups */\n#define MODULE_PROTOCOL_SIMPLE            0\n#define MODULE_PROTOCOL_BIPROPELLANT_BIN  1\n#define MODULE_PROTOCOL_BIPROPELLANT_ASCII 1\n\n/* Protocol code modules — require bipropellant binary */\n#define MODULE_CODES_STANDARD             1\n#define MODULE_CODES_SNR                  1\n#define MODULE_CODES_POSITION             1\n#define MODULE_CODES_MOTION               1\n#define MODULE_CODES_POSCTRL              1\n\n/* Support modules */\n#define MODULE_FLASH_CONFIG               1\n\n/* Compile-time validation (see constraints section in plan) */\n#if !MODULE_MOTOR_HALL && !MODULE_MOTOR_SENSORLESS\n#error \"At least one motor sensing module must be enabled\"\n#endif\n\n#if MODULE_PROTOCOL_SIMPLE && (MODULE_PROTOCOL_BIPROPELLANT_BIN || MODULE_PROTOCOL_BIPROPELLANT_ASCII)\n#error \"Simple and bipropellant protocols are mutually exclusive\"\n#endif\n\n#if MODULE_PROTOCOL_BIPROPELLANT_ASCII && !MODULE_PROTOCOL_BIPROPELLANT_BIN\n#error \"ASCII protocol requires binary protocol\"\n#endif\n\n#endif"
+  },
+
+  "build_system_changes": {
+    "build_sh_additions": [
+      "Accept PROFILE=name argument (default: hall_bipropellant_full to match current state)",
+      "Generate include/feature_config.h from the selected profile",
+      "Conditionally include source files in SRCS_C based on module flags (faster builds when modules disabled — alternative is rely on linker --gc-sections)",
+      "Pass -DMODULE_X=value flags to gcc so #if guards work consistently",
+      "Emit a summary at start of build: 'Profile: hall_bipropellant_full | Motor: HALL+SENSORLESS | Protocol: BIN+ASCII | Codes: STD+SNR+POS+MOTION+POSCTRL | Flash config: yes'"
+    ],
+    "example_invocation": [
+      "./build.sh build                              # default profile",
+      "./build.sh build PROFILE=hall_minimal         # smallest hall-only",
+      "./build.sh build PROFILE=unified_full         # everything",
+      "./build.sh build PROFILE=sensorless_minimal   # smallest no-hall"
+    ]
+  },
+
+  "source_refactor_required": {
+    "wrap_existing_files_with_guards": [
+      "src/UR_Ctrl.c — wrap UART0_init, UartDealRX, UartDealTX, fputc bodies in #if MODULE_PROTOCOL_SIMPLE || MODULE_PROTOCOL_BIPROPELLANT_BIN (most of this file is shared infrastructure; keep init+send always available since both protocols use them)",
+      "src/main.c — replace #if (UART0_FUNCTION == ENABLE_FUNCTION) with module-aware dispatch:\n  #if MODULE_PROTOCOL_BIPROPELLANT_BIN\n    protocol_drain_rx(); protocol_drive_tick();\n  #elif MODULE_PROTOCOL_SIMPLE\n    UartDealRX(); UartDealTX();\n  #endif",
+      "src/protocol_handlers.c — entire file already #if-gated; replace UART0_FUNCTION check with #if MODULE_PROTOCOL_BIPROPELLANT_BIN",
+      "src/protocol_params_*.c — each entire file gated on its corresponding MODULE_CODES_* flag",
+      "src/control_mode.c — gated on MODULE_CODES_MOTION (only needed when motion commands present)",
+      "src/position_control.c — gated on MODULE_CODES_POSCTRL",
+      "src/flash_config.c, src/protocol_params_flash.c — gated on MODULE_FLASH_CONFIG",
+      "src/M1_StateMachine.c — sub-state handler bodies use #if/#elif MODULE_MOTOR_HALL/MODULE_MOTOR_SENSORLESS to pick commutation path",
+      "src/interrupt.c — HALL_IRQHandler body wrapped in #if MODULE_MOTOR_HALL; CMP_IRQHandler body wrapped in #if MODULE_MOTOR_SENSORLESS",
+      "src/hardware_init.c — Hall peripheral init #if MODULE_MOTOR_HALL; CMP init #if MODULE_MOTOR_SENSORLESS (both are cheap; could leave always-init for simplicity)"
+    ],
+    "lines_changed_estimate": "~200 lines across ~12 files, mostly mechanical #if additions"
+  },
+
+  "phases": [
+    {
+      "phase": 9,
+      "title": "Module system foundation",
+      "autonomy": "autonomous_safe",
+      "estimate_hours": 3,
+      "steps": [
+        {
+          "id": "9.1",
+          "action": "Create include/feature_config.h with all module flags + compile-time validation #ifs. Default profile = hall_bipropellant_full (matches current state).",
+          "verify": "File exists, compiles standalone with arm-none-eabi-gcc -E"
+        },
+        {
+          "id": "9.2",
+          "action": "Modify build.sh: accept PROFILE=name; have a bash associative array mapping profile names to MODULE_* values; generate feature_config.h on each build.",
+          "verify": "./build.sh build PROFILE=hall_minimal generates a feature_config.h with sensorless and bipropellant disabled. Build still passes (no source uses the flags yet)."
+        },
+        {
+          "id": "9.3",
+          "action": "Add #include \"feature_config.h\" to MC_Parameter.h (so it propagates everywhere) at the top.",
+          "verify": "Every .c file now sees the MODULE_* flags via the existing include graph"
+        },
+        {
+          "id": "9.4",
+          "action": "Print build summary at top of build output: profile name + enabled modules + estimated size.",
+          "verify": "Build shows 'Profile: ... | Modules: ...' line"
+        }
+      ]
+    },
+    {
+      "phase": 10,
+      "title": "Refactor existing code into modules (no behavior change for current profile)",
+      "autonomy": "autonomous_safe",
+      "estimate_hours": 4,
+      "steps": [
+        {
+          "id": "10.1",
+          "action": "Wrap protocol_handlers.c, all protocol_params_*.c, flash_config.c, control_mode.c, position_control.c in their respective #if MODULE_* guards.",
+          "verify": "Build with hall_bipropellant_full profile — text size identical to pre-refactor (within ±50 bytes from include changes)"
+        },
+        {
+          "id": "10.2",
+          "action": "In main.c, replace the UART0_FUNCTION check around UartDealRX/protocol_drain_rx with module-aware #if/#elif chain.",
+          "verify": "Build with PROFILE=hall_minimal succeeds and uses the simple protocol path; PROFILE=hall_bipropellant_full uses protocol_drain_rx"
+        },
+        {
+          "id": "10.3",
+          "action": "Test 3 profiles end-to-end (build only): hall_minimal, hall_bipropellant_full, hall_bipropellant. Verify each produces a valid HEX.",
+          "verify": "Three build outputs, all valid hex, three different sizes matching profile estimates ±10%"
+        },
+        {
+          "id": "10.4",
+          "action": "Update STATUS.md and BUILD_LOG.md with the refactor delta",
+          "verify": "Status reflects MODULE_* flag support"
+        }
+      ]
+    },
+    {
+      "phase": 11,
+      "title": "Sensorless module — vendor SDK absorption",
+      "autonomy": "autonomous_safe",
+      "estimate_hours": 2,
+      "steps": [
+        {
+          "id": "11.1",
+          "action": "Copy sensorless SDK files into the gcc tree, gated by #if MODULE_MOTOR_SENSORLESS at top of each .c file.",
+          "files_to_copy": [
+            "Kernal_Source/COMP_Sensoeless.c → src/",
+            "Kernal_Source/Find_Motor_Rotor.c → src/",
+            "Include/COMP_Sensorless.h, Find_Motor_Rotor.h, Lib_Zero_detect.h → include/",
+            "Kernal_Source/SNR_BLDC_SNLS_V1p0.lib → vendor_libs/"
+          ],
+          "verify": "Files present; with PROFILE that excludes sensorless they compile to empty .o (sections stripped)"
+        },
+        {
+          "id": "11.2",
+          "action": "Add lib-rename step to build.sh: if MODULE_MOTOR_SENSORLESS=1, run arm-none-eabi-objcopy --redefine-sym BLDC_init=BLDC_init_snls vendor_libs/SNR_BLDC_SNLS_V1p0.lib vendor_libs/snr_bldc_snls_renamed.lib. Conditionally add the renamed lib to link line.",
+          "verify": "Build with unified_minimal profile produces hex; map shows both BLDC_init AND BLDC_init_snls symbols"
+        }
+      ]
+    },
+    {
+      "phase": 12,
+      "title": "Motor-mode dispatch + auto-detection",
+      "autonomy": "autonomous_safe (no behavior change in single-mode profiles)",
+      "estimate_hours": 2,
+      "steps": [
+        {
+          "id": "12.1",
+          "action": "Create src/motor_mode.c + include/motor_mode.h. Defines motor_mode_t {MODE_HALL, MODE_SENSORLESS}, global g_motor_mode, motor_mode_detect() that samples Hall pins for ~50ms.",
+          "verify": "Build passes for all profiles; g_motor_mode symbol present when at least one motor module enabled"
+        },
+        {
+          "id": "12.2",
+          "action": "Wire motor_mode_detect() into main.c after Hardware_init. Skip detection if only one motor module is compiled in (no choice to make).",
+          "verify": "PROFILE=hall_bipropellant_full hardcodes MODE_HALL; PROFILE=unified_full runs detection"
+        },
+        {
+          "id": "12.3",
+          "action": "Add new flash-backed codes 0xB0 (motor_mode_active R), 0xB1 (override RW), 0xB2 (detection window RW). Gated on MODULE_MOTOR_SENSORLESS (no override needed if only one motor compiled).",
+          "verify": "Codes registered when MODULE_MOTOR_SENSORLESS=1 AND MODULE_FLASH_CONFIG=1"
+        }
+      ]
+    },
+    {
+      "phase": 13,
+      "title": "State machine dispatch on g_motor_mode (SUPERVISED hardware testing)",
+      "autonomy": "supervised",
+      "estimate_hours": 4,
+      "risk": "high — sub-state handlers branch; bugs cause incorrect commutation",
+      "steps": [
+        {
+          "id": "13.1",
+          "action": "Edit src/M1_StateMachine.c — each M1M1_Run* sub-state function gets #if MODULE_MOTOR_HALL / #elif MODULE_MOTOR_SENSORLESS branches. If both compiled, runtime branch on g_motor_mode.",
+          "verify": "Build for hall_bipropellant_full — Hall path identical to pre-Phase-13. Build for sensorless_bipropellant — sensorless path active."
+        },
+        {
+          "id": "13.2",
+          "action": "Add CMP_IRQHandler in interrupt.c gated on MODULE_MOTOR_SENSORLESS. Dispatches to COMP_Motor_Zero_Detect when in MODE_SENSORLESS.",
+          "verify": "Build clean; vector table has CMP_IRQHandler when sensorless enabled"
+        },
+        {
+          "id": "13.3",
+          "action": "Add sensorless tuning constants to MC_Parameter.h: STARTUP_OPENLOOP_DUTY, STARTUP_RAMP_TIME_MS, SWITCHOVER_eRPM, BEMF_FILTER_TIME (gated on MODULE_MOTOR_SENSORLESS so they don't pollute Hall-only builds).",
+          "verify": "Defines compile cleanly"
+        },
+        {
+          "id": "13.4",
+          "action": "HARDWARE TEST — flash unified_full profile. Disconnect Hall sensors → verify 0xB0 reads MODE_SENSORLESS, motor self-starts. Reconnect Hall → reboot → verify 0xB0 reads MODE_HALL, motor uses Hall path.",
+          "verify": "Manual; motor spins in both modes",
+          "blocked_reason": "needs_hardware"
+        }
+      ]
+    },
+    {
+      "phase": 14,
+      "title": "Polish + edge cases",
+      "autonomy": "supervised",
+      "estimate_hours": 2,
+      "steps": [
+        {
+          "id": "14.1",
+          "action": "Add diagnostic counter 0xB3 (bemf_zero_crossings) gated on MODULE_MOTOR_SENSORLESS",
+          "verify": "Counter increments visibly when sensorless motor spins"
+        },
+        {
+          "id": "14.2",
+          "action": "Handle freerun-against-wind: if motor was spinning before power-on, sensorless detection should join the rotation",
+          "verify": "Manual spin before boot; verify firmware doesn't fight"
+        },
+        {
+          "id": "14.3",
+          "action": "Reject mid-run mode switches. Writes to 0xB1 while motor is energised are deferred to next boot.",
+          "verify": "Write 0xB1=2 while motor running; mode stays MODE_HALL"
+        }
+      ]
+    },
+    {
+      "phase": 15,
+      "title": "Protocol module split — make simple/binary/ASCII independently selectable",
+      "autonomy": "autonomous_safe",
+      "estimate_hours": 2,
+      "steps": [
+        {
+          "id": "15.1",
+          "action": "In third_party/bipropellant-protocol/, add #if MODULE_PROTOCOL_BIPROPELLANT_ASCII / #endif around the body of ascii_protocol.c so it compiles to empty when ASCII disabled.",
+          "verify": "Build PROFILE=hall_bipropellant (no ASCII) — text smaller by ~3 KB"
+        },
+        {
+          "id": "15.2",
+          "action": "Confirm protocol_simple build path. With PROFILE=hall_minimal, the existing UR_Ctrl.c::UartDealRX/TX should be wired in by Phase 10.2 and the bipropellant files compile to empty TUs.",
+          "verify": "PROFILE=hall_minimal builds a ~12 KB firmware that responds to the 9-byte AA...55 frame protocol"
+        },
+        {
+          "id": "15.3",
+          "action": "Document the profile catalog in docs/profiles.md — each profile, its modules, footprint, intended host.",
+          "verify": "File exists with all 7 profiles listed"
+        }
+      ]
+    }
+  ],
+
+  "estimates": {
+    "phase_9_module_system": "3 hours",
+    "phase_10_refactor": "4 hours",
+    "phase_11_sensorless_absorb": "2 hours",
+    "phase_12_mode_detect": "2 hours",
+    "phase_13_dispatch": "4 hours coding + 2-4 hr supervised hw test",
+    "phase_14_polish": "2 hours",
+    "phase_15_protocol_split": "2 hours",
+    "total_coding": "19 hours",
+    "total_with_hardware": "23-27 hours"
+  },
+
+  "risks": [
+    {
+      "risk": "Module flag drift — guard placement inconsistent across files",
+      "severity": "medium",
+      "mitigation": "Linting: grep -nE '^#if MODULE_' src/ include/ to audit guard coverage; build all 7 profiles in CI"
+    },
+    {
+      "risk": "Closed lib BLDC_init symbol conflict",
+      "severity": "medium",
+      "mitigation": "objcopy --redefine-sym in build.sh; covered in Phase 11.2"
+    },
+    {
+      "risk": "Hall detection false-negative",
+      "severity": "medium",
+      "mitigation": "Manual override via 0xB1; documented detection algorithm"
+    },
+    {
+      "risk": "Sensorless startup may damage hardware if STARTUP_OPENLOOP_DUTY too high",
+      "severity": "high",
+      "mitigation": "Conservative default; add safety check on current limit during align"
+    },
+    {
+      "risk": "Profile sprawl — too many configurations to verify",
+      "severity": "low",
+      "mitigation": "Limit to the 7 documented profiles; ad-hoc combinations remain possible via edit feature_config.h directly"
+    },
+    {
+      "risk": "Existing Phase 8 build size grows after refactor due to module-flag overhead",
+      "severity": "low",
+      "mitigation": "Use --gc-sections; check that hall_bipropellant_full size stays within ±100 bytes of pre-Phase-9 size"
+    }
+  ],
+
+  "deliverable_branch": {
+    "suggested_path": "C:\\RC\\SNR8503M_gcc_full (in-place — this is the chosen branch)",
+    "rationale": "User explicitly chose SNR8503M_gcc_full. Original SNR8503M_gcc remains as Phase 6.1 fallback. After Phase 15, _gcc_full will be the modular flagship.",
+    "post_implementation": "Single source tree that builds 7 different firmware images via PROFILE= flag. Default = unified_full (or hall_bipropellant_full to preserve Phase 8 baseline behavior)."
+  },
+
+  "self_loop_compatibility": {
+    "phases_9_to_12_autonomous": true,
+    "phase_13_supervised": "Mark BLOCKED needs_supervised_test before each substep",
+    "phase_14_supervised": true,
+    "phase_15_autonomous": true,
+    "loop_exit_rule": "Same as before — current_phase >= 13 stops the loop; user explicitly resumes per-step"
+  },
+
+  "notes": [
+    "This v2 plan supersedes v1 (which only covered Hall+Sensorless integration without module abstraction).",
+    "v1 phases 9-12 are renumbered into v2 phases 11-14 (sensorless absorption + dispatch).",
+    "Phase 9-10 (NEW) make the existing Phase 1-8 code modular without changing behavior — current build profile becomes 'hall_bipropellant_full'.",
+    "Phase 15 (NEW) splits the protocol layer into selectable modules.",
+    "After all 15 phases, the firmware tree builds any of the 7 documented profiles with a single PROFILE= flag.",
+    "Compile-time mutual-exclusion checks prevent invalid combinations (e.g., simple + bipropellant).",
+    "The MDK-Lite 32 KB cap is only relevant for Keil builds; GCC has no such cap. Unified_full profile (~33 KB) exceeds MDK-Lite but is fine for GCC.",
+    "Module flags propagate via feature_config.h being included at the top of MC_Parameter.h — every existing file already includes MC_Parameter.h transitively.",
+    "The 'always-on' baseline (peripheral drivers, state machine core, protection, scheduler) is NOT module-gated — those are always compiled."
+  ]
+}

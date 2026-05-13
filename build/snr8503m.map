@@ -1,0 +1,2645 @@
+Archive member included to satisfy reference by file (symbol)
+
+vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+                              build/src/hardware_init.o (BLDC_init)
+vendor_libs/snr8503x_nvr.lib(lks32mc03x_nvr.o)
+                              build/periph_driver/source/snr8503x_dac.o (Read_Trim)
+vendor_libs/snr_bldc_snls_renamed.lib(zero_detect.o)
+                              build/src/hardware_init.o (BLDC_init_snls)
+c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_thumb1_case_uqi.o)
+                              build/src/MosTest.o (__gnu_thumb1_case_uqi)
+c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_udivsi3.o)
+                              build/src/MC_Drive.o (__aeabi_uidiv)
+c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_divsi3.o)
+                              build/src/motor_mode.o (__aeabi_idiv)
+c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_dvmd_tls.o)
+                              c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_udivsi3.o) (__aeabi_idiv0)
+c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_fixunssfsi.o)
+                              build/src/SpeedRamp.o (__aeabi_f2uiz)
+c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(divsf3.o)
+                              build/src/SpeedRamp.o (__aeabi_fdiv)
+c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(mulsf3.o)
+                              build/src/SpeedRamp.o (__aeabi_fmul)
+c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(subsf3.o)
+                              c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_fixunssfsi.o) (__aeabi_fsub)
+c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(fixsfsi.o)
+                              build/src/position_control.o (__aeabi_f2iz)
+c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(floatsisf.o)
+                              build/src/position_control.o (__aeabi_i2f)
+c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(floatunsisf.o)
+                              build/src/SpeedRamp.o (__aeabi_ui2f)
+c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_arm_cmpsf2.o)
+                              c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_fixunssfsi.o) (__aeabi_fcmpge)
+c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_clzsi2.o)
+                              c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(divsf3.o) (__clzsi2)
+c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(eqsf2.o)
+                              c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_arm_cmpsf2.o) (__eqsf2)
+c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(gesf2.o)
+                              c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_arm_cmpsf2.o) (__gesf2)
+c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(lesf2.o)
+                              c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_arm_cmpsf2.o) (__lesf2)
+c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-malloc.o)
+                              build/third_party/bipropellant-protocol/protocol.o (malloc)
+c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-memcpy-stub.o)
+                              build/src/flash_config.o (memcpy)
+c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-memset.o)
+                              build/src/flash_config.o (memset)
+c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-freer.o)
+                              c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-malloc.o) (_free_r)
+c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-mallocr.o)
+                              c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-malloc.o) (_malloc_r)
+c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-sbrkr.o)
+                              c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-mallocr.o) (_sbrk_r)
+c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-sprintf.o)
+                              build/third_party/bipropellant-protocol/ascii_protocol.o (sprintf)
+c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-strcpy.o)
+                              build/third_party/bipropellant-protocol/ascii_protocol.o (strcpy)
+c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-strlen.o)
+                              build/third_party/bipropellant-protocol/ascii_protocol.o (strlen)
+c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-strncpy.o)
+                              build/third_party/bipropellant-protocol/ascii_protocol.o (strncpy)
+c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-impure.o)
+                              c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-malloc.o) (_impure_ptr)
+c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-mlock.o)
+                              c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-freer.o) (__malloc_lock)
+c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-svfprintf.o)
+                              c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-sprintf.o) (_svfprintf_r)
+c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-vfprintf_i.o)
+                              c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-svfprintf.o) (_printf_i)
+c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-reent.o)
+                              c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-sbrkr.o) (errno)
+c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-memchr-stub.o)
+                              c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-svfprintf.o) (memchr)
+c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-memmove.o)
+                              c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-svfprintf.o) (memmove)
+c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-reallocr.o)
+                              c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-svfprintf.o) (_realloc_r)
+c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-msizer.o)
+                              c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-reallocr.o) (_malloc_usable_size_r)
+c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libnosys.a(sbrk.o)
+                              c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-sbrkr.o) (_sbrk)
+
+Allocating common symbols
+Common symbol       size              file
+
+errno               0x4               c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-reent.o)
+
+Discarded input sections
+
+ .text          0x00000000        0x0 build/src/COMP_Sensoeless.o
+ .data          0x00000000        0x0 build/src/COMP_Sensoeless.o
+ .bss           0x00000000        0x0 build/src/COMP_Sensoeless.o
+ .text.INIT_FreerunDetect
+                0x00000000       0x88 build/src/COMP_Sensoeless.o
+ .text          0x00000000        0x0 build/src/Global_Variable.o
+ .data          0x00000000        0x0 build/src/Global_Variable.o
+ .bss           0x00000000        0x0 build/src/Global_Variable.o
+ .bss.Ele_Speed_Division
+                0x00000000       0x10 build/src/Global_Variable.o
+ .bss.HallAngle_Division
+                0x00000000       0x10 build/src/Global_Variable.o
+ .text          0x00000000        0x0 build/src/M1_StateMachine.o
+ .data          0x00000000        0x0 build/src/M1_StateMachine.o
+ .bss           0x00000000        0x0 build/src/M1_StateMachine.o
+ .text          0x00000000        0x0 build/src/MC_Drive.o
+ .data          0x00000000        0x0 build/src/MC_Drive.o
+ .bss           0x00000000        0x0 build/src/MC_Drive.o
+ .text          0x00000000        0x0 build/src/MosTest.o
+ .data          0x00000000        0x0 build/src/MosTest.o
+ .bss           0x00000000        0x0 build/src/MosTest.o
+ .text          0x00000000        0x0 build/src/PID.o
+ .data          0x00000000        0x0 build/src/PID.o
+ .bss           0x00000000        0x0 build/src/PID.o
+ .text          0x00000000        0x0 build/src/Protect.o
+ .data          0x00000000        0x0 build/src/Protect.o
+ .bss           0x00000000        0x0 build/src/Protect.o
+ .bss.Over_BATtemp_Cnt
+                0x00000000        0x2 build/src/Protect.o
+ .bss.mos_RSM_test
+                0x00000000        0x4 build/src/Protect.o
+ .bss.mos_tmp_test
+                0x00000000        0x4 build/src/Protect.o
+ .bss.nBUS_Vol_ADCIn
+                0x00000000        0x2 build/src/Protect.o
+ .bss.u32POW_W_Final
+                0x00000000        0x4 build/src/Protect.o
+ .bss.u32Vol_ADC_Filt
+                0x00000000        0x4 build/src/Protect.o
+ .bss.u32Vol_ADC_Final
+                0x00000000        0x4 build/src/Protect.o
+ .bss.u32Vol_ADC_sum
+                0x00000000        0x4 build/src/Protect.o
+ .bss.u32Vol_V_Final
+                0x00000000        0x4 build/src/Protect.o
+ .text          0x00000000        0x0 build/src/Sensor_Control.o
+ .data          0x00000000        0x0 build/src/Sensor_Control.o
+ .bss           0x00000000        0x0 build/src/Sensor_Control.o
+ .data.Motor_step_tab_ccw
+                0x00000000        0x8 build/src/Sensor_Control.o
+ .data.Motor_step_tab_cw
+                0x00000000        0x8 build/src/Sensor_Control.o
+ .text          0x00000000        0x0 build/src/SpeedRamp.o
+ .data          0x00000000        0x0 build/src/SpeedRamp.o
+ .bss           0x00000000        0x0 build/src/SpeedRamp.o
+ .bss.Duty_PHASE_COMPENSATION_Cmd
+                0x00000000       0x20 build/src/SpeedRamp.o
+ .bss.Speed_PHASE_COMPENSATION_Cmd
+                0x00000000       0x20 build/src/SpeedRamp.o
+ .text          0x00000000        0x0 build/src/System_Init.o
+ .data          0x00000000        0x0 build/src/System_Init.o
+ .bss           0x00000000        0x0 build/src/System_Init.o
+ .text.Multiplex_SWD
+                0x00000000       0x24 build/src/System_Init.o
+ .text.SET_nRST
+                0x00000000       0x24 build/src/System_Init.o
+ .text.DebugPWM_OutputFunction
+                0x00000000       0x4c build/src/System_Init.o
+ .bss.ADC_VOL_test
+                0x00000000        0x2 build/src/System_Init.o
+ .bss.OPA_OFFSET_VOL_test
+                0x00000000        0x2 build/src/System_Init.o
+ .bss.test_OPA_DAC
+                0x00000000        0x2 build/src/System_Init.o
+ .bss.test_short_DAC
+                0x00000000        0x2 build/src/System_Init.o
+ .bss.test_sys_afe_dac
+                0x00000000        0x2 build/src/System_Init.o
+ .text          0x00000000        0x0 build/src/UR_Ctrl.o
+ .data          0x00000000        0x0 build/src/UR_Ctrl.o
+ .bss           0x00000000        0x0 build/src/UR_Ctrl.o
+ .text.UART0_SendByte
+                0x00000000       0x1c build/src/UR_Ctrl.o
+ .text.UART0_SendArray
+                0x00000000       0x2c build/src/UR_Ctrl.o
+ .text.Usart_SendString
+                0x00000000       0x28 build/src/UR_Ctrl.o
+ .text.Usart_SendHalfWord
+                0x00000000       0x2c build/src/UR_Ctrl.o
+ .text.fputc    0x00000000       0x20 build/src/UR_Ctrl.o
+ .text.UartDealRX
+                0x00000000       0xa8 build/src/UR_Ctrl.o
+ .text.UartDealTX
+                0x00000000       0x14 build/src/UR_Ctrl.o
+ .bss.UartResponceFlag
+                0x00000000        0x1 build/src/UR_Ctrl.o
+ .bss.Uart_R_DATA
+                0x00000000        0x9 build/src/UR_Ctrl.o
+ .bss.Uart_T_DATA
+                0x00000000       0x10 build/src/UR_Ctrl.o
+ .text          0x00000000        0x0 build/src/control_mode.o
+ .data          0x00000000        0x0 build/src/control_mode.o
+ .bss           0x00000000        0x0 build/src/control_mode.o
+ .text.position_control_tick
+                0x00000000        0xc build/src/control_mode.o
+ .text          0x00000000        0x0 build/src/core_cm0.o
+ .data          0x00000000        0x0 build/src/core_cm0.o
+ .bss           0x00000000        0x0 build/src/core_cm0.o
+ .text.__get_PSP
+                0x00000000        0x6 build/src/core_cm0.o
+ .text.__set_PSP
+                0x00000000        0x6 build/src/core_cm0.o
+ .text.__get_MSP
+                0x00000000        0x6 build/src/core_cm0.o
+ .text.__set_MSP
+                0x00000000        0x6 build/src/core_cm0.o
+ .text.__get_PRIMASK
+                0x00000000        0x6 build/src/core_cm0.o
+ .text.__set_PRIMASK
+                0x00000000        0x6 build/src/core_cm0.o
+ .text.__REV    0x00000000        0x4 build/src/core_cm0.o
+ .text.__REV16  0x00000000        0x4 build/src/core_cm0.o
+ .text.__REVSH  0x00000000        0x4 build/src/core_cm0.o
+ .text.__get_CONTROL
+                0x00000000        0x6 build/src/core_cm0.o
+ .text.__set_CONTROL
+                0x00000000        0x6 build/src/core_cm0.o
+ .comment       0x00000000       0x7f build/src/core_cm0.o
+ .ARM.attributes
+                0x00000000       0x31 build/src/core_cm0.o
+ .text          0x00000000        0x0 build/src/flash_config.o
+ .data          0x00000000        0x0 build/src/flash_config.o
+ .bss           0x00000000        0x0 build/src/flash_config.o
+ .text          0x00000000        0x0 build/src/hall_accumulator.o
+ .data          0x00000000        0x0 build/src/hall_accumulator.o
+ .bss           0x00000000        0x0 build/src/hall_accumulator.o
+ .text          0x00000000        0x0 build/src/hardware_init.o
+ .data          0x00000000        0x0 build/src/hardware_init.o
+ .bss           0x00000000        0x0 build/src/hardware_init.o
+ .text.HALL_init
+                0x00000000       0x2c build/src/hardware_init.o
+ .text          0x00000000        0x0 build/src/interrupt.o
+ .data          0x00000000        0x0 build/src/interrupt.o
+ .bss           0x00000000        0x0 build/src/interrupt.o
+ .text          0x00000000        0x0 build/src/main.o
+ .data          0x00000000        0x0 build/src/main.o
+ .bss           0x00000000        0x0 build/src/main.o
+ .text          0x00000000        0x0 build/src/motor_mode.o
+ .data          0x00000000        0x0 build/src/motor_mode.o
+ .bss           0x00000000        0x0 build/src/motor_mode.o
+ .text          0x00000000        0x0 build/src/position_control.o
+ .data          0x00000000        0x0 build/src/position_control.o
+ .bss           0x00000000        0x0 build/src/position_control.o
+ .text          0x00000000        0x0 build/src/protocol_handlers.o
+ .data          0x00000000        0x0 build/src/protocol_handlers.o
+ .bss           0x00000000        0x0 build/src/protocol_handlers.o
+ .text          0x00000000        0x0 build/src/protocol_params_flash.o
+ .data          0x00000000        0x0 build/src/protocol_params_flash.o
+ .bss           0x00000000        0x0 build/src/protocol_params_flash.o
+ .text          0x00000000        0x0 build/src/protocol_params_motion.o
+ .data          0x00000000        0x0 build/src/protocol_params_motion.o
+ .bss           0x00000000        0x0 build/src/protocol_params_motion.o
+ .text          0x00000000        0x0 build/src/protocol_params_motion_pos.o
+ .data          0x00000000        0x0 build/src/protocol_params_motion_pos.o
+ .bss           0x00000000        0x0 build/src/protocol_params_motion_pos.o
+ .text          0x00000000        0x0 build/src/protocol_params_position.o
+ .data          0x00000000        0x0 build/src/protocol_params_position.o
+ .bss           0x00000000        0x0 build/src/protocol_params_position.o
+ .text          0x00000000        0x0 build/src/protocol_params_snr.o
+ .data          0x00000000        0x0 build/src/protocol_params_snr.o
+ .bss           0x00000000        0x0 build/src/protocol_params_snr.o
+ .text          0x00000000        0x0 build/src/protocol_params_standard.o
+ .data          0x00000000        0x0 build/src/protocol_params_standard.o
+ .bss           0x00000000        0x0 build/src/protocol_params_standard.o
+ .text          0x00000000        0x0 build/src/sensorless_adapter.o
+ .data          0x00000000        0x0 build/src/sensorless_adapter.o
+ .bss           0x00000000        0x0 build/src/sensorless_adapter.o
+ .bss.Motor_1st
+                0x00000000       0xb0 build/src/sensorless_adapter.o
+ .text          0x00000000        0x0 build/src/startup_canary.o
+ .data          0x00000000        0x0 build/src/startup_canary.o
+ .bss           0x00000000        0x0 build/src/startup_canary.o
+ .text          0x00000000        0x0 build/src/timebase.o
+ .data          0x00000000        0x0 build/src/timebase.o
+ .bss           0x00000000        0x0 build/src/timebase.o
+ .text          0x00000000        0x0 build/periph_driver/source/delay.o
+ .data          0x00000000        0x0 build/periph_driver/source/delay.o
+ .bss           0x00000000        0x0 build/periph_driver/source/delay.o
+ .text          0x00000000        0x0 build/periph_driver/source/snr8503x_DMA.o
+ .data          0x00000000        0x0 build/periph_driver/source/snr8503x_DMA.o
+ .bss           0x00000000        0x0 build/periph_driver/source/snr8503x_DMA.o
+ .text.DMA_StructInit
+                0x00000000        0xc build/periph_driver/source/snr8503x_DMA.o
+ .text.DMA_Init
+                0x00000000        0x2 build/periph_driver/source/snr8503x_DMA.o
+ .comment       0x00000000       0x7f build/periph_driver/source/snr8503x_DMA.o
+ .ARM.attributes
+                0x00000000       0x31 build/periph_driver/source/snr8503x_DMA.o
+ .text          0x00000000        0x0 build/periph_driver/source/snr8503x_Flash.o
+ .data          0x00000000        0x0 build/periph_driver/source/snr8503x_Flash.o
+ .bss           0x00000000        0x0 build/periph_driver/source/snr8503x_Flash.o
+ .text          0x00000000        0x0 build/periph_driver/source/snr8503x_I2C.o
+ .data          0x00000000        0x0 build/periph_driver/source/snr8503x_I2C.o
+ .bss           0x00000000        0x0 build/periph_driver/source/snr8503x_I2C.o
+ .text.I2C_Init
+                0x00000000       0x60 build/periph_driver/source/snr8503x_I2C.o
+ .text.I2C_StrutInit
+                0x00000000       0x1e build/periph_driver/source/snr8503x_I2C.o
+ .text.Read_I2c_Bus_State
+                0x00000000       0x14 build/periph_driver/source/snr8503x_I2C.o
+ .text.Clear_I2c_Bus_State
+                0x00000000       0x10 build/periph_driver/source/snr8503x_I2C.o
+ .comment       0x00000000       0x7f build/periph_driver/source/snr8503x_I2C.o
+ .ARM.attributes
+                0x00000000       0x31 build/periph_driver/source/snr8503x_I2C.o
+ .text          0x00000000        0x0 build/periph_driver/source/snr8503x_IWDG.o
+ .data          0x00000000        0x0 build/periph_driver/source/snr8503x_IWDG.o
+ .bss           0x00000000        0x0 build/periph_driver/source/snr8503x_IWDG.o
+ .text.IWDG_Init
+                0x00000000       0x38 build/periph_driver/source/snr8503x_IWDG.o
+ .text.IWDG_StrutInit
+                0x00000000       0x14 build/periph_driver/source/snr8503x_IWDG.o
+ .text.IWDG_Feed
+                0x00000000       0x18 build/periph_driver/source/snr8503x_IWDG.o
+ .text          0x00000000        0x0 build/periph_driver/source/snr8503x_MCPWM.o
+ .data          0x00000000        0x0 build/periph_driver/source/snr8503x_MCPWM.o
+ .bss           0x00000000        0x0 build/periph_driver/source/snr8503x_MCPWM.o
+ .text.PWMOutputs_CH3
+                0x00000000       0x30 build/periph_driver/source/snr8503x_MCPWM.o
+ .text.PWM_CH3_Outputs
+                0x00000000        0x8 build/periph_driver/source/snr8503x_MCPWM.o
+ .text.MCPWM_SwapFunction
+                0x00000000       0x24 build/periph_driver/source/snr8503x_MCPWM.o
+ .text          0x00000000        0x0 build/periph_driver/source/snr8503x_adc.o
+ .data          0x00000000        0x0 build/periph_driver/source/snr8503x_adc.o
+ .bss           0x00000000        0x0 build/periph_driver/source/snr8503x_adc.o
+ .text          0x00000000        0x0 build/periph_driver/source/snr8503x_cmp.o
+ .data          0x00000000        0x0 build/periph_driver/source/snr8503x_cmp.o
+ .bss           0x00000000        0x0 build/periph_driver/source/snr8503x_cmp.o
+ .text          0x00000000        0x0 build/periph_driver/source/snr8503x_dac.o
+ .data          0x00000000        0x0 build/periph_driver/source/snr8503x_dac.o
+ .bss           0x00000000        0x0 build/periph_driver/source/snr8503x_dac.o
+ .text.DAC_OutputVoltage
+                0x00000000       0x48 build/periph_driver/source/snr8503x_dac.o
+ .text          0x00000000        0x0 build/periph_driver/source/snr8503x_dsp.o
+ .data          0x00000000        0x0 build/periph_driver/source/snr8503x_dsp.o
+ .bss           0x00000000        0x0 build/periph_driver/source/snr8503x_dsp.o
+ .text.DSP_CalcDivision
+                0x00000000       0x50 build/periph_driver/source/snr8503x_dsp.o
+ .text.DSP_GetSqrt
+                0x00000000       0x38 build/periph_driver/source/snr8503x_dsp.o
+ .bss.dsp_flg   0x00000000        0x1 build/periph_driver/source/snr8503x_dsp.o
+ .text          0x00000000        0x0 build/periph_driver/source/snr8503x_gpio.o
+ .data          0x00000000        0x0 build/periph_driver/source/snr8503x_gpio.o
+ .bss           0x00000000        0x0 build/periph_driver/source/snr8503x_gpio.o
+ .text.GPIO_ReadInputData
+                0x00000000        0x4 build/periph_driver/source/snr8503x_gpio.o
+ .text.GPIO_ReadOutputDataBit
+                0x00000000        0xc build/periph_driver/source/snr8503x_gpio.o
+ .text.GPIO_ReadOutputData
+                0x00000000        0x4 build/periph_driver/source/snr8503x_gpio.o
+ .text.GPIO_SetBits
+                0x00000000        0x4 build/periph_driver/source/snr8503x_gpio.o
+ .text.GPIO_ResetBits
+                0x00000000        0x4 build/periph_driver/source/snr8503x_gpio.o
+ .text.GPIO_Write
+                0x00000000        0x4 build/periph_driver/source/snr8503x_gpio.o
+ .text.EXTI_Trigger_Config
+                0x00000000      0x114 build/periph_driver/source/snr8503x_gpio.o
+ .text          0x00000000        0x0 build/periph_driver/source/snr8503x_hall.o
+ .data          0x00000000        0x0 build/periph_driver/source/snr8503x_hall.o
+ .bss           0x00000000        0x0 build/periph_driver/source/snr8503x_hall.o
+ .text.HALL_GetCaptureValue
+                0x00000000       0x10 build/periph_driver/source/snr8503x_hall.o
+ .text.HALL_GetCount
+                0x00000000        0xc build/periph_driver/source/snr8503x_hall.o
+ .text.HALL_IsCaptureEvent
+                0x00000000       0x10 build/periph_driver/source/snr8503x_hall.o
+ .text.HALL_IsOverFlowEvent
+                0x00000000       0x10 build/periph_driver/source/snr8503x_hall.o
+ .text.HALL_Clear_IRQ
+                0x00000000       0x14 build/periph_driver/source/snr8503x_hall.o
+ .text          0x00000000        0x0 build/periph_driver/source/snr8503x_spi.o
+ .data          0x00000000        0x0 build/periph_driver/source/snr8503x_spi.o
+ .bss           0x00000000        0x0 build/periph_driver/source/snr8503x_spi.o
+ .text.SPI_Init
+                0x00000000       0x5a build/periph_driver/source/snr8503x_spi.o
+ .text.SPI_StructInit
+                0x00000000       0x1e build/periph_driver/source/snr8503x_spi.o
+ .text.SPI_SendData
+                0x00000000        0x4 build/periph_driver/source/snr8503x_spi.o
+ .text.SPI_ReadData
+                0x00000000        0x6 build/periph_driver/source/snr8503x_spi.o
+ .text.SPI_GetIRQFlag
+                0x00000000        0x6 build/periph_driver/source/snr8503x_spi.o
+ .comment       0x00000000       0x7f build/periph_driver/source/snr8503x_spi.o
+ .ARM.attributes
+                0x00000000       0x31 build/periph_driver/source/snr8503x_spi.o
+ .text          0x00000000        0x0 build/periph_driver/source/snr8503x_sys.o
+ .data          0x00000000        0x0 build/periph_driver/source/snr8503x_sys.o
+ .bss           0x00000000        0x0 build/periph_driver/source/snr8503x_sys.o
+ .text.SYS_Init
+                0x00000000       0x58 build/periph_driver/source/snr8503x_sys.o
+ .text.SYS_StructInit
+                0x00000000       0x14 build/periph_driver/source/snr8503x_sys.o
+ .text.SYS_ClearRst
+                0x00000000       0x10 build/periph_driver/source/snr8503x_sys.o
+ .text.SYS_GetRstSource
+                0x00000000        0xc build/periph_driver/source/snr8503x_sys.o
+ .text          0x00000000        0x0 build/periph_driver/source/snr8503x_timer.o
+ .data          0x00000000        0x0 build/periph_driver/source/snr8503x_timer.o
+ .bss           0x00000000        0x0 build/periph_driver/source/snr8503x_timer.o
+ .text.TIM_TimerCmd
+                0x00000000       0x18 build/periph_driver/source/snr8503x_timer.o
+ .text.TIM_GetIRQFlag
+                0x00000000       0x44 build/periph_driver/source/snr8503x_timer.o
+ .text.TIM_ClearIRQFlag
+                0x00000000       0x28 build/periph_driver/source/snr8503x_timer.o
+ .text.TIM_Timer_GetCount
+                0x00000000        0x4 build/periph_driver/source/snr8503x_timer.o
+ .text.TIM_Timer_Set_TH_Value
+                0x00000000        0x4 build/periph_driver/source/snr8503x_timer.o
+ .text.TIM_Timer_ClearCnt
+                0x00000000        0x6 build/periph_driver/source/snr8503x_timer.o
+ .text.TIM_Timer_GetCMPT0
+                0x00000000        0x4 build/periph_driver/source/snr8503x_timer.o
+ .text.TIM_Timer_GetCMPT1
+                0x00000000        0x4 build/periph_driver/source/snr8503x_timer.o
+ .text          0x00000000        0x0 build/periph_driver/source/snr8503x_uart.o
+ .data          0x00000000        0x0 build/periph_driver/source/snr8503x_uart.o
+ .bss           0x00000000        0x0 build/periph_driver/source/snr8503x_uart.o
+ .text.UART_SendData
+                0x00000000        0x4 build/periph_driver/source/snr8503x_uart.o
+ .text.UART_ReadData
+                0x00000000        0x4 build/periph_driver/source/snr8503x_uart.o
+ .text.UART_GetIRQFlag
+                0x00000000        0x4 build/periph_driver/source/snr8503x_uart.o
+ .text.UART_ClearIRQFlag
+                0x00000000        0x4 build/periph_driver/source/snr8503x_uart.o
+ .text          0x00000000        0x0 build/third_party/bipropellant-protocol/ascii_protocol.o
+ .data          0x00000000        0x0 build/third_party/bipropellant-protocol/ascii_protocol.o
+ .bss           0x00000000        0x0 build/third_party/bipropellant-protocol/ascii_protocol.o
+ .text.ascii_add_immediate
+                0x00000000       0x28 build/third_party/bipropellant-protocol/ascii_protocol.o
+ .text.ascii_add_line_fn
+                0x00000000       0x28 build/third_party/bipropellant-protocol/ascii_protocol.o
+ .text          0x00000000        0x0 build/third_party/bipropellant-protocol/cobsr.o
+ .data          0x00000000        0x0 build/third_party/bipropellant-protocol/cobsr.o
+ .bss           0x00000000        0x0 build/third_party/bipropellant-protocol/cobsr.o
+ .text          0x00000000        0x0 build/third_party/bipropellant-protocol/machine_protocol.o
+ .data          0x00000000        0x0 build/third_party/bipropellant-protocol/machine_protocol.o
+ .bss           0x00000000        0x0 build/third_party/bipropellant-protocol/machine_protocol.o
+ .text.protocol_send_text
+                0x00000000       0x68 build/third_party/bipropellant-protocol/machine_protocol.o
+ .text          0x00000000        0x0 build/third_party/bipropellant-protocol/protocol.o
+ .data          0x00000000        0x0 build/third_party/bipropellant-protocol/protocol.o
+ .bss           0x00000000        0x0 build/third_party/bipropellant-protocol/protocol.o
+ .text.setParams
+                0x00000000       0x28 build/third_party/bipropellant-protocol/protocol.o
+ .text.setParamHandler
+                0x00000000       0x1c build/third_party/bipropellant-protocol/protocol.o
+ .text.getParamHandler
+                0x00000000       0x18 build/third_party/bipropellant-protocol/protocol.o
+ .text          0x00000000        0x0 build/startup/startup_snr8503x_gnu.o
+ .data          0x00000000        0x0 build/startup/startup_snr8503x_gnu.o
+ .bss           0x00000000        0x0 build/startup/startup_snr8503x_gnu.o
+ .text.SystemInit
+                0x00000000        0x2 build/startup/startup_snr8503x_gnu.o
+ __ARM_grp.stdbool.h.2_Au0000_jr0apdtFqw4_300000
+                0x00000000       0x10 vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+ __ARM_grp.stdlib.h.2_8U0000_v0hkGxVIVlb_300000
+                0x00000000       0x10 vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+ __ARM_grp.ctype.h.2_s01000_2fGeTeHnnea_300000
+                0x00000000       0x10 vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+ __ARM_grp.stdio.h.2_cq4000_JtufzqHNb49_910000
+                0x00000000       0x14 vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+ __ARM_grp.stdint.h.2_8G1000_Y8yz6lqXnp2_300000
+                0x00000000       0x10 vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+ __ARM_grp.core_cm0.h.2_Yg2000_mSdQBCMULY8_A00000
+                0x00000000       0x10 vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+ __ARM_grp.basic.h.2_cW1000_rRstUA1ly$c_l00000
+                0x00000000       0x10 vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+ __ARM_grp.SNR_BLDC_HALL_V1p0.h.2_zr2000_E1AYH6rQi12_f00000
+                0x00000000       0x14 vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+ __ARM_grp.snr8503x.h.2_Ye5000_a90etxnyrRe_300000
+                0x00000000       0x10 vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+ __ARM_grp.snr8503x_MCPWM.h.2_sq3000_vi0hCmQxtCe_020000
+                0x00000000       0x10 vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+ __ARM_grp.snr8503x_gpio.h.2_w32000_jgHBU0VeWq5_900000
+                0x00000000       0x10 vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+ __ARM_grp.snr8503x_sys.h.2_gS1000_f6A8TwZNlAc_c00000
+                0x00000000       0x10 vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+ __ARM_grp.snr8503x_adc.h.2_Ux2000_NRNnX90Dqxd_p00000
+                0x00000000       0x10 vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+ __ARM_grp.snr8503x_dac.h.2_si1000_8_zJjyJF1A6_c00000
+                0x00000000       0x10 vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+ __ARM_grp.snr8503x_Flash.h.2_ss3000_MXYqcxqDrq5_P00000
+                0x00000000       0x14 vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+ __ARM_grp.snr8503x_dma.h.2_A92000_qZcz3T9NPd0_B00000
+                0x00000000       0x10 vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+ __ARM_grp.snr8503x_cmp.h.2_s92000_s$_Jq8zyv$4_S00000
+                0x00000000       0x10 vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+ __ARM_grp.snr8503x_uart.h.2_0B1000_DZ0HJN_5KV8_h00000
+                0x00000000       0x10 vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+ __ARM_grp.snr8503x_hall.h.2_Yq1000_RU9r$1TOAu3_h00000
+                0x00000000       0x10 vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+ __ARM_grp.snr8503x_timer.h.2_sS1000_vTsbp4Um3P3_u00000
+                0x00000000       0x10 vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+ __ARM_grp.snr8503x_iwdg.h.2_oP1000_IkWa$SpPe2b_t00000
+                0x00000000       0x10 vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+ __ARM_grp.snr8503x_dsp.h.2_oN1000_YMigKfMuhd6_s00000
+                0x00000000       0x10 vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+ __ARM_grp.delay.h.2_Mt0000_IN1n2DNHDB8_300000
+                0x00000000       0x10 vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+ __ARM_grp.hardware_init.h.2_0t0000_gWRelvjD2p4_300000
+                0x00000000       0x10 vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+ __ARM_grp.mc_type.h.2_I32000_tZM_lPRhaHe_t00000
+                0x00000000       0x10 vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+ __ARM_grp.Global_Variable.h.2_Kw4000_200JG7XZV9c_L10000
+                0x00000000       0x14 vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+ __ARM_grp.hardware_config.h.2_Qg2000_vl9ZsIdhxg5_300000
+                0x00000000       0x10 vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+ __ARM_grp.MC_parameter.h.2_UY1000_5R0l9O2IIka_300000
+                0x00000000       0x10 vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+ __ARM_grp.SNR_BLDC_HALL_V1p0.c.2_wU1000_8ZY_G8ad6Mc_w00000
+                0x00000000       0x10 vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+ __ARM_grp..debug_abbrev.group.2_Am0000_lbphKItke$2_000000
+                0x00000000        0x8 vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+ i.Prog_Trim    0x00000000       0x64 vendor_libs/snr8503x_nvr.lib(lks32mc03x_nvr.o)
+ __ARM_grp.stdlib.h.2_UU0000_FzbRBTl6Aba_300000
+                0x00000000       0x10 vendor_libs/snr8503x_nvr.lib(lks32mc03x_nvr.o)
+ __ARM_grp.ctype.h.2_MJ1000_kVIHx77ovae_700000
+                0x00000000       0x14 vendor_libs/snr8503x_nvr.lib(lks32mc03x_nvr.o)
+ __ARM_grp.stdio.h.2_Is1000_D_3hPY9bBn9_700000
+                0x00000000       0x14 vendor_libs/snr8503x_nvr.lib(lks32mc03x_nvr.o)
+ __ARM_grp.stdint.h.2_8G1000_GoSDV1yTL$8_300000
+                0x00000000       0x10 vendor_libs/snr8503x_nvr.lib(lks32mc03x_nvr.o)
+ __ARM_grp.stdbool.h.2_Au0000_uG1keZ0lyC7_300000
+                0x00000000       0x10 vendor_libs/snr8503x_nvr.lib(lks32mc03x_nvr.o)
+ __ARM_grp.core_cm0.h.2_Yg2000_SklwC7u_NN6_A00000
+                0x00000000       0x10 vendor_libs/snr8503x_nvr.lib(lks32mc03x_nvr.o)
+ __ARM_grp.basic.h.2_kW1000_xbO2FXjTxt0_l00000
+                0x00000000       0x10 vendor_libs/snr8503x_nvr.lib(lks32mc03x_nvr.o)
+ __ARM_grp.lks32mc03x.h.2_s05000_ABs_Sb$bQAf_300000
+                0x00000000       0x10 vendor_libs/snr8503x_nvr.lib(lks32mc03x_nvr.o)
+ __ARM_grp.lks32mc03x_NVR.c.2_At0000_sjH4m886s04_300000
+                0x00000000       0x10 vendor_libs/snr8503x_nvr.lib(lks32mc03x_nvr.o)
+ __ARM_grp..debug_abbrev.group.2_Am0000_lbphKItke$2_000000
+                0x00000000        0x8 vendor_libs/snr8503x_nvr.lib(lks32mc03x_nvr.o)
+ .debug_abbrev  0x00000000      0x5a4 vendor_libs/snr8503x_nvr.lib(lks32mc03x_nvr.o)
+ __ARM_grp.stdbool.h.2_Au0000_jr0apdtFqw4_300000
+                0x00000000       0x10 vendor_libs/snr_bldc_snls_renamed.lib(zero_detect.o)
+ __ARM_grp.stdlib.h.2_8U0000_v0hkGxVIVlb_300000
+                0x00000000       0x10 vendor_libs/snr_bldc_snls_renamed.lib(zero_detect.o)
+ __ARM_grp.ctype.h.2_s01000_2fGeTeHnnea_300000
+                0x00000000       0x10 vendor_libs/snr_bldc_snls_renamed.lib(zero_detect.o)
+ __ARM_grp.stdio.h.2_Yw3000_E5Gh9HvLy34_z00000
+                0x00000000       0x14 vendor_libs/snr_bldc_snls_renamed.lib(zero_detect.o)
+ __ARM_grp.stdint.h.2_8G1000_Y8yz6lqXnp2_300000
+                0x00000000       0x10 vendor_libs/snr_bldc_snls_renamed.lib(zero_detect.o)
+ __ARM_grp.core_cm0.h.2_gh2000_PDLznyWTyJ4_A00000
+                0x00000000       0x10 vendor_libs/snr_bldc_snls_renamed.lib(zero_detect.o)
+ __ARM_grp.basic.h.2_sW1000__NbkJGYYUM1_l00000
+                0x00000000       0x10 vendor_libs/snr_bldc_snls_renamed.lib(zero_detect.o)
+ __ARM_grp.Lib_Zero_detect.h.2_Qz2000_VJFTrquHm_3_h00000
+                0x00000000       0x14 vendor_libs/snr_bldc_snls_renamed.lib(zero_detect.o)
+ __ARM_grp.Zero_detect.c.2_or1000_sSXrTSNzn78_d00000
+                0x00000000       0x10 vendor_libs/snr_bldc_snls_renamed.lib(zero_detect.o)
+ __ARM_grp..debug_abbrev.group.2_Am0000_lbphKItke$2_000000
+                0x00000000        0x8 vendor_libs/snr_bldc_snls_renamed.lib(zero_detect.o)
+ .debug_info    0x00000000       0x90 vendor_libs/snr_bldc_snls_renamed.lib(zero_detect.o)
+ .debug_line    0x00000000       0x54 vendor_libs/snr_bldc_snls_renamed.lib(zero_detect.o)
+ .debug_macinfo
+                0x00000000       0x64 vendor_libs/snr_bldc_snls_renamed.lib(zero_detect.o)
+ .debug_info    0x00000000      0x2c4 vendor_libs/snr_bldc_snls_renamed.lib(zero_detect.o)
+ .debug_line    0x00000000       0x54 vendor_libs/snr_bldc_snls_renamed.lib(zero_detect.o)
+ .debug_macinfo
+                0x00000000      0x27c vendor_libs/snr_bldc_snls_renamed.lib(zero_detect.o)
+ .debug_info    0x00000000       0xc8 vendor_libs/snr_bldc_snls_renamed.lib(zero_detect.o)
+ .debug_line    0x00000000       0x50 vendor_libs/snr_bldc_snls_renamed.lib(zero_detect.o)
+ .debug_macinfo
+                0x00000000      0x488 vendor_libs/snr_bldc_snls_renamed.lib(zero_detect.o)
+ .debug_info    0x00000000      0x30c vendor_libs/snr_bldc_snls_renamed.lib(zero_detect.o)
+ .debug_line    0x00000000       0x54 vendor_libs/snr_bldc_snls_renamed.lib(zero_detect.o)
+ .debug_macinfo
+                0x00000000      0x898 vendor_libs/snr_bldc_snls_renamed.lib(zero_detect.o)
+ .debug_abbrev  0x00000000      0x5a4 vendor_libs/snr_bldc_snls_renamed.lib(zero_detect.o)
+ .data          0x00000000        0x0 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_thumb1_case_uqi.o)
+ .bss           0x00000000        0x0 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_thumb1_case_uqi.o)
+ .data          0x00000000        0x0 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_udivsi3.o)
+ .bss           0x00000000        0x0 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_udivsi3.o)
+ .data          0x00000000        0x0 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_divsi3.o)
+ .bss           0x00000000        0x0 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_divsi3.o)
+ .data          0x00000000        0x0 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_dvmd_tls.o)
+ .bss           0x00000000        0x0 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_dvmd_tls.o)
+ .data          0x00000000        0x0 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_fixunssfsi.o)
+ .bss           0x00000000        0x0 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_fixunssfsi.o)
+ .data          0x00000000        0x0 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(divsf3.o)
+ .bss           0x00000000        0x0 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(divsf3.o)
+ .data          0x00000000        0x0 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(mulsf3.o)
+ .bss           0x00000000        0x0 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(mulsf3.o)
+ .data          0x00000000        0x0 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(subsf3.o)
+ .bss           0x00000000        0x0 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(subsf3.o)
+ .data          0x00000000        0x0 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(fixsfsi.o)
+ .bss           0x00000000        0x0 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(fixsfsi.o)
+ .data          0x00000000        0x0 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(floatsisf.o)
+ .bss           0x00000000        0x0 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(floatsisf.o)
+ .data          0x00000000        0x0 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(floatunsisf.o)
+ .bss           0x00000000        0x0 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(floatunsisf.o)
+ .data          0x00000000        0x0 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_arm_cmpsf2.o)
+ .bss           0x00000000        0x0 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_arm_cmpsf2.o)
+ .data          0x00000000        0x0 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_clzsi2.o)
+ .bss           0x00000000        0x0 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_clzsi2.o)
+ .data          0x00000000        0x0 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(eqsf2.o)
+ .bss           0x00000000        0x0 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(eqsf2.o)
+ .data          0x00000000        0x0 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(gesf2.o)
+ .bss           0x00000000        0x0 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(gesf2.o)
+ .data          0x00000000        0x0 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(lesf2.o)
+ .bss           0x00000000        0x0 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(lesf2.o)
+ .text          0x00000000        0x0 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-malloc.o)
+ .data          0x00000000        0x0 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-malloc.o)
+ .bss           0x00000000        0x0 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-malloc.o)
+ .text.free     0x00000000       0x14 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-malloc.o)
+ .text          0x00000000        0x0 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-memcpy-stub.o)
+ .data          0x00000000        0x0 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-memcpy-stub.o)
+ .bss           0x00000000        0x0 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-memcpy-stub.o)
+ .text          0x00000000        0x0 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-memset.o)
+ .data          0x00000000        0x0 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-memset.o)
+ .bss           0x00000000        0x0 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-memset.o)
+ .text          0x00000000        0x0 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-freer.o)
+ .data          0x00000000        0x0 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-freer.o)
+ .bss           0x00000000        0x0 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-freer.o)
+ .text          0x00000000        0x0 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-mallocr.o)
+ .data          0x00000000        0x0 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-mallocr.o)
+ .bss           0x00000000        0x0 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-mallocr.o)
+ .text          0x00000000        0x0 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-sbrkr.o)
+ .data          0x00000000        0x0 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-sbrkr.o)
+ .bss           0x00000000        0x0 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-sbrkr.o)
+ .text          0x00000000        0x0 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-sprintf.o)
+ .data          0x00000000        0x0 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-sprintf.o)
+ .bss           0x00000000        0x0 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-sprintf.o)
+ .text._sprintf_r
+                0x00000000       0x38 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-sprintf.o)
+ .text          0x00000000        0x0 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-strcpy.o)
+ .data          0x00000000        0x0 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-strcpy.o)
+ .bss           0x00000000        0x0 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-strcpy.o)
+ .data          0x00000000        0x0 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-strlen.o)
+ .bss           0x00000000        0x0 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-strlen.o)
+ .text          0x00000000        0x0 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-strncpy.o)
+ .data          0x00000000        0x0 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-strncpy.o)
+ .bss           0x00000000        0x0 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-strncpy.o)
+ .text          0x00000000        0x0 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-impure.o)
+ .data          0x00000000        0x0 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-impure.o)
+ .bss           0x00000000        0x0 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-impure.o)
+ .rodata._global_impure_ptr
+                0x00000000        0x4 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-impure.o)
+ .text          0x00000000        0x0 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-mlock.o)
+ .data          0x00000000        0x0 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-mlock.o)
+ .bss           0x00000000        0x0 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-mlock.o)
+ .text          0x00000000        0x0 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-svfprintf.o)
+ .data          0x00000000        0x0 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-svfprintf.o)
+ .bss           0x00000000        0x0 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-svfprintf.o)
+ .text.__ssprint_r
+                0x00000000       0xfc c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-svfprintf.o)
+ .text          0x00000000        0x0 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-vfprintf_i.o)
+ .data          0x00000000        0x0 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-vfprintf_i.o)
+ .bss           0x00000000        0x0 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-vfprintf_i.o)
+ .text          0x00000000        0x0 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-reent.o)
+ .data          0x00000000        0x0 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-reent.o)
+ .bss           0x00000000        0x0 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-reent.o)
+ .text.cleanup_glue
+                0x00000000       0x1a c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-reent.o)
+ .text._reclaim_reent
+                0x00000000       0xcc c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-reent.o)
+ .text          0x00000000        0x0 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-memchr-stub.o)
+ .data          0x00000000        0x0 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-memchr-stub.o)
+ .bss           0x00000000        0x0 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-memchr-stub.o)
+ .text          0x00000000        0x0 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-memmove.o)
+ .data          0x00000000        0x0 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-memmove.o)
+ .bss           0x00000000        0x0 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-memmove.o)
+ .text          0x00000000        0x0 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-reallocr.o)
+ .data          0x00000000        0x0 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-reallocr.o)
+ .bss           0x00000000        0x0 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-reallocr.o)
+ .text          0x00000000        0x0 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-msizer.o)
+ .data          0x00000000        0x0 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-msizer.o)
+ .bss           0x00000000        0x0 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-msizer.o)
+ .text          0x00000000        0x0 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libnosys.a(sbrk.o)
+ .data          0x00000000        0x0 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libnosys.a(sbrk.o)
+ .bss           0x00000000        0x0 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libnosys.a(sbrk.o)
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+FLASH            0x00000000         0x0003f000         xr
+FLASH_CONFIG     0x0003f000         0x00001000         r
+RAM              0x20000000         0x00020000         xrw
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+LOAD build/src/COMP_Sensoeless.o
+LOAD build/src/Global_Variable.o
+LOAD build/src/M1_StateMachine.o
+LOAD build/src/MC_Drive.o
+LOAD build/src/MosTest.o
+LOAD build/src/PID.o
+LOAD build/src/Protect.o
+LOAD build/src/Sensor_Control.o
+LOAD build/src/SpeedRamp.o
+LOAD build/src/System_Init.o
+LOAD build/src/UR_Ctrl.o
+LOAD build/src/control_mode.o
+LOAD build/src/core_cm0.o
+LOAD build/src/flash_config.o
+LOAD build/src/hall_accumulator.o
+LOAD build/src/hardware_init.o
+LOAD build/src/interrupt.o
+LOAD build/src/main.o
+LOAD build/src/motor_mode.o
+LOAD build/src/position_control.o
+LOAD build/src/protocol_handlers.o
+LOAD build/src/protocol_params_flash.o
+LOAD build/src/protocol_params_motion.o
+LOAD build/src/protocol_params_motion_pos.o
+LOAD build/src/protocol_params_position.o
+LOAD build/src/protocol_params_snr.o
+LOAD build/src/protocol_params_standard.o
+LOAD build/src/sensorless_adapter.o
+LOAD build/src/startup_canary.o
+LOAD build/src/timebase.o
+LOAD build/periph_driver/source/delay.o
+LOAD build/periph_driver/source/snr8503x_DMA.o
+LOAD build/periph_driver/source/snr8503x_Flash.o
+LOAD build/periph_driver/source/snr8503x_I2C.o
+LOAD build/periph_driver/source/snr8503x_IWDG.o
+LOAD build/periph_driver/source/snr8503x_MCPWM.o
+LOAD build/periph_driver/source/snr8503x_adc.o
+LOAD build/periph_driver/source/snr8503x_cmp.o
+LOAD build/periph_driver/source/snr8503x_dac.o
+LOAD build/periph_driver/source/snr8503x_dsp.o
+LOAD build/periph_driver/source/snr8503x_gpio.o
+LOAD build/periph_driver/source/snr8503x_hall.o
+LOAD build/periph_driver/source/snr8503x_spi.o
+LOAD build/periph_driver/source/snr8503x_sys.o
+LOAD build/periph_driver/source/snr8503x_timer.o
+LOAD build/periph_driver/source/snr8503x_uart.o
+LOAD build/third_party/bipropellant-protocol/ascii_protocol.o
+LOAD build/third_party/bipropellant-protocol/cobsr.o
+LOAD build/third_party/bipropellant-protocol/machine_protocol.o
+LOAD build/third_party/bipropellant-protocol/protocol.o
+LOAD build/startup/startup_snr8503x_gnu.o
+LOAD vendor_libs/SNR_BLDC_HALL_V1p0.lib
+LOAD vendor_libs/snr8503x_nvr.lib
+LOAD vendor_libs/snr_bldc_snls_renamed.lib
+LOAD c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libm.a
+START GROUP
+LOAD c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a
+LOAD c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a
+END GROUP
+START GROUP
+LOAD c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a
+LOAD c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a
+LOAD c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libnosys.a
+END GROUP
+START GROUP
+LOAD c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a
+LOAD c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a
+LOAD c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libnosys.a
+END GROUP
+                0x0003f000                __flash_config_start = ORIGIN (FLASH_CONFIG)
+                0x00040000                __flash_config_end = (ORIGIN (FLASH_CONFIG) + LENGTH (FLASH_CONFIG))
+                0x20020000                _stack_top = (ORIGIN (RAM) + LENGTH (RAM))
+                0x00000200                _Min_Heap_Size = 0x200
+                0x00000080                _Min_Stack_Size = 0x80
+
+.isr_vector     0x00000000       0xc0
+                0x00000000                . = ALIGN (0x4)
+ *(.isr_vector)
+ .isr_vector    0x00000000       0xc0 build/startup/startup_snr8503x_gnu.o
+                0x00000000                g_pfnVectors
+                0x00000000                __Vectors
+                0x000000c0                __Vectors_End
+                0x000000c0                . = ALIGN (0x4)
+
+.text           0x000000c0     0x6a0c
+                0x000000c0                . = ALIGN (0x4)
+ *(.text)
+ .text          0x000000c0       0x14 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_thumb1_case_uqi.o)
+                0x000000c0                __gnu_thumb1_case_uqi
+ .text          0x000000d4      0x114 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_udivsi3.o)
+                0x000000d4                __aeabi_uidiv
+                0x000000d4                __udivsi3
+                0x000001e0                __aeabi_uidivmod
+ .text          0x000001e8      0x1d4 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_divsi3.o)
+                0x000001e8                __divsi3
+                0x000001e8                __aeabi_idiv
+                0x000003b4                __aeabi_idivmod
+ .text          0x000003bc        0x4 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_dvmd_tls.o)
+                0x000003bc                __aeabi_idiv0
+                0x000003bc                __aeabi_ldiv0
+ .text          0x000003c0       0x30 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_fixunssfsi.o)
+                0x000003c0                __fixunssfsi
+                0x000003c0                __aeabi_f2uiz
+ .text          0x000003f0      0x224 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(divsf3.o)
+                0x000003f0                __aeabi_fdiv
+ .text          0x00000614      0x264 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(mulsf3.o)
+                0x00000614                __aeabi_fmul
+ .text          0x00000878      0x388 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(subsf3.o)
+                0x00000878                __aeabi_fsub
+ .text          0x00000c00       0x40 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(fixsfsi.o)
+                0x00000c00                __aeabi_f2iz
+ .text          0x00000c40       0x94 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(floatsisf.o)
+                0x00000c40                __aeabi_i2f
+ .text          0x00000cd4       0x80 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(floatunsisf.o)
+                0x00000cd4                __aeabi_ui2f
+ .text          0x00000d54       0x74 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_arm_cmpsf2.o)
+                0x00000d54                __aeabi_cfrcmple
+                0x00000d5c                __aeabi_cfcmpeq
+                0x00000d5c                __aeabi_cfcmple
+                0x00000d6c                __aeabi_fcmpeq
+                0x00000d78                __aeabi_fcmplt
+                0x00000d8c                __aeabi_fcmple
+                0x00000da0                __aeabi_fcmpgt
+                0x00000db4                __aeabi_fcmpge
+ .text          0x00000dc8       0x3c c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_clzsi2.o)
+                0x00000dc8                __clzsi2
+ .text          0x00000e04       0x50 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(eqsf2.o)
+                0x00000e04                __eqsf2
+                0x00000e04                __nesf2
+ .text          0x00000e54       0x9c c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(gesf2.o)
+                0x00000e54                __gesf2
+                0x00000e54                __gtsf2
+ .text          0x00000ef0       0xa0 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(lesf2.o)
+                0x00000ef0                __ltsf2
+                0x00000ef0                __lesf2
+ .text          0x00000f90        0xe c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-strlen.o)
+                0x00000f90                strlen
+ *(.text*)
+ *fill*         0x00000f9e        0x2 
+ .text.CMP_SNS_Motor_Align
+                0x00000fa0       0xe4 build/src/COMP_Sensoeless.o
+                0x00000fa0                CMP_SNS_Motor_Align
+ .text.CMP_SNS_Motor_AutoCommutation
+                0x00001084      0x14c build/src/COMP_Sensoeless.o
+                0x00001084                CMP_SNS_Motor_AutoCommutation
+ .text.Motor_Freerun_Detect
+                0x000011d0      0x224 build/src/COMP_Sensoeless.o
+                0x000011d0                Motor_Freerun_Detect
+ .text.Init_Parameter
+                0x000013f4       0xd0 build/src/Global_Variable.o
+                0x000013f4                Init_Parameter
+ .text.variable_reset
+                0x000014c4       0xb8 build/src/Global_Variable.o
+                0x000014c4                variable_reset
+ .text.M1M1_Run
+                0x0000157c       0x18 build/src/M1_StateMachine.o
+ .text.M1M1_RunCalib
+                0x00001594        0xc build/src/M1_StateMachine.o
+ .text.M1M1_RunReady
+                0x000015a0        0xc build/src/M1_StateMachine.o
+ .text.M1M1_RunAlign
+                0x000015ac        0xc build/src/M1_StateMachine.o
+ .text.M1M1_SwitchRunStop
+                0x000015b8       0x1c build/src/M1_StateMachine.o
+ .text.M1M1_Fault
+                0x000015d4       0x38 build/src/M1_StateMachine.o
+                0x000015d4                M1M1_Fault
+ .text.M1M1_Stop
+                0x0000160c       0x28 build/src/M1_StateMachine.o
+ .text.M1M1_Init
+                0x00001634       0x14 build/src/M1_StateMachine.o
+ .text.M1M1_RunBrake
+                0x00001648       0x34 build/src/M1_StateMachine.o
+ .text.M1M1_RunSpin
+                0x0000167c       0x40 build/src/M1_StateMachine.o
+ .text.M1M1_RunStartup
+                0x000016bc       0xc0 build/src/M1_StateMachine.o
+ .text.M1M1_RunFreerun_Det
+                0x0000177c       0x54 build/src/M1_StateMachine.o
+ .text.Phase_COMPENSATION_Cal
+                0x000017d0       0x38 build/src/MC_Drive.o
+                0x000017d0                Phase_COMPENSATION_Cal
+ .text.PiCurrentLimitPWMDuty
+                0x00001808       0x68 build/src/MC_Drive.o
+                0x00001808                PiCurrentLimitPWMDuty
+ .text.Motor_LED_Error
+                0x00001870      0x124 build/src/MC_Drive.o
+                0x00001870                Motor_LED_Error
+ .text.Motor_LED_DISP
+                0x00001994       0x60 build/src/MC_Drive.o
+                0x00001994                Motor_LED_DISP
+ .text.CWCCW_PowerOn
+                0x000019f4       0x24 build/src/MC_Drive.o
+                0x000019f4                CWCCW_PowerOn
+ .text.CWCCW_ReadIO
+                0x00001a18       0x70 build/src/MC_Drive.o
+                0x00001a18                CWCCW_ReadIO
+ .text.BLDC_Stop
+                0x00001a88       0x44 build/src/MC_Drive.o
+                0x00001a88                BLDC_Stop
+ .text.VSP_Control_Motor
+                0x00001acc      0x13c build/src/MC_Drive.o
+                0x00001acc                VSP_Control_Motor
+ .text.BLDC_Brake
+                0x00001c08       0x74 build/src/MC_Drive.o
+                0x00001c08                BLDC_Brake
+ .text.MOS_Check_Step
+                0x00001c7c      0x100 build/src/MosTest.o
+                0x00001c7c                MOS_Check_Step
+ .text.MosTest  0x00001d7c      0x100 build/src/MosTest.o
+                0x00001d7c                MosTest
+ .text.InitPI   0x00001e7c       0x4c build/src/PID.o
+                0x00001e7c                InitPI
+ .text.CalcPI   0x00001ec8       0x38 build/src/PID.o
+                0x00001ec8                CalcPI
+ .text.MOS_TEMP_protect
+                0x00001f00       0xac build/src/Protect.o
+                0x00001f00                MOS_TEMP_protect
+ .text.procHander
+                0x00001fac       0x20 build/src/Protect.o
+                0x00001fac                procHander
+ .text.Current_Limit
+                0x00001fcc       0x30 build/src/Protect.o
+                0x00001fcc                Current_Limit
+ .text.OVER_current_protect
+                0x00001ffc       0xc0 build/src/Protect.o
+                0x00001ffc                OVER_current_protect
+ .text.Vol_protect
+                0x000020bc      0x158 build/src/Protect.o
+                0x000020bc                Vol_protect
+ .text.Motor_Block_Protect
+                0x00002214       0x40 build/src/Protect.o
+                0x00002214                Motor_Block_Protect
+ .text.BLDC_Sensor_control
+                0x00002254       0x9c build/src/Sensor_Control.o
+                0x00002254                BLDC_Sensor_control
+ .text.BLDC_Sensor_Judge
+                0x000022f0       0x5c build/src/Sensor_Control.o
+                0x000022f0                BLDC_Sensor_Judge
+ .text.InitNormalization
+                0x0000234c       0x30 build/src/SpeedRamp.o
+                0x0000234c                InitNormalization
+ .text.CalcGraudNormalizationData
+                0x0000237c       0x4c build/src/SpeedRamp.o
+                0x0000237c                CalcGraudNormalizationData
+ .text.CalcNormalization
+                0x000023c8       0x64 build/src/SpeedRamp.o
+                0x000023c8                CalcNormalization
+ .text.Multiplex_nRST
+                0x0000242c       0x24 build/src/System_Init.o
+                0x0000242c                Multiplex_nRST
+ .text.CurrentOffsetCalibration
+                0x00002450       0xf0 build/src/System_Init.o
+                0x00002450                CurrentOffsetCalibration
+ .text.DC_offset_protect
+                0x00002540       0x4c build/src/System_Init.o
+                0x00002540                DC_offset_protect
+ .text.sys_init
+                0x0000258c       0x20 build/src/System_Init.o
+                0x0000258c                sys_init
+ .text.UART0_init_buffer
+                0x000025ac       0x14 build/src/UR_Ctrl.o
+                0x000025ac                UART0_init_buffer
+ .text.UART0_init
+                0x000025c0       0x74 build/src/UR_Ctrl.o
+                0x000025c0                UART0_init
+ .text.control_mode_dispatch
+                0x00002634       0x64 build/src/control_mode.o
+                0x00002634                control_mode_dispatch
+ .text.fc_crc32.constprop.0
+                0x00002698       0x38 build/src/flash_config.o
+ .text.flash_config_set_defaults
+                0x000026d0       0x40 build/src/flash_config.o
+                0x000026d0                flash_config_set_defaults
+ .text.flash_config_load
+                0x00002710       0x64 build/src/flash_config.o
+                0x00002710                flash_config_load
+ .text.flash_config_request_save
+                0x00002774        0xc build/src/flash_config.o
+                0x00002774                flash_config_request_save
+ .text.flash_config_save_failed_count
+                0x00002780        0xc build/src/flash_config.o
+                0x00002780                flash_config_save_failed_count
+ .text.flash_config_tick
+                0x0000278c       0xa8 build/src/flash_config.o
+                0x0000278c                flash_config_tick
+ .text.hall_accum_tick
+                0x00002834       0x48 build/src/hall_accumulator.o
+                0x00002834                hall_accum_tick
+ .text.GPIO_init
+                0x0000287c       0xd0 build/src/hardware_init.o
+                0x0000287c                GPIO_init
+ .text.HALL_Perip_Init
+                0x0000294c       0x34 build/src/hardware_init.o
+                0x0000294c                HALL_Perip_Init
+ .text.ADC_init
+                0x00002980       0x60 build/src/hardware_init.o
+                0x00002980                ADC_init
+ .text.UTimer_init
+                0x000029e0       0x68 build/src/hardware_init.o
+                0x000029e0                UTimer_init
+ .text.MCPWM_init
+                0x00002a48       0xc8 build/src/hardware_init.o
+                0x00002a48                MCPWM_init
+ .text.DAC_init
+                0x00002b10       0x1c build/src/hardware_init.o
+                0x00002b10                DAC_init
+ .text.CMP_init
+                0x00002b2c       0x44 build/src/hardware_init.o
+                0x00002b2c                CMP_init
+ .text.PGA_init
+                0x00002b70       0x2c build/src/hardware_init.o
+                0x00002b70                PGA_init
+ .text.SoftDelay
+                0x00002b9c       0x18 build/src/hardware_init.o
+                0x00002b9c                SoftDelay
+ .text.Hardware_init
+                0x00002bb4       0xfc build/src/hardware_init.o
+                0x00002bb4                Hardware_init
+ .text.Clock_Init
+                0x00002cb0       0x4c build/src/hardware_init.o
+                0x00002cb0                Clock_Init
+ .text.SystemInit
+                0x00002cfc        0x8 build/src/hardware_init.o
+                0x00002cfc                SystemInit
+ .text.Digital_Value_Getting
+                0x00002d04       0x78 build/src/interrupt.o
+                0x00002d04                Digital_Value_Getting
+ .text.ADC_IRQHandler
+                0x00002d7c       0x44 build/src/interrupt.o
+                0x00002d7c                ADC_IRQHandler
+ .text.HALL_IRQHandler
+                0x00002dc0      0x1f0 build/src/interrupt.o
+                0x00002dc0                HALL_IRQHandler
+ .text.TIMER1_IRQHandler
+                0x00002fb0       0x14 build/src/interrupt.o
+                0x00002fb0                TIMER1_IRQHandler
+ .text.TIMER0_IRQHandler
+                0x00002fc4       0x38 build/src/interrupt.o
+                0x00002fc4                TIMER0_IRQHandler
+ .text.CMP_IRQHandler
+                0x00002ffc       0xa8 build/src/interrupt.o
+                0x00002ffc                CMP_IRQHandler
+ .text.SysTick_Handler
+                0x000030a4        0x2 build/src/interrupt.o
+                0x000030a4                SysTick_Handler
+ *fill*         0x000030a6        0x2 
+ .text.MCPWM0_IRQHandler
+                0x000030a8       0x40 build/src/interrupt.o
+                0x000030a8                MCPWM0_IRQHandler
+ .text.DMA_IRQHandler
+                0x000030e8        0xc build/src/interrupt.o
+                0x000030e8                DMA_IRQHandler
+ .text.MCPWM1_IRQHandler
+                0x000030f4        0x2 build/src/interrupt.o
+                0x000030f4                MCPWM1_IRQHandler
+ .text.SW_IRQHandler
+                0x000030f6        0x2 build/src/interrupt.o
+                0x000030f6                SW_IRQHandler
+ .text.UART_IRQHandler
+                0x000030f8       0x48 build/src/interrupt.o
+                0x000030f8                UART_IRQHandler
+ .text.WAKE_IRQHandler
+                0x00003140        0x2 build/src/interrupt.o
+                0x00003140                WAKE_IRQHandler
+ *fill*         0x00003142        0x2 
+ .text.GPIO_IRQHandler
+                0x00003144       0x14 build/src/interrupt.o
+                0x00003144                GPIO_IRQHandler
+ .text.I2C_IRQHandler
+                0x00003158        0x2 build/src/interrupt.o
+                0x00003158                I2C_IRQHandler
+ .text.SPI_IRQHandler
+                0x0000315a        0x2 build/src/interrupt.o
+                0x0000315a                SPI_IRQHandler
+ .text.Task_Scheduler
+                0x0000315c       0x6c build/src/main.o
+                0x0000315c                Task_Scheduler
+ .text.startup.main
+                0x000031c8       0xe4 build/src/main.o
+                0x000031c8                main
+ .text.motor_mode_detect
+                0x000032ac       0x78 build/src/motor_mode.o
+                0x000032ac                motor_mode_detect
+ .text.position_control_init
+                0x00003324       0x24 build/src/position_control.o
+                0x00003324                position_control_init
+ .text.position_control_add_mm
+                0x00003348       0x38 build/src/position_control.o
+                0x00003348                position_control_add_mm
+ .text.position_control_set_target_mm
+                0x00003380       0x34 build/src/position_control.o
+                0x00003380                position_control_set_target_mm
+ .text.position_control_tick
+                0x000033b4       0xd4 build/src/position_control.o
+                0x000033b4                position_control_tick
+ .text.my_send_serial_data
+                0x00003488       0x2c build/src/protocol_handlers.o
+ .text.my_send_serial_data_wait
+                0x000034b4        0x8 build/src/protocol_handlers.o
+ .text.my_protocol_reset
+                0x000034bc       0x14 build/src/protocol_handlers.o
+ .text.my_protocol_delay
+                0x000034d0       0x18 build/src/protocol_handlers.o
+ .text.my_protocol_gettick
+                0x000034e8        0x8 build/src/protocol_handlers.o
+ .text.setup_uart_protocol
+                0x000034f0       0x78 build/src/protocol_handlers.o
+                0x000034f0                setup_uart_protocol
+ .text.protocol_drain_rx
+                0x00003568       0x44 build/src/protocol_handlers.o
+                0x00003568                protocol_drain_rx
+ .text.protocol_drive_tick
+                0x000035ac       0x10 build/src/protocol_handlers.o
+                0x000035ac                protocol_drive_tick
+ .text.register_one
+                0x000035bc       0x3c build/src/protocol_params_flash.o
+ .text.fn_flash_param
+                0x000035f8       0x12 build/src/protocol_params_flash.o
+ *fill*         0x0000360a        0x2 
+ .text.register_flash_params
+                0x0000360c      0x1fc build/src/protocol_params_flash.o
+                0x0000360c                register_flash_params
+ .text.fn_sensor
+                0x00003808       0x4c build/src/protocol_params_motion.o
+ .text.fn_pwm_data
+                0x00003854       0x40 build/src/protocol_params_motion.o
+ .text.fn_speed_data
+                0x00003894      0x10c build/src/protocol_params_motion.o
+ .text.register_motion_params
+                0x000039a0       0xa8 build/src/protocol_params_motion.o
+                0x000039a0                register_motion_params
+ .text.fn_posn_data
+                0x00003a48       0x88 build/src/protocol_params_motion_pos.o
+ .text.fn_posn_incr
+                0x00003ad0       0x1c build/src/protocol_params_motion_pos.o
+ .text.register_motion_pos_params
+                0x00003aec       0x68 build/src/protocol_params_motion_pos.o
+                0x00003aec                register_motion_pos_params
+ .text.fn_xyt   0x00003b54       0x48 build/src/protocol_params_position.o
+ .text.fn_position
+                0x00003b9c       0x44 build/src/protocol_params_position.o
+ .text.fn_hall_data
+                0x00003be0       0x8c build/src/protocol_params_position.o
+ .text.fn_raw_position
+                0x00003c6c       0x4c build/src/protocol_params_position.o
+ .text.register_position_params
+                0x00003cb8       0xc4 build/src/protocol_params_position.o
+                0x00003cb8                register_position_params
+ .text.register_snr_params
+                0x00003d7c       0xc0 build/src/protocol_params_snr.o
+                0x00003d7c                register_snr_params
+ .text.fn_electrical
+                0x00003e3c       0x90 build/src/protocol_params_standard.o
+ .text.fn_buzzer
+                0x00003ecc       0x2c build/src/protocol_params_standard.o
+ .text.register_standard_params
+                0x00003ef8       0xa0 build/src/protocol_params_standard.o
+                0x00003ef8                register_standard_params
+ .text.BLDC_COMP_Input_Only
+                0x00003f98       0x68 build/src/sensorless_adapter.o
+                0x00003f98                BLDC_COMP_Input_Only
+ .text.startup_canary_check
+                0x00004000       0x48 build/src/startup_canary.o
+                0x00004000                startup_canary_check
+ .text.timebase_pwm_tick
+                0x00004048       0x28 build/src/timebase.o
+                0x00004048                timebase_pwm_tick
+ .text.get_ms_tick
+                0x00004070        0xc build/src/timebase.o
+                0x00004070                get_ms_tick
+ .text.delay_init
+                0x0000407c       0x2c build/periph_driver/source/delay.o
+                0x0000407c                delay_init
+ .text.delay_us
+                0x000040a8       0x30 build/periph_driver/source/delay.o
+                0x000040a8                delay_us
+ .text.delay_xms
+                0x000040d8       0x30 build/periph_driver/source/delay.o
+                0x000040d8                delay_xms
+ .text.delay_ms
+                0x00004108       0x3a build/periph_driver/source/delay.o
+                0x00004108                delay_ms
+ *fill*         0x00004142        0x2 
+ .text.EraseSector
+                0x00004144       0x8c build/periph_driver/source/snr8503x_Flash.o
+                0x00004144                EraseSector
+ .text.ProgramPage
+                0x000041d0      0x11c build/periph_driver/source/snr8503x_Flash.o
+                0x000041d0                ProgramPage
+ .text.Read_Flash
+                0x000042ec       0x24 build/periph_driver/source/snr8503x_Flash.o
+                0x000042ec                Read_Flash
+ .text.Read_More_Flash
+                0x00004310       0x3c build/periph_driver/source/snr8503x_Flash.o
+                0x00004310                Read_More_Flash
+ .text.IWDG_DISABLE
+                0x0000434c       0x10 build/periph_driver/source/snr8503x_IWDG.o
+                0x0000434c                IWDG_DISABLE
+ .text.PWMOutputs
+                0x0000435c       0x30 build/periph_driver/source/snr8503x_MCPWM.o
+                0x0000435c                PWMOutputs
+ .text.MCPWM_StructInit
+                0x0000438c        0xc build/periph_driver/source/snr8503x_MCPWM.o
+                0x0000438c                MCPWM_StructInit
+ .text.MCPWM_Init
+                0x00004398      0x3c4 build/periph_driver/source/snr8503x_MCPWM.o
+                0x00004398                MCPWM_Init
+ .text.ADC_Init
+                0x0000475c       0xa4 build/periph_driver/source/snr8503x_adc.o
+                0x0000475c                ADC_Init
+ .text.ADC_StructInit
+                0x00004800       0x22 build/periph_driver/source/snr8503x_adc.o
+                0x00004800                ADC_StructInit
+ *fill*         0x00004822        0x2 
+ .text.CMP_Init
+                0x00004824       0xe4 build/periph_driver/source/snr8503x_cmp.o
+                0x00004824                CMP_Init
+ .text.CMP_StructInit
+                0x00004908       0x40 build/periph_driver/source/snr8503x_cmp.o
+                0x00004908                CMP_StructInit
+ .text.DAC_StructInit
+                0x00004948        0xc build/periph_driver/source/snr8503x_dac.o
+                0x00004948                DAC_StructInit
+ .text.DAC_Init
+                0x00004954       0x90 build/periph_driver/source/snr8503x_dac.o
+                0x00004954                DAC_Init
+ .text.DAC_OutputValue
+                0x000049e4       0x34 build/periph_driver/source/snr8503x_dac.o
+                0x000049e4                DAC_OutputValue
+ .text.DSP_Cmd  0x00004a18        0xe build/periph_driver/source/snr8503x_dsp.o
+                0x00004a18                DSP_Cmd
+ .text.GPIO_Init
+                0x00004a26       0x6e build/periph_driver/source/snr8503x_gpio.o
+                0x00004a26                GPIO_Init
+ .text.GPIO_StructInit
+                0x00004a94        0xc build/periph_driver/source/snr8503x_gpio.o
+                0x00004a94                GPIO_StructInit
+ .text.GPIO_ReadInputDataBit
+                0x00004aa0        0xc build/periph_driver/source/snr8503x_gpio.o
+                0x00004aa0                GPIO_ReadInputDataBit
+ .text.GPIO_WriteBit
+                0x00004aac        0xc build/periph_driver/source/snr8503x_gpio.o
+                0x00004aac                GPIO_WriteBit
+ .text.GPIO_PinAFConfig
+                0x00004ab8       0xd0 build/periph_driver/source/snr8503x_gpio.o
+                0x00004ab8                GPIO_PinAFConfig
+ .text.HALL_Init
+                0x00004b88       0x5c build/periph_driver/source/snr8503x_hall.o
+                0x00004b88                HALL_Init
+ .text.HALL_StructInit
+                0x00004be4       0x20 build/periph_driver/source/snr8503x_hall.o
+                0x00004be4                HALL_StructInit
+ .text.HALL_GetFilterValue
+                0x00004c04       0x10 build/periph_driver/source/snr8503x_hall.o
+                0x00004c04                HALL_GetFilterValue
+ .text.HALL_WIDCount
+                0x00004c14        0xc build/periph_driver/source/snr8503x_hall.o
+                0x00004c14                HALL_WIDCount
+ .text.HALL_GetIRQFlag
+                0x00004c20        0xc build/periph_driver/source/snr8503x_hall.o
+                0x00004c20                HALL_GetIRQFlag
+ .text.HALL_ClearIRQFlag
+                0x00004c2c        0xc build/periph_driver/source/snr8503x_hall.o
+                0x00004c2c                HALL_ClearIRQFlag
+ .text.SYS_ModuleClockCmd
+                0x00004c38       0x2c build/periph_driver/source/snr8503x_sys.o
+                0x00004c38                SYS_ModuleClockCmd
+ .text.SYS_AnalogModuleClockCmd
+                0x00004c64       0x54 build/periph_driver/source/snr8503x_sys.o
+                0x00004c64                SYS_AnalogModuleClockCmd
+ .text.SYS_SoftResetModule
+                0x00004cb8       0x20 build/periph_driver/source/snr8503x_sys.o
+                0x00004cb8                SYS_SoftResetModule
+ .text.TIM_TimerInit
+                0x00004cd8       0xa8 build/periph_driver/source/snr8503x_timer.o
+                0x00004cd8                TIM_TimerInit
+ .text.TIM_TimerStrutInit
+                0x00004d80       0x34 build/periph_driver/source/snr8503x_timer.o
+                0x00004d80                TIM_TimerStrutInit
+ .text.UART_Init
+                0x00004db4       0x98 build/periph_driver/source/snr8503x_uart.o
+                0x00004db4                UART_Init
+ .text.UART_StructInit
+                0x00004e4c       0x18 build/periph_driver/source/snr8503x_uart.o
+                0x00004e4c                UART_StructInit
+ .text.line_lock_ascii
+                0x00004e64       0x1c build/third_party/bipropellant-protocol/ascii_protocol.o
+ .text.line_help
+                0x00004e80       0xa8 build/third_party/bipropellant-protocol/ascii_protocol.o
+ .text.line_unlock_ascii
+                0x00004f28       0x68 build/third_party/bipropellant-protocol/ascii_protocol.o
+ .text.ascii_byte
+                0x00004f90      0x160 build/third_party/bipropellant-protocol/ascii_protocol.o
+                0x00004f90                ascii_byte
+ .text.ascii_init
+                0x000050f0       0x6c build/third_party/bipropellant-protocol/ascii_protocol.o
+                0x000050f0                ascii_init
+ .text.cobsr_encode
+                0x0000515c       0xbe build/third_party/bipropellant-protocol/cobsr.o
+                0x0000515c                cobsr_encode
+ .text.cobsr_decode
+                0x0000521a       0xe6 build/third_party/bipropellant-protocol/cobsr.o
+                0x0000521a                cobsr_decode
+ .text.mpGetTxByte
+                0x00005300       0x40 build/third_party/bipropellant-protocol/machine_protocol.o
+ .text.protocol_cobsr_decode
+                0x00005340       0x3c build/third_party/bipropellant-protocol/machine_protocol.o
+                0x00005340                protocol_cobsr_decode
+ .text.protocol_cobsr_encode
+                0x0000537c       0x2c build/third_party/bipropellant-protocol/machine_protocol.o
+                0x0000537c                protocol_cobsr_encode
+ .text.protocol_SOM_decode
+                0x000053a8       0x18 build/third_party/bipropellant-protocol/machine_protocol.o
+                0x000053a8                protocol_SOM_decode
+ .text.protocol_SOM_encode
+                0x000053c0       0x24 build/third_party/bipropellant-protocol/machine_protocol.o
+                0x000053c0                protocol_SOM_encode
+ .text.protocol_send_raw
+                0x000053e4       0x6c build/third_party/bipropellant-protocol/machine_protocol.o
+ .text.unlikely.protocol_send_ack
+                0x00005450       0x20 build/third_party/bipropellant-protocol/machine_protocol.o
+ .text.protocol_send_nack
+                0x00005470       0x2c build/third_party/bipropellant-protocol/machine_protocol.o
+ .text.mpTxQueued
+                0x0000549c       0x24 build/third_party/bipropellant-protocol/machine_protocol.o
+                0x0000549c                mpTxQueued
+ .text.mpGetTxMsg
+                0x000054c0       0x4e build/third_party/bipropellant-protocol/machine_protocol.o
+ *fill*         0x0000550e        0x2 
+ .text.protocol_send
+                0x00005510      0x178 build/third_party/bipropellant-protocol/machine_protocol.o
+ .text.protocol_tick
+                0x00005688      0x17c build/third_party/bipropellant-protocol/machine_protocol.o
+                0x00005688                protocol_tick
+ .text.protocol_byte
+                0x00005804      0x260 build/third_party/bipropellant-protocol/machine_protocol.o
+                0x00005804                protocol_byte
+ .text.protocol_post
+                0x00005a64       0x9c build/third_party/bipropellant-protocol/machine_protocol.o
+                0x00005a64                protocol_post
+ .text.noTick   0x00005b00        0x4 build/third_party/bipropellant-protocol/protocol.o
+                0x00005b00                noTick
+ .text.noDelay  0x00005b04        0x2 build/third_party/bipropellant-protocol/protocol.o
+                0x00005b04                noDelay
+ .text.noReset  0x00005b06        0x2 build/third_party/bipropellant-protocol/protocol.o
+                0x00005b06                noReset
+ .text.nosend   0x00005b08        0x4 build/third_party/bipropellant-protocol/protocol.o
+                0x00005b08                nosend
+ .text.fn_ping  0x00005b0c       0x16 build/third_party/bipropellant-protocol/protocol.o
+                0x00005b0c                fn_ping
+ *fill*         0x00005b22        0x2 
+ .text.protocol_process_ReadValue
+                0x00005b24       0x2c build/third_party/bipropellant-protocol/protocol.o
+                0x00005b24                protocol_process_ReadValue
+ .text.protocol_process_ReadAndSendValue.part.1
+                0x00005b50       0x40 build/third_party/bipropellant-protocol/protocol.o
+ .text.protocol_process_ReadAndSendValue
+                0x00005b90        0xc build/third_party/bipropellant-protocol/protocol.o
+                0x00005b90                protocol_process_ReadAndSendValue
+ .text.protocol_process_WriteValue
+                0x00005b9c       0x40 build/third_party/bipropellant-protocol/protocol.o
+                0x00005b9c                protocol_process_WriteValue
+ .text.protocol_process_cmdWritevalAndRespond.part.2
+                0x00005bdc       0x30 build/third_party/bipropellant-protocol/protocol.o
+ .text.protocol_process_cmdWritevalAndRespond
+                0x00005c0c        0xc build/third_party/bipropellant-protocol/protocol.o
+                0x00005c0c                protocol_process_cmdWritevalAndRespond
+ .text.fn_defaultProcessing
+                0x00005c18       0x30 build/third_party/bipropellant-protocol/protocol.o
+                0x00005c18                fn_defaultProcessing
+ .text.fn_defaultProcessingPreWriteClear
+                0x00005c48       0x2a build/third_party/bipropellant-protocol/protocol.o
+                0x00005c48                fn_defaultProcessingPreWriteClear
+ .text.fn_SubscribeData
+                0x00005c72       0x9c build/third_party/bipropellant-protocol/protocol.o
+                0x00005c72                fn_SubscribeData
+ *fill*         0x00005d0e        0x2 
+ .text.fn_ProtocolcountDataSum
+                0x00005d10       0xec build/third_party/bipropellant-protocol/protocol.o
+                0x00005d10                fn_ProtocolcountDataSum
+ .text.fn_ProtocolcountDataAck
+                0x00005dfc       0x54 build/third_party/bipropellant-protocol/protocol.o
+                0x00005dfc                fn_ProtocolcountDataAck
+ .text.fn_ProtocolcountDataNoack
+                0x00005e50       0x54 build/third_party/bipropellant-protocol/protocol.o
+                0x00005e50                fn_ProtocolcountDataNoack
+ .text.fn_defaultProcessingReadOnly
+                0x00005ea4       0x10 build/third_party/bipropellant-protocol/protocol.o
+                0x00005ea4                fn_defaultProcessingReadOnly
+ .text.fn_paramstat_descriptions
+                0x00005eb4       0xfc build/third_party/bipropellant-protocol/protocol.o
+                0x00005eb4                fn_paramstat_descriptions
+ .text.setParam
+                0x00005fb0       0x24 build/third_party/bipropellant-protocol/protocol.o
+                0x00005fb0                setParam
+ .text.setParamsCopy
+                0x00005fd4       0x3a build/third_party/bipropellant-protocol/protocol.o
+                0x00005fd4                setParamsCopy
+ *fill*         0x0000600e        0x2 
+ .text.setParamVariable
+                0x00006010       0x28 build/third_party/bipropellant-protocol/protocol.o
+                0x00006010                setParamVariable
+ .text.protocol_init
+                0x00006038       0xb0 build/third_party/bipropellant-protocol/protocol.o
+                0x00006038                protocol_init
+ .text.protocol_process_message
+                0x000060e8      0x10c build/third_party/bipropellant-protocol/protocol.o
+                0x000060e8                protocol_process_message
+ .text.Reset_Handler
+                0x000061f4       0x4c build/startup/startup_snr8503x_gnu.o
+                0x000061f4                Reset_Handler
+ .text.Default_Handler
+                0x00006240        0x2 build/startup/startup_snr8503x_gnu.o
+                0x00006240                PendSV_Handler
+                0x00006240                NMI_Handler
+                0x00006240                SVC_Handler
+                0x00006240                HardFault_Handler
+ *fill*         0x00006242        0x2 
+ .text.malloc   0x00006244       0x14 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-malloc.o)
+                0x00006244                malloc
+ .text.memcpy   0x00006258       0x12 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-memcpy-stub.o)
+                0x00006258                memcpy
+ .text.memset   0x0000626a       0x10 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-memset.o)
+                0x0000626a                memset
+ *fill*         0x0000627a        0x2 
+ .text._free_r  0x0000627c       0x94 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-freer.o)
+                0x0000627c                _free_r
+ .text._malloc_r
+                0x00006310       0xbc c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-mallocr.o)
+                0x00006310                _malloc_r
+ .text._sbrk_r  0x000063cc       0x24 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-sbrkr.o)
+                0x000063cc                _sbrk_r
+ .text.sprintf  0x000063f0       0x40 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-sprintf.o)
+                0x000063f0                siprintf
+                0x000063f0                sprintf
+ .text.strcpy   0x00006430       0x10 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-strcpy.o)
+                0x00006430                strcpy
+ .text.strncpy  0x00006440       0x28 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-strncpy.o)
+                0x00006440                strncpy
+ .text.__malloc_lock
+                0x00006468        0x2 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-mlock.o)
+                0x00006468                __malloc_lock
+ .text.__malloc_unlock
+                0x0000646a        0x2 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-mlock.o)
+                0x0000646a                __malloc_unlock
+ .text.__ssputs_r
+                0x0000646c       0xc4 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-svfprintf.o)
+                0x0000646c                __ssputs_r
+ .text._svfprintf_r
+                0x00006530      0x1fc c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-svfprintf.o)
+                0x00006530                _svfiprintf_r
+                0x00006530                _svfprintf_r
+ .text._printf_common
+                0x0000672c       0xda c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-vfprintf_i.o)
+                0x0000672c                _printf_common
+ *fill*         0x00006806        0x2 
+ .text._printf_i
+                0x00006808      0x210 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-vfprintf_i.o)
+                0x00006808                _printf_i
+ .text.memchr   0x00006a18       0x16 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-memchr-stub.o)
+                0x00006a18                memchr
+ .text.memmove  0x00006a2e       0x26 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-memmove.o)
+                0x00006a2e                memmove
+ .text._realloc_r
+                0x00006a54       0x4c c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-reallocr.o)
+                0x00006a54                _realloc_r
+ .text._malloc_usable_size_r
+                0x00006aa0       0x10 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-msizer.o)
+                0x00006aa0                _malloc_usable_size_r
+ .text._sbrk    0x00006ab0       0x1c c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libnosys.a(sbrk.o)
+                0x00006ab0                _sbrk
+ *(.glue_7)
+ .glue_7        0x00006acc        0x0 linker stubs
+ *(.glue_7t)
+ .glue_7t       0x00006acc        0x0 linker stubs
+ *(.eh_frame)
+ *(.init)
+ *(.fini)
+                0x00006acc                . = ALIGN (0x4)
+                0x00006acc                _etext = .
+
+.vfp11_veneer   0x00006acc        0x0
+ .vfp11_veneer  0x00006acc        0x0 linker stubs
+
+.v4_bx          0x00006acc        0x0
+ .v4_bx         0x00006acc        0x0 linker stubs
+
+.iplt           0x00006acc        0x0
+ .iplt          0x00006acc        0x0 build/src/COMP_Sensoeless.o
+
+i.BLDC_init     0x00006acc       0x64
+ i.BLDC_init    0x00006acc       0x3c vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+                0x00006acc                BLDC_init
+ i.BLDC_init    0x00006b08       0x28 vendor_libs/snr_bldc_snls_renamed.lib(zero_detect.o)
+                0x00006b08                BLDC_init_snls
+
+i.HALL_Update   0x00006b30       0x20
+ i.HALL_Update  0x00006b30       0x20 vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+                0x00006b30                HALL_Update
+
+i.ICP_Loader    0x00006b50      0x15c
+ i.ICP_Loader   0x00006b50      0x15c vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+                0x00006b50                ICP_Loader
+
+i.Read_Trim     0x00006cac       0x60
+ i.Read_Trim    0x00006cac       0x60 vendor_libs/snr8503x_nvr.lib(lks32mc03x_nvr.o)
+                0x00006cac                Read_Trim
+
+i.COMP_Motor_Zero_Detect
+                0x00006d0c       0x40
+ i.COMP_Motor_Zero_Detect
+                0x00006d0c       0x40 vendor_libs/snr_bldc_snls_renamed.lib(zero_detect.o)
+                0x00006d0c                COMP_Motor_Zero_Detect
+
+i.Freerun_Zero_Detect
+                0x00006d4c       0x4c
+ i.Freerun_Zero_Detect
+                0x00006d4c       0x4c vendor_libs/snr_bldc_snls_renamed.lib(zero_detect.o)
+                0x00006d4c                Freerun_Zero_Detect
+
+.rodata         0x00006d98      0xa80
+                0x00006d98                . = ALIGN (0x4)
+ *(.rodata)
+ .rodata        0x00006d98       0x80 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(divsf3.o)
+ .rodata        0x00006e18       0x40 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(mulsf3.o)
+ *(.rodata*)
+ .rodata.sVersion
+                0x00006e58        0xa build/src/Global_Variable.o
+                0x00006e58                sVersion
+ *fill*         0x00006e62        0x2 
+ .rodata.sM1_STATE
+                0x00006e64       0x10 build/src/M1_StateMachine.o
+                0x00006e64                sM1_STATE
+ .rodata.s_M1_STATE_RUN_TABLE
+                0x00006e74       0x1c build/src/M1_StateMachine.o
+ .rodata.fc_crc32_tab
+                0x00006e90       0x40 build/src/flash_config.o
+ .rodata.register_flash_params.str1.1
+                0x00006ed0      0x138 build/src/protocol_params_flash.o
+ .rodata.register_motion_params.str1.1
+                0x00007008       0x26 build/src/protocol_params_motion.o
+ .rodata.register_motion_pos_params.str1.1
+                0x0000702e       0x16 build/src/protocol_params_motion_pos.o
+ .rodata.register_position_params.str1.1
+                0x00007044       0x1d build/src/protocol_params_position.o
+                                 0x26 (size before relaxing)
+ .rodata.register_standard_params.str1.1
+                0x00007061       0x33 build/src/protocol_params_standard.o
+ .rodata.ascii_byte.str1.1
+                0x00007094       0x5d build/third_party/bipropellant-protocol/ascii_protocol.o
+ .rodata.ascii_init.str1.1
+                0x000070f1       0x45 build/third_party/bipropellant-protocol/ascii_protocol.o
+ .rodata.line_help.str1.1
+                0x00007136        0x6 build/third_party/bipropellant-protocol/ascii_protocol.o
+                                  0x9 (size before relaxing)
+ .rodata.line_lock_ascii.str1.1
+                0x0000713c       0x19 build/third_party/bipropellant-protocol/ascii_protocol.o
+ .rodata.line_unlock_ascii.str1.1
+                0x00007155       0x67 build/third_party/bipropellant-protocol/ascii_protocol.o
+ .rodata.initialparams
+                0x000071bc      0x3d4 build/third_party/bipropellant-protocol/protocol.o
+ .rodata.str1.1
+                0x00007590      0x255 build/third_party/bipropellant-protocol/protocol.o
+                                0x257 (size before relaxing)
+ .rodata._svfprintf_r.str1.1
+                0x000077e5       0x11 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-svfprintf.o)
+ .rodata._printf_i.str1.1
+                0x000077f6       0x22 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-vfprintf_i.o)
+                0x00007818                . = ALIGN (0x4)
+
+.rel.dyn        0x00007818        0x0
+ .rel.iplt      0x00007818        0x0 build/src/COMP_Sensoeless.o
+
+.ARM.extab
+ *(.ARM.extab* .gnu.linkonce.armextab.*)
+
+.ARM            0x00007818        0x0
+                0x00007818                __exidx_start = .
+ *(.ARM.exidx*)
+                0x00007818                __exidx_end = .
+
+.preinit_array  0x00007818        0x0
+                [!provide]                PROVIDE (__preinit_array_start, .)
+ *(.preinit_array*)
+                [!provide]                PROVIDE (__preinit_array_end, .)
+
+.init_array     0x00007818        0x0
+                [!provide]                PROVIDE (__init_array_start, .)
+ *(SORT_BY_NAME(.init_array.*))
+ *(.init_array*)
+                [!provide]                PROVIDE (__init_array_end, .)
+
+.fini_array     0x00007818        0x0
+                [!provide]                PROVIDE (__fini_array_start, .)
+ *(SORT_BY_NAME(.fini_array.*))
+ *(.fini_array*)
+                [!provide]                PROVIDE (__fini_array_end, .)
+                0x00007818                _sidata = LOADADDR (.data)
+
+.data           0x20000000       0xd8 load address 0x00007818
+                0x20000000                . = ALIGN (0x4)
+                0x20000000                _sdata = .
+ *(.data)
+ .data          0x20000000       0x1c vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+                0x20000000                ICP_MODE
+                0x20000001                ICP_SetFLAG
+                0x20000002                ICP_ResumeCNT
+                0x20000004                ICP_SetCNT
+                0x20000006                ICP_LoadCNT
+                0x20000008                ICP_LOWCNT
+                0x2000000a                ICP_LOWCNT_BAK
+                0x2000000c                ICP_HIGCNT
+                0x2000000e                ICP_HIGCNT_BAK
+                0x20000010                BLDC_1
+                0x20000014                BLDC_BUFF
+                0x20000018                BLDC_BUFF1
+ .data          0x2000001c        0x8 vendor_libs/snr_bldc_snls_renamed.lib(zero_detect.o)
+                0x2000001c                BLDC_1_snls
+                0x20000020                BLDC_BUFF_snls
+ *(.data*)
+ .data.CMP_PhaseTab
+                0x20000024        0x6 build/src/COMP_Sensoeless.o
+                0x20000024                CMP_PhaseTab
+ .data.phase_rise_tab_ccw
+                0x2000002a        0x6 build/src/COMP_Sensoeless.o
+                0x2000002a                phase_rise_tab_ccw
+ .data.phase_rise_tab_cw
+                0x20000030        0x6 build/src/COMP_Sensoeless.o
+                0x20000030                phase_rise_tab_cw
+ .data.sns_Motor_step_tab_ccw
+                0x20000036        0x6 build/src/COMP_Sensoeless.o
+                0x20000036                sns_Motor_step_tab_ccw
+ .data.sns_Motor_step_tab_cw
+                0x2000003c        0x6 build/src/COMP_Sensoeless.o
+                0x2000003c                sns_Motor_step_tab_cw
+ .data.e1M1_MainState
+                0x20000042        0x1 build/src/M1_StateMachine.o
+                0x20000042                e1M1_MainState
+ .data.UART_Flag
+                0x20000043        0x1 build/src/UR_Ctrl.o
+                0x20000043                UART_Flag
+ .data.s_features.6877
+                0x20000044        0x4 build/src/protocol_params_flash.o
+ .data.__data_canary
+                0x20000048       0x10 build/src/startup_canary.o
+                0x20000048                __data_canary
+ .data.password
+                0x20000058        0xc build/third_party/bipropellant-protocol/ascii_protocol.o
+ .data.protocol_Delay
+                0x20000064        0x4 build/third_party/bipropellant-protocol/protocol.o
+                0x20000064                protocol_Delay
+ .data.protocol_GetTick
+                0x20000068        0x4 build/third_party/bipropellant-protocol/protocol.o
+                0x20000068                protocol_GetTick
+ .data.protocol_SystemReset
+                0x2000006c        0x4 build/third_party/bipropellant-protocol/protocol.o
+                0x2000006c                protocol_SystemReset
+ .data.version  0x20000070        0x4 build/third_party/bipropellant-protocol/protocol.o
+ .data._impure_ptr
+                0x20000074        0x4 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-impure.o)
+                0x20000074                _impure_ptr
+ .data.impure_data
+                0x20000078       0x60 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-impure.o)
+                0x200000d8                . = ALIGN (0x4)
+                0x200000d8                _edata = .
+
+.igot.plt       0x200000d8        0x0 load address 0x000078f0
+ .igot.plt      0x200000d8        0x0 build/src/COMP_Sensoeless.o
+
+.bss            0x200000d8     0x2db0 load address 0x000078f0
+                0x200000d8                . = ALIGN (0x4)
+                0x200000d8                _sbss = .
+                0x200000d8                __bss_start__ = _sbss
+ *(.bss)
+ *(.bss*)
+ .bss.j.6851    0x200000d8        0x1 build/src/COMP_Sensoeless.o
+ .bss.HALL_LIB  0x200000d9        0x1 build/src/Global_Variable.o
+                0x200000d9                HALL_LIB
+ *fill*         0x200000da        0x2 
+ .bss.Motor     0x200000dc       0x94 build/src/Global_Variable.o
+                0x200000dc                Motor
+ .bss.Read_hall_tab
+                0x20000170        0x6 build/src/Global_Variable.o
+                0x20000170                Read_hall_tab
+ *fill*         0x20000176        0x2 
+ .bss.User_sys  0x20000178       0x44 build/src/Global_Variable.o
+                0x20000178                User_sys
+ .bss.e1M1_RunSubState
+                0x200001bc        0x1 build/src/M1_StateMachine.o
+                0x200001bc                e1M1_RunSubState
+ .bss.CWCCW_IOInputCNT1.6831
+                0x200001bd        0x1 build/src/MC_Drive.o
+ .bss.CWCCW_IOInputCNT2.6832
+                0x200001be        0x1 build/src/MC_Drive.o
+ .bss.CWCCW_bIOInput
+                0x200001bf        0x1 build/src/MC_Drive.o
+                0x200001bf                CWCCW_bIOInput
+ .bss.DesirdDuty.6802
+                0x200001c0        0x4 build/src/MC_Drive.o
+ .bss.Err100ms_CNT.6813
+                0x200001c4        0x1 build/src/MC_Drive.o
+ .bss.MotorErrCNT.6816
+                0x200001c5        0x1 build/src/MC_Drive.o
+ .bss.MotorErrStep.6815
+                0x200001c6        0x1 build/src/MC_Drive.o
+ .bss.MotorErrTiems.6814
+                0x200001c7        0x1 build/src/MC_Drive.o
+ .bss.ReturnValue.6807
+                0x200001c8        0x4 build/src/MC_Drive.o
+ .bss.cnt_led.6824
+                0x200001cc        0x1 build/src/MC_Drive.o
+ *fill*         0x200001cd        0x3 
+ .bss.hall_cnt  0x200001d0        0x4 build/src/MC_Drive.o
+                0x200001d0                hall_cnt
+ .bss.hall_info
+                0x200001d4        0x1 build/src/MC_Drive.o
+                0x200001d4                hall_info
+ *fill*         0x200001d5        0x3 
+ .bss.MOS_Selftest
+                0x200001d8       0x20 build/src/MosTest.o
+                0x200001d8                MOS_Selftest
+ .bss.PIParmIevg
+                0x200001f8       0x24 build/src/PID.o
+                0x200001f8                PIParmIevg
+ .bss.PIParmS   0x2000021c       0x24 build/src/PID.o
+                0x2000021c                PIParmS
+ .bss.Dis_OV_ProtectCnt_slow.6832
+                0x20000240        0x2 build/src/Protect.o
+ .bss.Dis_UV_ProtectCnt.6830
+                0x20000242        0x2 build/src/Protect.o
+ .bss.LowVolatageCnt_fast.6828
+                0x20000244        0x2 build/src/Protect.o
+ .bss.LowVolatageCnt_slow.6829
+                0x20000246        0x2 build/src/Protect.o
+ .bss.Over_MOStemp_Cnt
+                0x20000248        0x2 build/src/Protect.o
+                0x20000248                Over_MOStemp_Cnt
+ .bss.OvrVolatageCnt_fast.6831
+                0x2000024a        0x2 build/src/Protect.o
+ .bss.RSM_Over_MOStemp_Cnt
+                0x2000024c        0x2 build/src/Protect.o
+                0x2000024c                RSM_Over_MOStemp_Cnt
+ .bss.adjFilter1.6809
+                0x2000024e        0x2 build/src/Protect.o
+ .bss.over_current_time1
+                0x20000250        0x2 build/src/Protect.o
+                0x20000250                over_current_time1
+ .bss.over_current_time2
+                0x20000252        0x2 build/src/Protect.o
+                0x20000252                over_current_time2
+ .bss.DataReturn.6704
+                0x20000254        0x2 build/src/SpeedRamp.o
+ *fill*         0x20000256        0x2 
+ .bss.RP        0x20000258       0x20 build/src/SpeedRamp.o
+                0x20000258                RP
+ .bss.RPValue   0x20000278       0x18 build/src/SpeedRamp.o
+                0x20000278                RPValue
+ .bss.SPEEDValue
+                0x20000290       0x18 build/src/SpeedRamp.o
+                0x20000290                SPEEDValue
+ .bss.SPEED_Cmd
+                0x200002a8       0x20 build/src/SpeedRamp.o
+                0x200002a8                SPEED_Cmd
+ .bss.rxd_comm0
+                0x200002c8      0x106 build/src/UR_Ctrl.o
+                0x200002c8                rxd_comm0
+ .bss.g_ctrl_mode
+                0x200003ce        0x1 build/src/control_mode.o
+                0x200003ce                g_ctrl_mode
+ *fill*         0x200003cf        0x1 
+ .bss.g_target_pwm_left
+                0x200003d0        0x4 build/src/control_mode.o
+                0x200003d0                g_target_pwm_left
+ .bss.g_target_speed_mm_s
+                0x200003d4        0x4 build/src/control_mode.o
+                0x200003d4                g_target_speed_mm_s
+ .bss.g_flash_cfg
+                0x200003d8       0x60 build/src/flash_config.o
+                0x200003d8                g_flash_cfg
+ .bss.s_dirty   0x20000438        0x1 build/src/flash_config.o
+ *fill*         0x20000439        0x3 
+ .bss.s_last_save_ms
+                0x2000043c        0x4 build/src/flash_config.o
+ .bss.s_save_failed_count
+                0x20000440        0x1 build/src/flash_config.o
+ *fill*         0x20000441        0x3 
+ .bss.g_hall_ticks_abs
+                0x20000444        0x4 build/src/hall_accumulator.o
+                0x20000444                g_hall_ticks_abs
+ .bss.g_hall_ticks_period_us
+                0x20000448        0x4 build/src/hall_accumulator.o
+                0x20000448                g_hall_ticks_period_us
+ .bss.s_last_edge_ms
+                0x2000044c        0x4 build/src/hall_accumulator.o
+ .bss.hall_index.6853
+                0x20000450        0x1 build/src/interrupt.o
+ .bss.i.6851    0x20000451        0x1 build/src/interrupt.o
+ .bss.j.6852    0x20000452        0x1 build/src/interrupt.o
+ .bss.g_motor_mode
+                0x20000453        0x1 build/src/motor_mode.o
+                0x20000453                g_motor_mode
+ .bss.g_target_ticks
+                0x20000454        0x4 build/src/position_control.o
+                0x20000454                g_target_ticks
+ .bss.s_integral
+                0x20000458        0x4 build/src/position_control.o
+ .bss.s_last_error
+                0x2000045c        0x4 build/src/position_control.o
+ .bss.sUART0    0x20000460     0x1254 build/src/protocol_handlers.o
+                0x20000460                sUART0
+ .bss.pool.6861
+                0x200016b4      0x1c0 build/src/protocol_params_flash.o
+ .bss.pool_used.6862
+                0x20001874        0x4 build/src/protocol_params_flash.o
+ .bss.ro_active.6868
+                0x20001878       0x1c build/src/protocol_params_flash.o
+ .bss.ro_bad_phase.6875
+                0x20001894       0x1c build/src/protocol_params_flash.o
+ .bss.ro_features.6878
+                0x200018b0       0x1c build/src/protocol_params_flash.o
+ .bss.ro_save_fail.6872
+                0x200018cc       0x1c build/src/protocol_params_flash.o
+ .bss.s_save_failed_mirror.6871
+                0x200018e8        0x1 build/src/protocol_params_flash.o
+ *fill*         0x200018e9        0x3 
+ .bss.g_pwm_data
+                0x200018ec       0x14 build/src/protocol_params_motion.o
+ .bss.g_sensor  0x20001900        0xa build/src/protocol_params_motion.o
+ *fill*         0x2000190a        0x2 
+ .bss.g_speed_data
+                0x2000190c       0x24 build/src/protocol_params_motion.o
+ .bss.p.7135    0x20001930       0x1c build/src/protocol_params_motion.o
+ .bss.p.7136    0x2000194c       0x1c build/src/protocol_params_motion.o
+ .bss.p.7137    0x20001968       0x1c build/src/protocol_params_motion.o
+ .bss.g_posn_data
+                0x20001984       0x20 build/src/protocol_params_motion_pos.o
+ .bss.g_posn_incr
+                0x200019a4        0x8 build/src/protocol_params_motion_pos.o
+ .bss.p.7118    0x200019ac       0x1c build/src/protocol_params_motion_pos.o
+ .bss.p.7119    0x200019c8       0x1c build/src/protocol_params_motion_pos.o
+ .bss.g_hall_data
+                0x200019e4       0x24 build/src/protocol_params_position.o
+ .bss.g_position
+                0x20001a08       0x10 build/src/protocol_params_position.o
+ .bss.g_position_offset
+                0x20001a18        0x4 build/src/protocol_params_position.o
+ .bss.g_raw_position
+                0x20001a1c       0x10 build/src/protocol_params_position.o
+ .bss.g_xyt     0x20001a2c        0xc build/src/protocol_params_position.o
+ .bss.p.7123    0x20001a38       0x1c build/src/protocol_params_position.o
+ .bss.p.7124    0x20001a54       0x1c build/src/protocol_params_position.o
+ .bss.p.7125    0x20001a70       0x1c build/src/protocol_params_position.o
+ .bss.p.7126    0x20001a8c       0x1c build/src/protocol_params_position.o
+ .bss.g_buzzer  0x20001aa8        0x4 build/src/protocol_params_standard.o
+ .bss.g_debug_out
+                0x20001aac        0x1 build/src/protocol_params_standard.o
+ .bss.g_disable_poweroff
+                0x20001aad        0x1 build/src/protocol_params_standard.o
+ *fill*         0x20001aae        0x2 
+ .bss.g_electrical
+                0x20001ab0       0x78 build/src/protocol_params_standard.o
+ .bss.p.7102    0x20001b28       0x1c build/src/protocol_params_standard.o
+ .bss.p.7103    0x20001b44       0x1c build/src/protocol_params_standard.o
+ .bss.CMP_ZeroCross_lib
+                0x20001b60       0x20 build/src/sensorless_adapter.o
+                0x20001b60                CMP_ZeroCross_lib
+ .bss.Motor_1M1st
+                0x20001b80       0xb0 build/src/sensorless_adapter.o
+                0x20001b80                Motor_1M1st
+ .bss.g_sensorless_bad_phase_count
+                0x20001c30        0x4 build/src/sensorless_adapter.o
+                0x20001c30                g_sensorless_bad_phase_count
+ .bss.g_data_copy_ok
+                0x20001c34        0x1 build/src/startup_canary.o
+                0x20001c34                g_data_copy_ok
+ *fill*         0x20001c35        0x3 
+ .bss.g_ms_tick
+                0x20001c38        0x4 build/src/timebase.o
+                0x20001c38                g_ms_tick
+ .bss.pwm_div   0x20001c3c        0x2 build/src/timebase.o
+ *fill*         0x20001c3e        0x2 
+ .bss.fac_ms    0x20001c40        0x4 build/periph_driver/source/delay.o
+ .bss.fac_us    0x20001c44        0x4 build/periph_driver/source/delay.o
+ .bss.erase_flag
+                0x20001c48        0x4 build/periph_driver/source/snr8503x_Flash.o
+                0x20001c48                erase_flag
+ .bss.progm_flag
+                0x20001c4c        0x4 build/periph_driver/source/snr8503x_Flash.o
+                0x20001c4c                progm_flag
+ .bss.Stru_DAC_CHECK
+                0x20001c50        0x6 build/periph_driver/source/snr8503x_dac.o
+                0x20001c50                Stru_DAC_CHECK
+ *fill*         0x20001c56        0x2 
+ .bss.immediate_functions
+                0x20001c58      0x800 build/third_party/bipropellant-protocol/ascii_protocol.o
+ .bss.line_functions
+                0x20002458      0x800 build/third_party/bipropellant-protocol/ascii_protocol.o
+ .bss.ProtocolcountData
+                0x20002c58       0x24 build/third_party/bipropellant-protocol/protocol.o
+                0x20002c58                ProtocolcountData
+ .bss.contentbuf
+                0x20002c7c       0xfd build/third_party/bipropellant-protocol/protocol.o
+                0x20002c7c                contentbuf
+ .bss.paramstat_descriptions
+                0x20002d79       0xfd build/third_party/bipropellant-protocol/protocol.o
+                0x20002d79                paramstat_descriptions
+ *fill*         0x20002e76        0x2 
+ .bss.__malloc_free_list
+                0x20002e78        0x4 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-mallocr.o)
+                0x20002e78                __malloc_free_list
+ .bss.__malloc_sbrk_start
+                0x20002e7c        0x4 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-mallocr.o)
+                0x20002e7c                __malloc_sbrk_start
+ .bss.heap_end.4102
+                0x20002e80        0x4 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libnosys.a(sbrk.o)
+ *(COMMON)
+ COMMON         0x20002e84        0x4 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-reent.o)
+                0x20002e84                errno
+                0x20002e88                . = ALIGN (0x4)
+                0x20002e88                _ebss = .
+                0x20002e88                __bss_end__ = _ebss
+
+._user_heap_stack
+                0x20002e88      0x280 load address 0x000078f0
+                0x20002e88                . = ALIGN (0x8)
+                0x20002e88                PROVIDE (end, .)
+                [!provide]                PROVIDE (_end, .)
+                0x20003088                . = (. + _Min_Heap_Size)
+ *fill*         0x20002e88      0x200 
+                0x20003108                . = (. + _Min_Stack_Size)
+ *fill*         0x20003088       0x80 
+                0x20003108                . = ALIGN (0x8)
+
+/DISCARD/
+ libc.a(*)
+ libm.a(*)
+ libgcc.a(*)
+
+.ARM.attributes
+                0x00000000       0x31
+ *(.ARM.attributes)
+ .ARM.attributes
+                0x00000000       0x31 build/src/COMP_Sensoeless.o
+ .ARM.attributes
+                0x00000031       0x31 build/src/Global_Variable.o
+ .ARM.attributes
+                0x00000062       0x31 build/src/M1_StateMachine.o
+ .ARM.attributes
+                0x00000093       0x31 build/src/MC_Drive.o
+ .ARM.attributes
+                0x000000c4       0x31 build/src/MosTest.o
+ .ARM.attributes
+                0x000000f5       0x31 build/src/PID.o
+ .ARM.attributes
+                0x00000126       0x31 build/src/Protect.o
+ .ARM.attributes
+                0x00000157       0x31 build/src/Sensor_Control.o
+ .ARM.attributes
+                0x00000188       0x31 build/src/SpeedRamp.o
+ .ARM.attributes
+                0x000001b9       0x31 build/src/System_Init.o
+ .ARM.attributes
+                0x000001ea       0x31 build/src/UR_Ctrl.o
+ .ARM.attributes
+                0x0000021b       0x31 build/src/control_mode.o
+ .ARM.attributes
+                0x0000024c       0x31 build/src/flash_config.o
+ .ARM.attributes
+                0x0000027d       0x31 build/src/hall_accumulator.o
+ .ARM.attributes
+                0x000002ae       0x31 build/src/hardware_init.o
+ .ARM.attributes
+                0x000002df       0x31 build/src/interrupt.o
+ .ARM.attributes
+                0x00000310       0x31 build/src/main.o
+ .ARM.attributes
+                0x00000341       0x31 build/src/motor_mode.o
+ .ARM.attributes
+                0x00000372       0x31 build/src/position_control.o
+ .ARM.attributes
+                0x000003a3       0x31 build/src/protocol_handlers.o
+ .ARM.attributes
+                0x000003d4       0x31 build/src/protocol_params_flash.o
+ .ARM.attributes
+                0x00000405       0x31 build/src/protocol_params_motion.o
+ .ARM.attributes
+                0x00000436       0x31 build/src/protocol_params_motion_pos.o
+ .ARM.attributes
+                0x00000467       0x31 build/src/protocol_params_position.o
+ .ARM.attributes
+                0x00000498       0x31 build/src/protocol_params_snr.o
+ .ARM.attributes
+                0x000004c9       0x31 build/src/protocol_params_standard.o
+ .ARM.attributes
+                0x000004fa       0x31 build/src/sensorless_adapter.o
+ .ARM.attributes
+                0x0000052b       0x31 build/src/startup_canary.o
+ .ARM.attributes
+                0x0000055c       0x31 build/src/timebase.o
+ .ARM.attributes
+                0x0000058d       0x31 build/periph_driver/source/delay.o
+ .ARM.attributes
+                0x000005be       0x31 build/periph_driver/source/snr8503x_Flash.o
+ .ARM.attributes
+                0x000005ef       0x31 build/periph_driver/source/snr8503x_IWDG.o
+ .ARM.attributes
+                0x00000620       0x31 build/periph_driver/source/snr8503x_MCPWM.o
+ .ARM.attributes
+                0x00000651       0x31 build/periph_driver/source/snr8503x_adc.o
+ .ARM.attributes
+                0x00000682       0x31 build/periph_driver/source/snr8503x_cmp.o
+ .ARM.attributes
+                0x000006b3       0x31 build/periph_driver/source/snr8503x_dac.o
+ .ARM.attributes
+                0x000006e4       0x31 build/periph_driver/source/snr8503x_dsp.o
+ .ARM.attributes
+                0x00000715       0x31 build/periph_driver/source/snr8503x_gpio.o
+ .ARM.attributes
+                0x00000746       0x31 build/periph_driver/source/snr8503x_hall.o
+ .ARM.attributes
+                0x00000777       0x31 build/periph_driver/source/snr8503x_sys.o
+ .ARM.attributes
+                0x000007a8       0x31 build/periph_driver/source/snr8503x_timer.o
+ .ARM.attributes
+                0x000007d9       0x31 build/periph_driver/source/snr8503x_uart.o
+ .ARM.attributes
+                0x0000080a       0x31 build/third_party/bipropellant-protocol/ascii_protocol.o
+ .ARM.attributes
+                0x0000083b       0x31 build/third_party/bipropellant-protocol/cobsr.o
+ .ARM.attributes
+                0x0000086c       0x31 build/third_party/bipropellant-protocol/machine_protocol.o
+ .ARM.attributes
+                0x0000089d       0x31 build/third_party/bipropellant-protocol/protocol.o
+ .ARM.attributes
+                0x000008ce       0x21 build/startup/startup_snr8503x_gnu.o
+ .ARM.attributes
+                0x000008ef       0x44 vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+ .ARM.attributes
+                0x00000933       0x44 vendor_libs/snr8503x_nvr.lib(lks32mc03x_nvr.o)
+ .ARM.attributes
+                0x00000977       0x44 vendor_libs/snr_bldc_snls_renamed.lib(zero_detect.o)
+ .ARM.attributes
+                0x000009bb       0x1e c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_thumb1_case_uqi.o)
+ .ARM.attributes
+                0x000009d9       0x1e c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_udivsi3.o)
+ .ARM.attributes
+                0x000009f7       0x1e c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_divsi3.o)
+ .ARM.attributes
+                0x00000a15       0x1e c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_dvmd_tls.o)
+ .ARM.attributes
+                0x00000a33       0x2c c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_fixunssfsi.o)
+ .ARM.attributes
+                0x00000a5f       0x2c c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(divsf3.o)
+ .ARM.attributes
+                0x00000a8b       0x2c c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(mulsf3.o)
+ .ARM.attributes
+                0x00000ab7       0x2c c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(subsf3.o)
+ .ARM.attributes
+                0x00000ae3       0x2c c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(fixsfsi.o)
+ .ARM.attributes
+                0x00000b0f       0x2c c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(floatsisf.o)
+ .ARM.attributes
+                0x00000b3b       0x2c c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(floatunsisf.o)
+ .ARM.attributes
+                0x00000b67       0x1e c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_arm_cmpsf2.o)
+ .ARM.attributes
+                0x00000b85       0x1e c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_clzsi2.o)
+ .ARM.attributes
+                0x00000ba3       0x2c c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(eqsf2.o)
+ .ARM.attributes
+                0x00000bcf       0x2c c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(gesf2.o)
+ .ARM.attributes
+                0x00000bfb       0x2c c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(lesf2.o)
+ .ARM.attributes
+                0x00000c27       0x2c c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-malloc.o)
+ .ARM.attributes
+                0x00000c53       0x2c c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-memcpy-stub.o)
+ .ARM.attributes
+                0x00000c7f       0x2c c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-memset.o)
+ .ARM.attributes
+                0x00000cab       0x2c c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-freer.o)
+ .ARM.attributes
+                0x00000cd7       0x2c c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-mallocr.o)
+ .ARM.attributes
+                0x00000d03       0x2c c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-sbrkr.o)
+ .ARM.attributes
+                0x00000d2f       0x2c c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-sprintf.o)
+ .ARM.attributes
+                0x00000d5b       0x2c c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-strcpy.o)
+ .ARM.attributes
+                0x00000d87       0x1c c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-strlen.o)
+ .ARM.attributes
+                0x00000da3       0x2c c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-strncpy.o)
+ .ARM.attributes
+                0x00000dcf       0x2c c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-impure.o)
+ .ARM.attributes
+                0x00000dfb       0x2c c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-mlock.o)
+ .ARM.attributes
+                0x00000e27       0x2c c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-svfprintf.o)
+ .ARM.attributes
+                0x00000e53       0x2c c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-vfprintf_i.o)
+ .ARM.attributes
+                0x00000e7f       0x2c c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-reent.o)
+ .ARM.attributes
+                0x00000eab       0x2c c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-memchr-stub.o)
+ .ARM.attributes
+                0x00000ed7       0x2c c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-memmove.o)
+ .ARM.attributes
+                0x00000f03       0x2c c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-reallocr.o)
+ .ARM.attributes
+                0x00000f2f       0x2c c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-msizer.o)
+ .ARM.attributes
+                0x00000f5b       0x2c c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libnosys.a(sbrk.o)
+OUTPUT(build/snr8503m.elf elf32-littlearm)
+
+.comment        0x00000000      0x622
+ .comment       0x00000000       0x7e build/src/COMP_Sensoeless.o
+                                 0x7f (size before relaxing)
+ .comment       0x0000007e       0x7f build/src/Global_Variable.o
+ .comment       0x0000007e       0x7f build/src/M1_StateMachine.o
+ .comment       0x0000007e       0x7f build/src/MC_Drive.o
+ .comment       0x0000007e       0x7f build/src/MosTest.o
+ .comment       0x0000007e       0x7f build/src/PID.o
+ .comment       0x0000007e       0x7f build/src/Protect.o
+ .comment       0x0000007e       0x7f build/src/Sensor_Control.o
+ .comment       0x0000007e       0x7f build/src/SpeedRamp.o
+ .comment       0x0000007e       0x7f build/src/System_Init.o
+ .comment       0x0000007e       0x7f build/src/UR_Ctrl.o
+ .comment       0x0000007e       0x7f build/src/control_mode.o
+ .comment       0x0000007e       0x7f build/src/flash_config.o
+ .comment       0x0000007e       0x7f build/src/hall_accumulator.o
+ .comment       0x0000007e       0x7f build/src/hardware_init.o
+ .comment       0x0000007e       0x7f build/src/interrupt.o
+ .comment       0x0000007e       0x7f build/src/main.o
+ .comment       0x0000007e       0x7f build/src/motor_mode.o
+ .comment       0x0000007e       0x7f build/src/position_control.o
+ .comment       0x0000007e       0x7f build/src/protocol_handlers.o
+ .comment       0x0000007e       0x7f build/src/protocol_params_flash.o
+ .comment       0x0000007e       0x7f build/src/protocol_params_motion.o
+ .comment       0x0000007e       0x7f build/src/protocol_params_motion_pos.o
+ .comment       0x0000007e       0x7f build/src/protocol_params_position.o
+ .comment       0x0000007e       0x7f build/src/protocol_params_snr.o
+ .comment       0x0000007e       0x7f build/src/protocol_params_standard.o
+ .comment       0x0000007e       0x7f build/src/sensorless_adapter.o
+ .comment       0x0000007e       0x7f build/src/startup_canary.o
+ .comment       0x0000007e       0x7f build/src/timebase.o
+ .comment       0x0000007e       0x7f build/periph_driver/source/delay.o
+ .comment       0x0000007e       0x7f build/periph_driver/source/snr8503x_Flash.o
+ .comment       0x0000007e       0x7f build/periph_driver/source/snr8503x_IWDG.o
+ .comment       0x0000007e       0x7f build/periph_driver/source/snr8503x_MCPWM.o
+ .comment       0x0000007e       0x7f build/periph_driver/source/snr8503x_adc.o
+ .comment       0x0000007e       0x7f build/periph_driver/source/snr8503x_cmp.o
+ .comment       0x0000007e       0x7f build/periph_driver/source/snr8503x_dac.o
+ .comment       0x0000007e       0x7f build/periph_driver/source/snr8503x_dsp.o
+ .comment       0x0000007e       0x7f build/periph_driver/source/snr8503x_gpio.o
+ .comment       0x0000007e       0x7f build/periph_driver/source/snr8503x_hall.o
+ .comment       0x0000007e       0x7f build/periph_driver/source/snr8503x_sys.o
+ .comment       0x0000007e       0x7f build/periph_driver/source/snr8503x_timer.o
+ .comment       0x0000007e       0x7f build/periph_driver/source/snr8503x_uart.o
+ .comment       0x0000007e       0x7f build/third_party/bipropellant-protocol/ascii_protocol.o
+ .comment       0x0000007e       0x7f build/third_party/bipropellant-protocol/cobsr.o
+ .comment       0x0000007e       0x7f build/third_party/bipropellant-protocol/machine_protocol.o
+ .comment       0x0000007e       0x7f build/third_party/bipropellant-protocol/protocol.o
+ .comment       0x0000007e      0x222 vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+ .comment       0x000002a0      0x17b vendor_libs/snr8503x_nvr.lib(lks32mc03x_nvr.o)
+ .comment       0x0000041b      0x207 vendor_libs/snr_bldc_snls_renamed.lib(zero_detect.o)
+
+.arm_vfe_header
+                0x00000000        0xc
+ .arm_vfe_header
+                0x00000000        0x4 vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+ .arm_vfe_header
+                0x00000004        0x4 vendor_libs/snr8503x_nvr.lib(lks32mc03x_nvr.o)
+ .arm_vfe_header
+                0x00000008        0x4 vendor_libs/snr_bldc_snls_renamed.lib(zero_detect.o)
+
+.debug_frame    0x00000000      0x7b4
+ .debug_frame   0x00000000       0x44 vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+ .debug_frame   0x00000044       0x4c vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+ .debug_frame   0x00000090       0x44 vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+ .debug_frame   0x000000d4       0x3c vendor_libs/snr8503x_nvr.lib(lks32mc03x_nvr.o)
+ .debug_frame   0x00000110       0x3c vendor_libs/snr8503x_nvr.lib(lks32mc03x_nvr.o)
+ .debug_frame   0x0000014c       0x44 vendor_libs/snr_bldc_snls_renamed.lib(zero_detect.o)
+ .debug_frame   0x00000190       0x3c vendor_libs/snr_bldc_snls_renamed.lib(zero_detect.o)
+ .debug_frame   0x000001cc       0x3c vendor_libs/snr_bldc_snls_renamed.lib(zero_detect.o)
+ .debug_frame   0x00000208       0x20 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_udivsi3.o)
+ .debug_frame   0x00000228       0x20 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_divsi3.o)
+ .debug_frame   0x00000248       0x28 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(_fixunssfsi.o)
+ .debug_frame   0x00000270       0x3c c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(divsf3.o)
+ .debug_frame   0x000002ac       0x3c c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(mulsf3.o)
+ .debug_frame   0x000002e8       0x38 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(subsf3.o)
+ .debug_frame   0x00000320       0x20 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(fixsfsi.o)
+ .debug_frame   0x00000340       0x2c c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(floatsisf.o)
+ .debug_frame   0x0000036c       0x2c c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(floatunsisf.o)
+ .debug_frame   0x00000398       0x2c c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(eqsf2.o)
+ .debug_frame   0x000003c4       0x2c c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(gesf2.o)
+ .debug_frame   0x000003f0       0x2c c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v6-m\libgcc.a(lesf2.o)
+ .debug_frame   0x0000041c       0x40 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-malloc.o)
+ .debug_frame   0x0000045c       0x28 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-memcpy-stub.o)
+ .debug_frame   0x00000484       0x20 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-memset.o)
+ .debug_frame   0x000004a4       0x2c c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-freer.o)
+ .debug_frame   0x000004d0       0x2c c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-mallocr.o)
+ .debug_frame   0x000004fc       0x2c c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-sbrkr.o)
+ .debug_frame   0x00000528       0x48 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-sprintf.o)
+ .debug_frame   0x00000570       0x20 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-strcpy.o)
+ .debug_frame   0x00000590       0x2c c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-strncpy.o)
+ .debug_frame   0x000005bc       0x30 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-mlock.o)
+ .debug_frame   0x000005ec       0x74 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-svfprintf.o)
+ .debug_frame   0x00000660       0x54 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-vfprintf_i.o)
+ .debug_frame   0x000006b4       0x48 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-reent.o)
+ .debug_frame   0x000006fc       0x20 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-memchr-stub.o)
+ .debug_frame   0x0000071c       0x28 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-memmove.o)
+ .debug_frame   0x00000744       0x30 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-reallocr.o)
+ .debug_frame   0x00000774       0x20 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libc_nano.a(lib_a-nano-msizer.o)
+ .debug_frame   0x00000794       0x20 c:/users/dell/.platformio/packages/toolchain-gccarmnoneeabi/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v6-m\libnosys.a(sbrk.o)
+
+.debug_info     0x00000000     0x7ebc
+ .debug_info    0x00000000       0xcc vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+ .debug_info    0x000000cc      0x1ec vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+ .debug_info    0x000002b8       0xf0 vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+ .debug_info    0x000003a8      0x108 vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+ .debug_info    0x000004b0      0x130 vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+ .debug_info    0x000005e0       0x90 vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+                0x000005e0                __ARM_grp..debug_info$stdbool.h$.2_Au0000_jr0apdtFqw4_300000
+                0x000005e0                __ARM_grp.stdbool.h.2_Au0000_jr0apdtFqw4_300000
+ .debug_info    0x00000670      0x2c4 vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+                0x00000670                __ARM_grp.stdlib.h.2_8U0000_v0hkGxVIVlb_300000
+                0x00000670                __ARM_grp..debug_info$stdlib.h$.2_8U0000_v0hkGxVIVlb_300000
+ .debug_info    0x00000934       0xc8 vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+                0x00000934                __ARM_grp.ctype.h.2_s01000_2fGeTeHnnea_300000
+                0x00000934                __ARM_grp..debug_info$ctype.h$.2_s01000_2fGeTeHnnea_300000
+ .debug_info    0x000009fc      0x1bc vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+                0x000009fc                __ARM_grp..debug_info$stdio.h$.2_cq4000_JtufzqHNb49_910000
+                0x000009fc                __ARM_grp.stdio.h.2_cq4000_JtufzqHNb49_910000
+ .debug_info    0x00000bb8      0x30c vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+                0x00000bb8                __ARM_grp.stdint.h.2_8G1000_Y8yz6lqXnp2_300000
+                0x00000bb8                __ARM_grp..debug_info$stdint.h$.2_8G1000_Y8yz6lqXnp2_300000
+ .debug_info    0x00000ec4      0x880 vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+                0x00000ec4                __ARM_grp.core_cm0.h.2_Yg2000_mSdQBCMULY8_A00000
+                0x00000ec4                __ARM_grp..debug_info$core_cm0.h$.2_Yg2000_mSdQBCMULY8_A00000
+ .debug_info    0x00001744      0x330 vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+                0x00001744                __ARM_grp.basic.h.2_cW1000_rRstUA1ly$c_l00000
+                0x00001744                __ARM_grp..debug_info$basic.h$.2_cW1000_rRstUA1ly$c_l00000
+ .debug_info    0x00001a74      0x118 vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+                0x00001a74                __ARM_grp..debug_info$SNR_BLDC_HALL_V1p0.h$.2_zr2000_E1AYH6rQi12_f00000
+                0x00001a74                __ARM_grp.SNR_BLDC_HALL_V1p0.h.2_zr2000_E1AYH6rQi12_f00000
+ .debug_info    0x00001b8c       0xd8 vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+                0x00001b8c                __ARM_grp.snr8503x.h.2_Ye5000_a90etxnyrRe_300000
+                0x00001b8c                __ARM_grp..debug_info$snr8503x.h$.2_Ye5000_a90etxnyrRe_300000
+ .debug_info    0x00001c64      0xea0 vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+                0x00001c64                __ARM_grp..debug_info$snr8503x_MCPWM.h$.2_sq3000_vi0hCmQxtCe_020000
+                0x00001c64                __ARM_grp.snr8503x_MCPWM.h.2_sq3000_vi0hCmQxtCe_020000
+ .debug_info    0x00002b04      0x39c vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+                0x00002b04                __ARM_grp.snr8503x_gpio.h.2_w32000_jgHBU0VeWq5_900000
+                0x00002b04                __ARM_grp..debug_info$snr8503x_gpio.h$.2_w32000_jgHBU0VeWq5_900000
+ .debug_info    0x00002ea0      0x16c vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+                0x00002ea0                __ARM_grp.snr8503x_sys.h.2_gS1000_f6A8TwZNlAc_c00000
+                0x00002ea0                __ARM_grp..debug_info$snr8503x_sys.h$.2_gS1000_f6A8TwZNlAc_c00000
+ .debug_info    0x0000300c      0x3ac vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+                0x0000300c                __ARM_grp..debug_info$snr8503x_adc.h$.2_Ux2000_NRNnX90Dqxd_p00000
+                0x0000300c                __ARM_grp.snr8503x_adc.h.2_Ux2000_NRNnX90Dqxd_p00000
+ .debug_info    0x000033b8      0x188 vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+                0x000033b8                __ARM_grp.snr8503x_dac.h.2_si1000_8_zJjyJF1A6_c00000
+                0x000033b8                __ARM_grp..debug_info$snr8503x_dac.h$.2_si1000_8_zJjyJF1A6_c00000
+ .debug_info    0x00003540      0x104 vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+                0x00003540                __ARM_grp..debug_info$snr8503x_Flash.h$.2_ss3000_MXYqcxqDrq5_P00000
+                0x00003540                __ARM_grp.snr8503x_Flash.h.2_ss3000_MXYqcxqDrq5_P00000
+ .debug_info    0x00003644      0x248 vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+                0x00003644                __ARM_grp..debug_info$snr8503x_dma.h$.2_A92000_qZcz3T9NPd0_B00000
+                0x00003644                __ARM_grp.snr8503x_dma.h.2_A92000_qZcz3T9NPd0_B00000
+ .debug_info    0x0000388c      0x3d0 vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+                0x0000388c                __ARM_grp..debug_info$snr8503x_cmp.h$.2_s92000_s$_Jq8zyv$4_S00000
+                0x0000388c                __ARM_grp.snr8503x_cmp.h.2_s92000_s$_Jq8zyv$4_S00000
+ .debug_info    0x00003c5c      0x2a4 vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+                0x00003c5c                __ARM_grp.snr8503x_uart.h.2_0B1000_DZ0HJN_5KV8_h00000
+                0x00003c5c                __ARM_grp..debug_info$snr8503x_uart.h$.2_0B1000_DZ0HJN_5KV8_h00000
+ .debug_info    0x00003f00      0x228 vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+                0x00003f00                __ARM_grp.snr8503x_hall.h.2_Yq1000_RU9r$1TOAu3_h00000
+                0x00003f00                __ARM_grp..debug_info$snr8503x_hall.h$.2_Yq1000_RU9r$1TOAu3_h00000
+ .debug_info    0x00004128      0x308 vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+                0x00004128                __ARM_grp.snr8503x_timer.h.2_sS1000_vTsbp4Um3P3_u00000
+                0x00004128                __ARM_grp..debug_info$snr8503x_timer.h$.2_sS1000_vTsbp4Um3P3_u00000
+ .debug_info    0x00004430      0x194 vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+                0x00004430                __ARM_grp.snr8503x_iwdg.h.2_oP1000_IkWa$SpPe2b_t00000
+                0x00004430                __ARM_grp..debug_info$snr8503x_iwdg.h$.2_oP1000_IkWa$SpPe2b_t00000
+ .debug_info    0x000045c4      0x144 vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+                0x000045c4                __ARM_grp..debug_info$snr8503x_dsp.h$.2_oN1000_YMigKfMuhd6_s00000
+                0x000045c4                __ARM_grp.snr8503x_dsp.h.2_oN1000_YMigKfMuhd6_s00000
+ .debug_info    0x00004708       0xd4 vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+                0x00004708                __ARM_grp.delay.h.2_Mt0000_IN1n2DNHDB8_300000
+                0x00004708                __ARM_grp..debug_info$delay.h$.2_Mt0000_IN1n2DNHDB8_300000
+ .debug_info    0x000047dc       0xc4 vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+                0x000047dc                __ARM_grp.hardware_init.h.2_0t0000_gWRelvjD2p4_300000
+                0x000047dc                __ARM_grp..debug_info$hardware_init.h$.2_0t0000_gWRelvjD2p4_300000
+ .debug_info    0x000048a0      0x178 vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+                0x000048a0                __ARM_grp.mc_type.h.2_I32000_tZM_lPRhaHe_t00000
+                0x000048a0                __ARM_grp..debug_info$mc_type.h$.2_I32000_tZM_lPRhaHe_t00000
+ .debug_info    0x00004a18      0x3b0 vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+                0x00004a18                __ARM_grp..debug_info$Global_Variable.h$.2_Kw4000_200JG7XZV9c_L10000
+                0x00004a18                __ARM_grp.Global_Variable.h.2_Kw4000_200JG7XZV9c_L10000
+ .debug_info    0x00004dc8       0xc8 vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+                0x00004dc8                __ARM_grp.hardware_config.h.2_Qg2000_vl9ZsIdhxg5_300000
+                0x00004dc8                __ARM_grp..debug_info$hardware_config.h$.2_Qg2000_vl9ZsIdhxg5_300000
+ .debug_info    0x00004e90       0xc4 vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+                0x00004e90                __ARM_grp..debug_info$MC_parameter.h$.2_UY1000_5R0l9O2IIka_300000
+                0x00004e90                __ARM_grp.MC_parameter.h.2_UY1000_5R0l9O2IIka_300000
+ .debug_info    0x00004f54      0x160 vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+                0x00004f54                __ARM_grp.SNR_BLDC_HALL_V1p0.c.2_wU1000_8ZY_G8ad6Mc_w00000
+                0x00004f54                __ARM_grp..debug_info$SNR_BLDC_HALL_V1p0.c$.2_wU1000_8ZY_G8ad6Mc_w00000
+ .debug_info    0x000050b4       0xa0 vendor_libs/snr8503x_nvr.lib(lks32mc03x_nvr.o)
+ .debug_info    0x00005154      0x100 vendor_libs/snr8503x_nvr.lib(lks32mc03x_nvr.o)
+ .debug_info    0x00005254       0xec vendor_libs/snr8503x_nvr.lib(lks32mc03x_nvr.o)
+ .debug_info    0x00005340      0x2c4 vendor_libs/snr8503x_nvr.lib(lks32mc03x_nvr.o)
+                0x00005340                __ARM_grp.stdlib.h.2_UU0000_FzbRBTl6Aba_300000
+                0x00005340                __ARM_grp..debug_info$stdlib.h$.2_UU0000_FzbRBTl6Aba_300000
+ .debug_info    0x00005604       0xc8 vendor_libs/snr8503x_nvr.lib(lks32mc03x_nvr.o)
+                0x00005604                __ARM_grp.ctype.h.2_MJ1000_kVIHx77ovae_700000
+                0x00005604                __ARM_grp..debug_info$ctype.h$.2_MJ1000_kVIHx77ovae_700000
+ .debug_info    0x000056cc      0x1c4 vendor_libs/snr8503x_nvr.lib(lks32mc03x_nvr.o)
+                0x000056cc                __ARM_grp.stdio.h.2_Is1000_D_3hPY9bBn9_700000
+                0x000056cc                __ARM_grp..debug_info$stdio.h$.2_Is1000_D_3hPY9bBn9_700000
+ .debug_info    0x00005890      0x30c vendor_libs/snr8503x_nvr.lib(lks32mc03x_nvr.o)
+                0x00005890                __ARM_grp.stdint.h.2_8G1000_GoSDV1yTL$8_300000
+                0x00005890                __ARM_grp..debug_info$stdint.h$.2_8G1000_GoSDV1yTL$8_300000
+ .debug_info    0x00005b9c       0x90 vendor_libs/snr8503x_nvr.lib(lks32mc03x_nvr.o)
+                0x00005b9c                __ARM_grp.stdbool.h.2_Au0000_uG1keZ0lyC7_300000
+                0x00005b9c                __ARM_grp..debug_info$stdbool.h$.2_Au0000_uG1keZ0lyC7_300000
+ .debug_info    0x00005c2c      0x850 vendor_libs/snr8503x_nvr.lib(lks32mc03x_nvr.o)
+                0x00005c2c                __ARM_grp..debug_info$core_cm0.h$.2_Yg2000_SklwC7u_NN6_A00000
+                0x00005c2c                __ARM_grp.core_cm0.h.2_Yg2000_SklwC7u_NN6_A00000
+ .debug_info    0x0000647c      0x300 vendor_libs/snr8503x_nvr.lib(lks32mc03x_nvr.o)
+                0x0000647c                __ARM_grp.basic.h.2_kW1000_xbO2FXjTxt0_l00000
+                0x0000647c                __ARM_grp..debug_info$basic.h$.2_kW1000_xbO2FXjTxt0_l00000
+ .debug_info    0x0000677c       0x90 vendor_libs/snr8503x_nvr.lib(lks32mc03x_nvr.o)
+                0x0000677c                __ARM_grp..debug_info$lks32mc03x.h$.2_s05000_ABs_Sb$bQAf_300000
+                0x0000677c                __ARM_grp.lks32mc03x.h.2_s05000_ABs_Sb$bQAf_300000
+ .debug_info    0x0000680c       0xa0 vendor_libs/snr8503x_nvr.lib(lks32mc03x_nvr.o)
+                0x0000680c                __ARM_grp..debug_info$lks32mc03x_NVR.c$.2_At0000_sjH4m886s04_300000
+                0x0000680c                __ARM_grp.lks32mc03x_NVR.c.2_At0000_sjH4m886s04_300000
+ .debug_info    0x000068ac       0xd8 vendor_libs/snr_bldc_snls_renamed.lib(zero_detect.o)
+ .debug_info    0x00006984       0xfc vendor_libs/snr_bldc_snls_renamed.lib(zero_detect.o)
+ .debug_info    0x00006a80       0xf8 vendor_libs/snr_bldc_snls_renamed.lib(zero_detect.o)
+ .debug_info    0x00006b78      0x118 vendor_libs/snr_bldc_snls_renamed.lib(zero_detect.o)
+ .debug_info    0x00006c90      0x114 vendor_libs/snr_bldc_snls_renamed.lib(zero_detect.o)
+ .debug_info    0x00006da4      0x1bc vendor_libs/snr_bldc_snls_renamed.lib(zero_detect.o)
+                0x00006da4                __ARM_grp..debug_info$stdio.h$.2_Yw3000_E5Gh9HvLy34_z00000
+                0x00006da4                __ARM_grp.stdio.h.2_Yw3000_E5Gh9HvLy34_z00000
+ .debug_info    0x00006f60      0x894 vendor_libs/snr_bldc_snls_renamed.lib(zero_detect.o)
+                0x00006f60                __ARM_grp.core_cm0.h.2_gh2000_PDLznyWTyJ4_A00000
+                0x00006f60                __ARM_grp..debug_info$core_cm0.h$.2_gh2000_PDLznyWTyJ4_A00000
+ .debug_info    0x000077f4      0x340 vendor_libs/snr_bldc_snls_renamed.lib(zero_detect.o)
+                0x000077f4                __ARM_grp..debug_info$basic.h$.2_sW1000__NbkJGYYUM1_l00000
+                0x000077f4                __ARM_grp.basic.h.2_sW1000__NbkJGYYUM1_l00000
+ .debug_info    0x00007b34      0x228 vendor_libs/snr_bldc_snls_renamed.lib(zero_detect.o)
+                0x00007b34                __ARM_grp.Lib_Zero_detect.h.2_Qz2000_VJFTrquHm_3_h00000
+                0x00007b34                __ARM_grp..debug_info$Lib_Zero_detect.h$.2_Qz2000_VJFTrquHm_3_h00000
+ .debug_info    0x00007d5c      0x160 vendor_libs/snr_bldc_snls_renamed.lib(zero_detect.o)
+                0x00007d5c                __ARM_grp.Zero_detect.c.2_or1000_sSXrTSNzn78_d00000
+                0x00007d5c                __ARM_grp..debug_info$Zero_detect.c$.2_or1000_sSXrTSNzn78_d00000
+
+.debug_line     0x00000000     0x19d8
+ .debug_line    0x00000000       0x48 vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+ .debug_line    0x00000048       0x78 vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+ .debug_line    0x000000c0      0x19c vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+ .debug_line    0x0000025c       0x80 vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+ .debug_line    0x000002dc       0x54 vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+                0x000002dc                __ARM_grp..debug_line$stdbool.h$.2_Au0000_jr0apdtFqw4_300000
+ .debug_line    0x00000330       0x54 vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+                0x00000330                __ARM_grp..debug_line$stdlib.h$.2_8U0000_v0hkGxVIVlb_300000
+ .debug_line    0x00000384       0x50 vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+                0x00000384                __ARM_grp..debug_line$ctype.h$.2_s01000_2fGeTeHnnea_300000
+ .debug_line    0x000003d4       0x5c vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+                0x000003d4                __ARM_grp..debug_line$stdio.h$.2_cq4000_JtufzqHNb49_910000
+ .debug_line    0x00000430       0x54 vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+                0x00000430                __ARM_grp..debug_line$stdint.h$.2_8G1000_Y8yz6lqXnp2_300000
+ .debug_line    0x00000484       0x6c vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+                0x00000484                __ARM_grp..debug_line$core_cm0.h$.2_Yg2000_mSdQBCMULY8_A00000
+ .debug_line    0x000004f0       0xa4 vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+                0x000004f0                __ARM_grp..debug_line$basic.h$.2_cW1000_rRstUA1ly$c_l00000
+ .debug_line    0x00000594       0x50 vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+                0x00000594                __ARM_grp..debug_line$SNR_BLDC_HALL_V1p0.h$.2_zr2000_E1AYH6rQi12_f00000
+ .debug_line    0x000005e4       0x68 vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+                0x000005e4                __ARM_grp..debug_line$snr8503x.h$.2_Ye5000_a90etxnyrRe_300000
+ .debug_line    0x0000064c       0x7c vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+                0x0000064c                __ARM_grp..debug_line$snr8503x_MCPWM.h$.2_sq3000_vi0hCmQxtCe_020000
+ .debug_line    0x000006c8       0x7c vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+                0x000006c8                __ARM_grp..debug_line$snr8503x_gpio.h$.2_w32000_jgHBU0VeWq5_900000
+ .debug_line    0x00000744       0x8c vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+                0x00000744                __ARM_grp..debug_line$snr8503x_sys.h$.2_gS1000_f6A8TwZNlAc_c00000
+ .debug_line    0x000007d0       0x78 vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+                0x000007d0                __ARM_grp..debug_line$snr8503x_adc.h$.2_Ux2000_NRNnX90Dqxd_p00000
+ .debug_line    0x00000848       0x78 vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+                0x00000848                __ARM_grp..debug_line$snr8503x_dac.h$.2_si1000_8_zJjyJF1A6_c00000
+ .debug_line    0x000008c0       0x64 vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+                0x000008c0                __ARM_grp..debug_line$snr8503x_Flash.h$.2_ss3000_MXYqcxqDrq5_P00000
+ .debug_line    0x00000924       0x78 vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+                0x00000924                __ARM_grp..debug_line$snr8503x_dma.h$.2_A92000_qZcz3T9NPd0_B00000
+ .debug_line    0x0000099c       0x78 vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+                0x0000099c                __ARM_grp..debug_line$snr8503x_cmp.h$.2_s92000_s$_Jq8zyv$4_S00000
+ .debug_line    0x00000a14       0x7c vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+                0x00000a14                __ARM_grp..debug_line$snr8503x_uart.h$.2_0B1000_DZ0HJN_5KV8_h00000
+ .debug_line    0x00000a90       0x7c vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+                0x00000a90                __ARM_grp..debug_line$snr8503x_hall.h$.2_Yq1000_RU9r$1TOAu3_h00000
+ .debug_line    0x00000b0c       0x6c vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+                0x00000b0c                __ARM_grp..debug_line$snr8503x_timer.h$.2_sS1000_vTsbp4Um3P3_u00000
+ .debug_line    0x00000b78       0x7c vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+                0x00000b78                __ARM_grp..debug_line$snr8503x_iwdg.h$.2_oP1000_IkWa$SpPe2b_t00000
+ .debug_line    0x00000bf4       0x8c vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+                0x00000bf4                __ARM_grp..debug_line$snr8503x_dsp.h$.2_oN1000_YMigKfMuhd6_s00000
+ .debug_line    0x00000c80       0x64 vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+                0x00000c80                __ARM_grp..debug_line$delay.h$.2_Mt0000_IN1n2DNHDB8_300000
+ .debug_line    0x00000ce4       0x4c vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+                0x00000ce4                __ARM_grp..debug_line$hardware_init.h$.2_0t0000_gWRelvjD2p4_300000
+ .debug_line    0x00000d30       0x50 vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+                0x00000d30                __ARM_grp..debug_line$mc_type.h$.2_I32000_tZM_lPRhaHe_t00000
+ .debug_line    0x00000d80       0x58 vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+                0x00000d80                __ARM_grp..debug_line$Global_Variable.h$.2_Kw4000_200JG7XZV9c_L10000
+ .debug_line    0x00000dd8      0x1c8 vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+                0x00000dd8                __ARM_grp..debug_line$hardware_config.h$.2_Qg2000_vl9ZsIdhxg5_300000
+ .debug_line    0x00000fa0       0x60 vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+                0x00000fa0                __ARM_grp..debug_line$MC_parameter.h$.2_UY1000_5R0l9O2IIka_300000
+ .debug_line    0x00001000       0xb0 vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+                0x00001000                __ARM_grp..debug_line$SNR_BLDC_HALL_V1p0.c$.2_wU1000_8ZY_G8ad6Mc_w00000
+ .debug_line    0x000010b0       0x34 vendor_libs/snr8503x_nvr.lib(lks32mc03x_nvr.o)
+ .debug_line    0x000010e4       0x84 vendor_libs/snr8503x_nvr.lib(lks32mc03x_nvr.o)
+ .debug_line    0x00001168       0x7c vendor_libs/snr8503x_nvr.lib(lks32mc03x_nvr.o)
+ .debug_line    0x000011e4       0x54 vendor_libs/snr8503x_nvr.lib(lks32mc03x_nvr.o)
+                0x000011e4                __ARM_grp..debug_line$stdlib.h$.2_UU0000_FzbRBTl6Aba_300000
+ .debug_line    0x00001238       0x50 vendor_libs/snr8503x_nvr.lib(lks32mc03x_nvr.o)
+                0x00001238                __ARM_grp..debug_line$ctype.h$.2_MJ1000_kVIHx77ovae_700000
+ .debug_line    0x00001288       0x5c vendor_libs/snr8503x_nvr.lib(lks32mc03x_nvr.o)
+                0x00001288                __ARM_grp..debug_line$stdio.h$.2_Is1000_D_3hPY9bBn9_700000
+ .debug_line    0x000012e4       0x54 vendor_libs/snr8503x_nvr.lib(lks32mc03x_nvr.o)
+                0x000012e4                __ARM_grp..debug_line$stdint.h$.2_8G1000_GoSDV1yTL$8_300000
+ .debug_line    0x00001338       0x54 vendor_libs/snr8503x_nvr.lib(lks32mc03x_nvr.o)
+                0x00001338                __ARM_grp..debug_line$stdbool.h$.2_Au0000_uG1keZ0lyC7_300000
+ .debug_line    0x0000138c       0x84 vendor_libs/snr8503x_nvr.lib(lks32mc03x_nvr.o)
+                0x0000138c                __ARM_grp..debug_line$core_cm0.h$.2_Yg2000_SklwC7u_NN6_A00000
+ .debug_line    0x00001410       0xc0 vendor_libs/snr8503x_nvr.lib(lks32mc03x_nvr.o)
+                0x00001410                __ARM_grp..debug_line$basic.h$.2_kW1000_xbO2FXjTxt0_l00000
+ .debug_line    0x000014d0       0x60 vendor_libs/snr8503x_nvr.lib(lks32mc03x_nvr.o)
+                0x000014d0                __ARM_grp..debug_line$lks32mc03x.h$.2_s05000_ABs_Sb$bQAf_300000
+ .debug_line    0x00001530       0x80 vendor_libs/snr8503x_nvr.lib(lks32mc03x_nvr.o)
+                0x00001530                __ARM_grp..debug_line$lks32mc03x_NVR.c$.2_At0000_sjH4m886s04_300000
+ .debug_line    0x000015b0       0x40 vendor_libs/snr_bldc_snls_renamed.lib(zero_detect.o)
+ .debug_line    0x000015f0       0x64 vendor_libs/snr_bldc_snls_renamed.lib(zero_detect.o)
+ .debug_line    0x00001654       0x9c vendor_libs/snr_bldc_snls_renamed.lib(zero_detect.o)
+ .debug_line    0x000016f0       0x9c vendor_libs/snr_bldc_snls_renamed.lib(zero_detect.o)
+ .debug_line    0x0000178c       0x5c vendor_libs/snr_bldc_snls_renamed.lib(zero_detect.o)
+                0x0000178c                __ARM_grp..debug_line$stdio.h$.2_Yw3000_E5Gh9HvLy34_z00000
+ .debug_line    0x000017e8       0x6c vendor_libs/snr_bldc_snls_renamed.lib(zero_detect.o)
+                0x000017e8                __ARM_grp..debug_line$core_cm0.h$.2_gh2000_PDLznyWTyJ4_A00000
+ .debug_line    0x00001854       0xa4 vendor_libs/snr_bldc_snls_renamed.lib(zero_detect.o)
+                0x00001854                __ARM_grp..debug_line$basic.h$.2_sW1000__NbkJGYYUM1_l00000
+ .debug_line    0x000018f8       0x4c vendor_libs/snr_bldc_snls_renamed.lib(zero_detect.o)
+                0x000018f8                __ARM_grp..debug_line$Lib_Zero_detect.h$.2_Qz2000_VJFTrquHm_3_h00000
+ .debug_line    0x00001944       0x94 vendor_libs/snr_bldc_snls_renamed.lib(zero_detect.o)
+                0x00001944                __ARM_grp..debug_line$Zero_detect.c$.2_or1000_sSXrTSNzn78_d00000
+
+.debug_loc      0x00000000      0x198
+ .debug_loc     0x00000000       0x20 vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+ .debug_loc     0x00000020       0x20 vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+ .debug_loc     0x00000040       0x54 vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+ .debug_loc     0x00000094       0x58 vendor_libs/snr8503x_nvr.lib(lks32mc03x_nvr.o)
+ .debug_loc     0x000000ec       0x3c vendor_libs/snr8503x_nvr.lib(lks32mc03x_nvr.o)
+ .debug_loc     0x00000128       0x20 vendor_libs/snr_bldc_snls_renamed.lib(zero_detect.o)
+ .debug_loc     0x00000148       0x28 vendor_libs/snr_bldc_snls_renamed.lib(zero_detect.o)
+ .debug_loc     0x00000170       0x28 vendor_libs/snr_bldc_snls_renamed.lib(zero_detect.o)
+
+.debug_macinfo  0x00000000     0xdde8
+ .debug_macinfo
+                0x00000000      0x538 vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+ .debug_macinfo
+                0x00000538       0x64 vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+                0x00000538                __ARM_grp..debug_macinfo$stdbool.h$.2_Au0000_jr0apdtFqw4_300000
+ .debug_macinfo
+                0x0000059c      0x27c vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+                0x0000059c                __ARM_grp..debug_macinfo$stdlib.h$.2_8U0000_v0hkGxVIVlb_300000
+ .debug_macinfo
+                0x00000818      0x488 vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+                0x00000818                __ARM_grp..debug_macinfo$ctype.h$.2_s01000_2fGeTeHnnea_300000
+ .debug_macinfo
+                0x00000ca0      0x248 vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+                0x00000ca0                __ARM_grp..debug_macinfo$stdio.h$.2_cq4000_JtufzqHNb49_910000
+ .debug_macinfo
+                0x00000ee8      0x898 vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+                0x00000ee8                __ARM_grp..debug_macinfo$stdint.h$.2_8G1000_Y8yz6lqXnp2_300000
+ .debug_macinfo
+                0x00001780      0x4a4 vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+                0x00001780                __ARM_grp..debug_macinfo$core_cm0.h$.2_Yg2000_mSdQBCMULY8_A00000
+ .debug_macinfo
+                0x00001c24      0x43c vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+                0x00001c24                __ARM_grp..debug_macinfo$basic.h$.2_cW1000_rRstUA1ly$c_l00000
+ .debug_macinfo
+                0x00002060       0x24 vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+                0x00002060                __ARM_grp..debug_macinfo$SNR_BLDC_HALL_V1p0.h$.2_zr2000_E1AYH6rQi12_f00000
+ .debug_macinfo
+                0x00002084     0x2638 vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+                0x00002084                __ARM_grp..debug_macinfo$snr8503x.h$.2_Ye5000_a90etxnyrRe_300000
+ .debug_macinfo
+                0x000046bc      0x6ac vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+                0x000046bc                __ARM_grp..debug_macinfo$snr8503x_MCPWM.h$.2_sq3000_vi0hCmQxtCe_020000
+ .debug_macinfo
+                0x00004d68      0x558 vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+                0x00004d68                __ARM_grp..debug_macinfo$snr8503x_gpio.h$.2_w32000_jgHBU0VeWq5_900000
+ .debug_macinfo
+                0x000052c0      0x4b8 vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+                0x000052c0                __ARM_grp..debug_macinfo$snr8503x_sys.h$.2_gS1000_f6A8TwZNlAc_c00000
+ .debug_macinfo
+                0x00005778      0x920 vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+                0x00005778                __ARM_grp..debug_macinfo$snr8503x_adc.h$.2_Ux2000_NRNnX90Dqxd_p00000
+ .debug_macinfo
+                0x00006098       0x44 vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+                0x00006098                __ARM_grp..debug_macinfo$snr8503x_dac.h$.2_si1000_8_zJjyJF1A6_c00000
+ .debug_macinfo
+                0x000060dc       0x20 vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+                0x000060dc                __ARM_grp..debug_macinfo$snr8503x_Flash.h$.2_ss3000_MXYqcxqDrq5_P00000
+ .debug_macinfo
+                0x000060fc      0x2c0 vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+                0x000060fc                __ARM_grp..debug_macinfo$snr8503x_dma.h$.2_A92000_qZcz3T9NPd0_B00000
+ .debug_macinfo
+                0x000063bc      0x1f8 vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+                0x000063bc                __ARM_grp..debug_macinfo$snr8503x_cmp.h$.2_s92000_s$_Jq8zyv$4_S00000
+ .debug_macinfo
+                0x000065b4      0x204 vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+                0x000065b4                __ARM_grp..debug_macinfo$snr8503x_uart.h$.2_0B1000_DZ0HJN_5KV8_h00000
+ .debug_macinfo
+                0x000067b8      0x100 vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+                0x000067b8                __ARM_grp..debug_macinfo$snr8503x_hall.h$.2_Yq1000_RU9r$1TOAu3_h00000
+ .debug_macinfo
+                0x000068b8      0x410 vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+                0x000068b8                __ARM_grp..debug_macinfo$snr8503x_timer.h$.2_sS1000_vTsbp4Um3P3_u00000
+ .debug_macinfo
+                0x00006cc8       0x50 vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+                0x00006cc8                __ARM_grp..debug_macinfo$snr8503x_iwdg.h$.2_oP1000_IkWa$SpPe2b_t00000
+ .debug_macinfo
+                0x00006d18       0x28 vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+                0x00006d18                __ARM_grp..debug_macinfo$snr8503x_dsp.h$.2_oN1000_YMigKfMuhd6_s00000
+ .debug_macinfo
+                0x00006d40       0x18 vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+                0x00006d40                __ARM_grp..debug_macinfo$delay.h$.2_Mt0000_IN1n2DNHDB8_300000
+ .debug_macinfo
+                0x00006d58       0x20 vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+                0x00006d58                __ARM_grp..debug_macinfo$hardware_init.h$.2_0t0000_gWRelvjD2p4_300000
+ .debug_macinfo
+                0x00006d78      0x294 vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+                0x00006d78                __ARM_grp..debug_macinfo$mc_type.h$.2_I32000_tZM_lPRhaHe_t00000
+ .debug_macinfo
+                0x0000700c      0x128 vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+                0x0000700c                __ARM_grp..debug_macinfo$Global_Variable.h$.2_Kw4000_200JG7XZV9c_L10000
+ .debug_macinfo
+                0x00007134      0xd1c vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+                0x00007134                __ARM_grp..debug_macinfo$hardware_config.h$.2_Qg2000_vl9ZsIdhxg5_300000
+ .debug_macinfo
+                0x00007e50      0xc08 vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+                0x00007e50                __ARM_grp..debug_macinfo$MC_parameter.h$.2_UY1000_5R0l9O2IIka_300000
+ .debug_macinfo
+                0x00008a58       0x14 vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+                0x00008a58                __ARM_grp..debug_macinfo$SNR_BLDC_HALL_V1p0.c$.2_wU1000_8ZY_G8ad6Mc_w00000
+ .debug_macinfo
+                0x00008a6c      0x310 vendor_libs/snr8503x_nvr.lib(lks32mc03x_nvr.o)
+ .debug_macinfo
+                0x00008d7c      0x294 vendor_libs/snr8503x_nvr.lib(lks32mc03x_nvr.o)
+                0x00008d7c                __ARM_grp..debug_macinfo$stdlib.h$.2_UU0000_FzbRBTl6Aba_300000
+ .debug_macinfo
+                0x00009010      0x480 vendor_libs/snr8503x_nvr.lib(lks32mc03x_nvr.o)
+                0x00009010                __ARM_grp..debug_macinfo$ctype.h$.2_MJ1000_kVIHx77ovae_700000
+ .debug_macinfo
+                0x00009490      0x248 vendor_libs/snr8503x_nvr.lib(lks32mc03x_nvr.o)
+                0x00009490                __ARM_grp..debug_macinfo$stdio.h$.2_Is1000_D_3hPY9bBn9_700000
+ .debug_macinfo
+                0x000096d8      0x898 vendor_libs/snr8503x_nvr.lib(lks32mc03x_nvr.o)
+                0x000096d8                __ARM_grp..debug_macinfo$stdint.h$.2_8G1000_GoSDV1yTL$8_300000
+ .debug_macinfo
+                0x00009f70       0x64 vendor_libs/snr8503x_nvr.lib(lks32mc03x_nvr.o)
+                0x00009f70                __ARM_grp..debug_macinfo$stdbool.h$.2_Au0000_uG1keZ0lyC7_300000
+ .debug_macinfo
+                0x00009fd4      0x4a4 vendor_libs/snr8503x_nvr.lib(lks32mc03x_nvr.o)
+                0x00009fd4                __ARM_grp..debug_macinfo$core_cm0.h$.2_Yg2000_SklwC7u_NN6_A00000
+ .debug_macinfo
+                0x0000a478      0x43c vendor_libs/snr8503x_nvr.lib(lks32mc03x_nvr.o)
+                0x0000a478                __ARM_grp..debug_macinfo$basic.h$.2_kW1000_xbO2FXjTxt0_l00000
+ .debug_macinfo
+                0x0000a8b4     0x2494 vendor_libs/snr8503x_nvr.lib(lks32mc03x_nvr.o)
+                0x0000a8b4                __ARM_grp..debug_macinfo$lks32mc03x.h$.2_s05000_ABs_Sb$bQAf_300000
+ .debug_macinfo
+                0x0000cd48       0x10 vendor_libs/snr8503x_nvr.lib(lks32mc03x_nvr.o)
+                0x0000cd48                __ARM_grp..debug_macinfo$lks32mc03x_NVR.c$.2_At0000_sjH4m886s04_300000
+ .debug_macinfo
+                0x0000cd58      0x538 vendor_libs/snr_bldc_snls_renamed.lib(zero_detect.o)
+ .debug_macinfo
+                0x0000d290      0x248 vendor_libs/snr_bldc_snls_renamed.lib(zero_detect.o)
+                0x0000d290                __ARM_grp..debug_macinfo$stdio.h$.2_Yw3000_E5Gh9HvLy34_z00000
+ .debug_macinfo
+                0x0000d4d8      0x4a4 vendor_libs/snr_bldc_snls_renamed.lib(zero_detect.o)
+                0x0000d4d8                __ARM_grp..debug_macinfo$core_cm0.h$.2_gh2000_PDLznyWTyJ4_A00000
+ .debug_macinfo
+                0x0000d97c      0x43c vendor_libs/snr_bldc_snls_renamed.lib(zero_detect.o)
+                0x0000d97c                __ARM_grp..debug_macinfo$basic.h$.2_sW1000__NbkJGYYUM1_l00000
+ .debug_macinfo
+                0x0000ddb8       0x20 vendor_libs/snr_bldc_snls_renamed.lib(zero_detect.o)
+                0x0000ddb8                __ARM_grp..debug_macinfo$Lib_Zero_detect.h$.2_Qz2000_VJFTrquHm_3_h00000
+ .debug_macinfo
+                0x0000ddd8       0x10 vendor_libs/snr_bldc_snls_renamed.lib(zero_detect.o)
+                0x0000ddd8                __ARM_grp..debug_macinfo$Zero_detect.c$.2_or1000_sSXrTSNzn78_d00000
+
+.debug_pubnames
+                0x00000000      0x43e
+ .debug_pubnames
+                0x00000000       0xcc vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+ .debug_pubnames
+                0x000000cc       0x20 vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+ .debug_pubnames
+                0x000000ec       0x21 vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+ .debug_pubnames
+                0x0000010d       0x22 vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+ .debug_pubnames
+                0x0000012f       0x70 vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+                0x0000012f                __ARM_grp..debug_pubnames$stdio.h$.2_cq4000_JtufzqHNb49_910000
+ .debug_pubnames
+                0x0000019f       0x1f vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+                0x0000019f                __ARM_grp..debug_pubnames$SNR_BLDC_HALL_V1p0.h$.2_zr2000_E1AYH6rQi12_f00000
+ .debug_pubnames
+                0x000001be       0x30 vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+                0x000001be                __ARM_grp..debug_pubnames$snr8503x_Flash.h$.2_ss3000_MXYqcxqDrq5_P00000
+ .debug_pubnames
+                0x000001ee       0x3e vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+                0x000001ee                __ARM_grp..debug_pubnames$Global_Variable.h$.2_Kw4000_200JG7XZV9c_L10000
+ .debug_pubnames
+                0x0000022c       0x20 vendor_libs/snr8503x_nvr.lib(lks32mc03x_nvr.o)
+ .debug_pubnames
+                0x0000024c       0x20 vendor_libs/snr8503x_nvr.lib(lks32mc03x_nvr.o)
+ .debug_pubnames
+                0x0000026c       0x28 vendor_libs/snr8503x_nvr.lib(lks32mc03x_nvr.o)
+                0x0000026c                __ARM_grp..debug_pubnames$ctype.h$.2_MJ1000_kVIHx77ovae_700000
+ .debug_pubnames
+                0x00000294       0x70 vendor_libs/snr8503x_nvr.lib(lks32mc03x_nvr.o)
+                0x00000294                __ARM_grp..debug_pubnames$stdio.h$.2_Is1000_D_3hPY9bBn9_700000
+ .debug_pubnames
+                0x00000304       0x2b vendor_libs/snr_bldc_snls_renamed.lib(zero_detect.o)
+ .debug_pubnames
+                0x0000032f       0x20 vendor_libs/snr_bldc_snls_renamed.lib(zero_detect.o)
+ .debug_pubnames
+                0x0000034f       0x2d vendor_libs/snr_bldc_snls_renamed.lib(zero_detect.o)
+ .debug_pubnames
+                0x0000037c       0x2a vendor_libs/snr_bldc_snls_renamed.lib(zero_detect.o)
+ .debug_pubnames
+                0x000003a6       0x70 vendor_libs/snr_bldc_snls_renamed.lib(zero_detect.o)
+                0x000003a6                __ARM_grp..debug_pubnames$stdio.h$.2_Yw3000_E5Gh9HvLy34_z00000
+ .debug_pubnames
+                0x00000416       0x28 vendor_libs/snr_bldc_snls_renamed.lib(zero_detect.o)
+                0x00000416                __ARM_grp..debug_pubnames$Lib_Zero_detect.h$.2_Qz2000_VJFTrquHm_3_h00000
+
+.debug_abbrev   0x00000000      0x5a4
+ .debug_abbrev  0x00000000      0x5a4 vendor_libs/SNR_BLDC_HALL_V1p0.lib(snr_bldc_hall_v1p0.o)
+                0x00000000                __ARM_grp..debug_abbrev.group.2_Am0000_lbphKItke$2_000000

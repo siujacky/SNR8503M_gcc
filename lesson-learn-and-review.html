@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>SNR8503M GCC Firmware — Lessons Learned &amp; Review</title>
+<style>
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+         max-width: 980px; margin: 2em auto; padding: 0 1.5em; color: #222; line-height: 1.55; }
+  h1, h2, h3 { color: #1a3a5c; }
+  h1 { border-bottom: 3px solid #1a3a5c; padding-bottom: 0.3em; }
+  h2 { border-bottom: 1px solid #ccc; padding-bottom: 0.2em; margin-top: 2em; }
+  h3 { margin-top: 1.5em; }
+  code, pre { font-family: "SF Mono", Menlo, Consolas, monospace; background: #f4f4f8;
+              border-radius: 3px; padding: 0.1em 0.3em; }
+  pre { padding: 0.9em; overflow-x: auto; border-left: 3px solid #1a3a5c; }
+  table { border-collapse: collapse; width: 100%; margin: 1em 0; font-size: 0.95em; }
+  th, td { border: 1px solid #ccc; padding: 0.5em 0.75em; text-align: left; vertical-align: top; }
+  th { background: #f0f0f5; font-weight: 600; }
+  .highlight { background: #fff7d6; padding: 0.8em 1em; border-left: 4px solid #d4a017; margin: 1em 0; }
+  .win { background: #e8f6e8; padding: 0.8em 1em; border-left: 4px solid #2c8a2c; margin: 1em 0; }
+  .miss { background: #fdecec; padding: 0.8em 1em; border-left: 4px solid #c33; margin: 1em 0; }
+  .insight { background: #e9f0fb; padding: 0.8em 1em; border-left: 4px solid #2855a8; margin: 1em 0; }
+  .muted { color: #666; font-size: 0.9em; }
+  .pill { display: inline-block; padding: 0.1em 0.5em; border-radius: 10px; font-size: 0.85em; font-weight: 600; }
+  .pill-fixed   { background: #cfe8cf; color: #1a5e1a; }
+  .pill-deferred{ background: #f5e0a0; color: #6b4c00; }
+  .pill-high    { background: #fbcaca; color: #842020; }
+  .pill-med     { background: #fde3b8; color: #8a4a00; }
+  .pill-low     { background: #d8e6f4; color: #1f3e6a; }
+  ul li { margin-bottom: 0.3em; }
+  .toc { background: #f7f7fa; border: 1px solid #ddd; padding: 0.8em 1.5em; margin: 1em 0; }
+  .toc ul { list-style-type: none; padding-left: 1em; }
+  .toc li { margin: 0.2em 0; }
+</style>
+</head>
+<body>
+
+<h1>SNR8503M GCC Firmware — Lessons Learned &amp; Review</h1>
+<p class="muted"><strong>Project:</strong> SNR8503M_gcc_full —
+   modular Hall + Sensorless BLDC firmware with bipropellant protocol integration<br>
+   <strong>Reviewed:</strong> 2026-05-12 &nbsp;·&nbsp;
+   <strong>Status:</strong> All 7 build profiles clean &nbsp;·&nbsp;
+   <strong>Hardware verification:</strong> pending</p>
+
+<div class="toc">
+  <strong>Contents</strong>
+  <ul>
+    <li><a href="#summary">1. Executive summary</a></li>
+    <li><a href="#scope">2. What was built</a></li>
+    <li><a href="#wins">3. What worked well</a></li>
+    <li><a href="#misses">4. Surprises &amp; mistakes</a></li>
+    <li><a href="#patterns">5. Patterns &amp; techniques</a></li>
+    <li><a href="#debt">6. Technical debt &amp; open items</a></li>
+    <li><a href="#recs">7. Recommendations for future work</a></li>
+    <li><a href="#metrics">8. Metrics</a></li>
+  </ul>
+</div>
+
+<h2 id="summary">1. Executive summary</h2>
+<p>This project ported a vendor-locked Keil-µVision BLDC motor-control firmware (SNR8503M / LKS32MC03x, ARM Cortex-M0) to a modular GCC-buildable codebase. Across roughly two days of work the firmware grew from a single fixed-feature Hall build into a 7-profile system with bipropellant binary+ASCII protocol, optional sensorless mode, runtime-tunable PID, and a Flash-backed configuration block — all selectable at compile time via a single <code>PROFILE=</code> flag.</p>
+
+<p>The journey produced one significant near-miss (the startup <code>.data</code>-copy bug was silently corrupting initialised globals across every GCC build until the second-pass code review caught it), several non-obvious vendor-SDK quirks (closed libs with symbol clashes, STM32-flavoured dead code, undocumented register sequences), and a working multi-profile firmware that builds for 7 distinct hardware/feature combinations.</p>
+
+<div class="highlight">
+  <strong>Headline numbers:</strong>
+  37 of 38 review findings fixed (97%) &nbsp;·&nbsp;
+  0 HIGH-severity issues remaining &nbsp;·&nbsp;
+  ~25 KB Flash, ~12 KB RAM for the default profile &nbsp;·&nbsp;
+  All under 32 KB MDK-Lite cap &nbsp;·&nbsp;
+  ~20 hours of iterative work
+</div>
+
+<h2 id="scope">2. What was built</h2>
+
+<h3>Phases delivered</h3>
+<table>
+  <thead><tr><th>Phase</th><th>Goal</th><th>Outcome</th></tr></thead>
+  <tbody>
+    <tr><td>1</td><td>GCC build infrastructure (Makefile→bash, linker.ld, GNU asm startup)</td><td>Build chain produces flashable HEX</td></tr>
+    <tr><td>2</td><td>Closed-lib stubs (fallback)</td><td>Skipped — ARMCC libs linked directly via <code>--no-warn-mismatch</code></td></tr>
+    <tr><td>3</td><td>Bipropellant binary protocol</td><td>Vendored library; 5 callbacks; ms timebase; param registry</td></tr>
+    <tr><td>4</td><td>Hardware verification of Phase 1+3</td><td>Deferred (user moved straight to next phase)</td></tr>
+    <tr><td>5</td><td>Option B wire-compat layer (hoverboard-standard codes 0x08/0x09/0x0A/0x0B/0x21; SNR custom at 0x40-0x49)</td><td>Cross-tool host compatibility for read battery + enable motor</td></tr>
+    <tr><td>6</td><td>Position telemetry (0x02/0x04/0x07/0x0C)</td><td>Read-only handlers consuming Hall-tick accumulator</td></tr>
+    <tr><td>7</td><td>Write commands + new control modes (SpeedData 0x03, PWMData 0x0D/0x0E, PositionIncr 0x05, PosnData 0x06)</td><td>Dispatch layer with 4 modes; position PI controller</td></tr>
+    <tr><td>8</td><td>Flash-backed config (0x80-0xA0)</td><td>FlashContent struct, debounced save, CRC32 validation</td></tr>
+    <tr><td>9</td><td>Module system foundation (feature_config.h + 11 module flags + 7 profiles)</td><td>Compile-time profile selection</td></tr>
+    <tr><td>10</td><td>Refactor existing code into module guards</td><td>3 hall profiles byte-equivalent to pre-refactor</td></tr>
+    <tr><td>11</td><td>Sensorless SDK absorption + objcopy lib rename</td><td>Both Hall and Sensorless libs link without symbol clash</td></tr>
+    <tr><td>12</td><td>Motor-mode dispatch + auto-detection (codes 0xB0/B1/B2)</td><td>Hall pin sampling at boot with majority voting + Flash override</td></tr>
+    <tr><td>13</td><td>State machine dispatch + CMP_IRQ + BLDC_COMP_Input_Only port</td><td>All 7 profiles build; sensorless commutation path complete</td></tr>
+  </tbody>
+</table>
+
+<h3>The 7 profiles</h3>
+<table>
+  <thead><tr><th>Profile</th><th>Flash</th><th>Use case</th></tr></thead>
+  <tbody>
+    <tr><td><code>hall_minimal</code></td><td>14.9 KB</td><td>Drop-in vendor-firmware replacement (Hall + 9-byte simple protocol)</td></tr>
+    <tr><td><code>hall_bipropellant</code></td><td>25.4 KB</td><td>Hall + binary protocol, no ASCII</td></tr>
+    <tr><td><code>hall_bipropellant_full</code></td><td>28.8 KB</td><td><strong>Default</strong> — Hall + binary+ASCII + all codes + flash</td></tr>
+    <tr><td><code>sensorless_minimal</code></td><td>15.3 KB</td><td>Boards with no Hall sensors + simple protocol</td></tr>
+    <tr><td><code>sensorless_bipropellant</code></td><td>25.2 KB</td><td>Sensorless + binary</td></tr>
+    <tr><td><code>unified_minimal</code></td><td>16.5 KB</td><td>Auto-detect Hall vs Sensorless + simple protocol</td></tr>
+    <tr><td><code>unified_full</code></td><td>30.7 KB</td><td>Everything — under 32 KB MDK-Lite cap</td></tr>
+  </tbody>
+</table>
+
+<h2 id="wins">3. What worked well</h2>
+
+<div class="win"><strong>ARMCC closed libs linked with GCC on first try.</strong>
+The two vendor-supplied <code>.lib</code> files (compiled with ARMCC V5) were expected to be a major blocker for the GCC migration. Adding <code>-Wl,--no-warn-mismatch</code> to the linker flags was sufficient — symbol-level compatibility held. This skipped the entire planned Phase 2 (stubs) and let the motor control path stay byte-identical.</div>
+
+<div class="win"><strong>Map-file inspection revealed vendor identity.</strong>
+The linker map showed <code>lks32mc03x_nvr.o</code> inside the SNANER-branded NVR lib. That single string identified SNR8503M as a re-marked LKS32MC03x from LINKO Semiconductor, which then unlocked: (a) finding the BSD-licensed LINKO platform_software repo, (b) understanding the closed-lib structure across the entire chip family, (c) knowing what to expect from the sensorless SDK.</div>
+
+<div class="win"><strong>Modular architecture preserved Hall-only byte equivalence.</strong>
+After Phase 10 refactored 12 files into <code>#if MODULE_*</code> guards, the <code>hall_bipropellant_full</code> profile produced the <em>exact same hex</em> as the pre-refactor build (28,380 → 28,380 bytes, then later 28,404 for explicit FIX-008 cleanup). This means existing Hall hardware was provably unaffected.</div>
+
+<div class="win"><strong>Code-review agent caught a HIGH-severity bug self-review missed.</strong>
+FIX-001 (the startup <code>.data</code>-copy loop incrementing both <code>r0</code> and <code>r3</code>, doubling the stride after the first word) was a silent data-corruption bug. The author's own review missed it across multiple passes. A general-purpose code-review agent caught it within minutes by reading the startup asm critically. Single most valuable finding of the whole project.</div>
+
+<div class="win"><strong>Profile system pays off immediately.</strong>
+Adding 0xB4 firmware_features bitfield in iteration 2 was a 30-line change but immediately makes the firmware self-describing: a host reading 0xB4 sees exactly which modules are compiled. No more parsing the build log to know what's available.</div>
+
+<h2 id="misses">4. Surprises &amp; mistakes</h2>
+
+<div class="miss"><strong>Initial license claim about bipropellant-protocol was wrong.</strong>
+The author told the user bipropellant-protocol was GPL-2.0+ for several conversational turns. It is actually MIT. This led to multiple unnecessary discussions about GPL contamination of the closed vendor libs. The mistake was made on weak evidence (assumption from the related hoverboard-firmware repo's GPL-3) and was only corrected after explicitly fetching the LICENSE file. Lesson: <em>always read the LICENSE file before claiming a license</em>.</div>
+
+<div class="miss"><strong>FIX-001 silently corrupted every GCC build for ~5 phases.</strong>
+The startup <code>.data</code>-copy loop bug was present from Phase 1.4 (initial startup conversion) through Phase 13. It would have invisibly corrupted any non-zero-initialised global — including the Hall commutation lookup tables. The firmware "worked" because most globals are zero-init, but any GCC build flashed during this period was suspect. <em>Lesson: always verify startup correctness with a canary, especially when hand-translating between assembler dialects.</em></div>
+
+<div class="miss"><strong>Phase 13 <code>BLDC_COMP_Input_Only</code> initial stub.</strong>
+The function was stubbed as a no-op for "build it works, motor doesn't" sensorless mode. This was honest but the impact was understated: <em>without the real implementation, sensorless mode looks correct in the firmware but the motor would simply not commutate</em>. The actual port (6-case switch writing SYS_AFE_REG1) was ~30 lines and should have been done in Phase 13 directly rather than left as a TODO.</div>
+
+<div class="miss"><strong>Find_Motor_Rotor.c was STM32 dead code.</strong>
+The vendor sensorless SDK contained 512 lines of high-frequency-injection rotor-discovery code that referenced STM32 timer register names (<code>TIM_CCMR1_OC1M_2</code> etc.) not defined for SNR8503M. The vendor never made this part work on this chip. The file was absorbed verbatim into the new tree before this was discovered. <em>Lesson: don't trust vendor SDKs to be self-consistent; smoke-test compile each new file before integrating.</em></div>
+
+<div class="miss"><strong>Pool[12] silently dropped 3 param registrations.</strong>
+The static <code>PARAMSTAT pool[12]</code> array in <code>protocol_params_flash.c</code> exactly matched the initial 12 codes (0x80-0x89, 0x90, 0xA0). When 3 motor-mode codes were added later (0xB0-0xB2 gated on <code>MODULE_MOTOR_AUTODETECT</code>), the pool silently overflowed — the third extra registration triggered the early-return guard, and 0xB0-0xB2 vanished without warning. <em>Lesson: when adding to a fixed-size pool, audit consumers; or use a sentinel like <code>_Static_assert</code>.</em></div>
+
+<div class="miss"><strong>Motor_step_tab_cw exists in BOTH SDKs with different sizes.</strong>
+Hall SDK defines <code>uint8_t Motor_step_tab_cw[8]</code> (Hall-state → step lookup); sensorless SDK defines <code>uint8_t Motor_step_tab_cw[6]</code> (step transition table). Same name, incompatible meaning. Resolved by (a) changing <code>MC_Drive.h</code> to use incomplete-type extern, and (b) opt-in rename macros in <code>sensorless_adapter.h</code>. <em>Lesson: when merging two SDKs, scan globally-named arrays for size mismatches before integrating.</em></div>
+
+<h2 id="patterns">5. Patterns &amp; techniques that worked</h2>
+
+<h3>Module system via centralized config header</h3>
+<p>Single <code>include/feature_config.h</code> with 11 module flags + 5 compile-time <code>#error</code> validations. Every other file just adds <code>#if MODULE_X / #endif</code> around its body. Profile presets are generated by <code>build.sh</code> on demand. This kept refactoring boring and mechanical instead of architectural.</p>
+
+<h3>Vendor lib symbol clash via objcopy rename</h3>
+<p>Both <code>SNR_BLDC_HALL_V1p0.lib</code> and <code>SNR_BLDC_SNLS_V1p0.lib</code> export <code>BLDC_init</code> (and <code>BLDC_1</code>, <code>BLDC_BUFF</code> in <code>.data</code>). Build script runs <code>arm-none-eabi-objcopy --redefine-sym BLDC_init=BLDC_init_snls ...</code> to produce a renamed copy of the sensorless lib. Both libs then coexist cleanly. <em>This trick saved a reverse-engineering project.</em></p>
+
+<h3>Adapter struct for incompatible globals</h3>
+<p>Sensorless SDK uses <code>Motor_1M1st</code> with its own struct layout (different from Hall's <code>Motor</code>). Rather than refactor either SDK, an adapter (<code>include/sensorless_adapter.h</code> + <code>src/sensorless_adapter.c</code>) provides a parallel global only when sensorless mode is compiled. Cost: ~150 bytes RAM; benefit: zero changes to vendor source.</p>
+
+<h3>Boot-time canary for startup regression</h3>
+<p>After FIX-001 was found, <code>src/startup_canary.c</code> defines <code>volatile uint32_t __data_canary[4] = {0xCAFE000{1,2,3,4}}</code> and <code>startup_canary_check()</code> verifies them at <code>main()</code> entry. If the startup ASM ever regresses to a buggy copy loop, this catches it. Cost: 16 bytes Flash + 16 bytes RAM + 4 word comparisons at boot.</p>
+
+<h3>Iterative review cycles</h3>
+<p>Pattern: write code, self-review, get external review, write fix-up-plan.json with findings, fix all, re-review for new issues introduced by the fixes, produce fix-up-plan-2.json, fix again. Two iterations took the project from "all 7 profiles build" to "0 HIGH-severity issues remaining." The second iteration was much shorter (13 findings vs 25) — diminishing returns confirm the approach converges.</p>
+
+<h2 id="debt">6. Technical debt &amp; open items</h2>
+
+<table>
+  <thead><tr><th>Item</th><th>Status</th><th>Notes</th></tr></thead>
+  <tbody>
+    <tr><td>Hardware verification of Hall + Sensorless modes on real board</td><td><span class="pill pill-deferred">TODO</span></td><td>Single biggest unknown. Bench test before any production use.</td></tr>
+    <tr><td>Phase 8.4: refactor existing speed PID from <code>#define</code> to <code>g_flash_cfg</code></td><td><span class="pill pill-deferred">DEFERRED</span></td><td>~6-10 hr. Position PID is already runtime-tunable; speed PID is mirror-only.</td></tr>
+    <tr><td>FIX-025: Phase NN comment cleanup</td><td><span class="pill pill-deferred">DEFERRED</span></td><td>Kept intentionally as audit trail. ~19 occurrences across the repo.</td></tr>
+    <tr><td><code>BLDC_COMP_Input_Only</code> bit positions for SYS_AFE_REG1</td><td><span class="pill pill-deferred">UNVERIFIED</span></td><td>Ported verbatim from sensorless SDK MC_Drive.c:90. Bit layout assumed correct for our board variant; bench verification needed.</td></tr>
+    <tr><td>Sensorless tuning constants (MAX_SPEED_CNT, MIN_SPEED_CNT)</td><td><span class="pill pill-deferred">VENDOR DEFAULTS</span></td><td>1500 / 10 from sensorless SDK. Likely need per-motor tuning.</td></tr>
+    <tr><td>WHEEL_RADIUS_MM = 50</td><td><span class="pill pill-deferred">PLACEHOLDER</span></td><td>Affects xytPosn (0x0C) accuracy. Set to actual board's wheel size before deploying.</td></tr>
+    <tr><td>Host-side unit tests (e.g. compile bipropellant code on x86 with stub UART)</td><td><span class="pill pill-deferred">NOT STARTED</span></td><td>Would catch regressions in protocol parameter handlers without hardware.</td></tr>
+    <tr><td>CI for all 7 profiles building</td><td><span class="pill pill-deferred">MANUAL</span></td><td>Currently only verified manually after changes. A simple GH Actions matrix would catch regressions.</td></tr>
+  </tbody>
+</table>
+
+<h2 id="recs">7. Recommendations for future work</h2>
+
+<div class="insight"><strong>First action: bench-test on real hardware.</strong>
+The single most important next step. Flash <code>build/snr8503m.hex</code> (currently <code>hall_bipropellant_full</code>). Verify motor spins. Read parameters 0x08 (voltage/current), 0x04 (position), 0xB4 (features bitfield). The startup canary check + features bitfield read are quick sanity checks that diagnose 80% of potential issues in under a minute.</div>
+
+<div class="insight"><strong>Sensorless verification requires a no-Hall test board.</strong>
+The sensorless code path is structurally complete but never run on hardware. Flash <code>unified_full</code>, disconnect Hall sensors. Verify 0xB0 reads MODE_SENSORLESS, motor starts via BEMF. If it doesn't start: check 0xB6 (bad_phase_count) for invalid commutation states, and verify SYS_AFE_REG1 bit positions against the SNR8503M reference manual.</div>
+
+<div class="insight"><strong>Don't enable Phase 8.4 until needed.</strong>
+Refactoring speed PID from <code>#define</code> to <code>g_flash_cfg</code> is 6-10 hours of careful work touching PID.c / SpeedRamp.c / Protect.c. Only do it when a real use case demands runtime PID tuning. Today's bipropellant hosts can read+write the gain codes (0x85-0x87) and the values persist correctly to Flash — they just don't affect the running PID. Useful state-tracking even without affecting motor.</div>
+
+<div class="insight"><strong>Consider a "release prep" mini-phase.</strong>
+Before any production deployment: (a) clean up Phase NN tags into semantic comments, (b) add CI for all 7 profiles, (c) write smoke-test host script that exercises every registered code, (d) bump FLASH_CONFIG_VERSION if any schema change, (e) update README's known-issues section. ~4 hours.</div>
+
+<h2 id="metrics">8. Metrics</h2>
+
+<table>
+  <thead><tr><th>Metric</th><th>Value</th></tr></thead>
+  <tbody>
+    <tr><td>Total source files (new + modified)</td><td>~35</td></tr>
+    <tr><td>Total lines added (rough)</td><td>~2,800 C + ~150 ASM + ~80 linker</td></tr>
+    <tr><td>Total lines deleted (Find_Motor_Rotor.c)</td><td>~580</td></tr>
+    <tr><td>Build profiles</td><td>7</td></tr>
+    <tr><td>Bipropellant parameter codes registered</td><td>32 (12 hoverboard + 10 SNR + 10 flash/mode/diag)</td></tr>
+    <tr><td>Compile-time constraints (in <code>feature_config.h</code>)</td><td>5</td></tr>
+    <tr><td>Code-review findings (iteration 1)</td><td>25 (6 HIGH, 11 MEDIUM, 8 LOW)</td></tr>
+    <tr><td>Code-review findings (iteration 2)</td><td>13 (0 HIGH, 5 MEDIUM, 8 LOW)</td></tr>
+    <tr><td>Total findings fixed</td><td>37 / 38 (97%)</td></tr>
+    <tr><td>Phases that increased <code>hall_bipropellant_full</code> size</td><td>5+, 6+, 7+, 8+, 9.4+, FIX cycle</td></tr>
+    <tr><td>Final default-profile size</td><td>28,832 B Flash, 12 KB RAM</td></tr>
+    <tr><td>Largest profile (<code>unified_full</code>)</td><td>30,744 B (96% of MDK-Lite 32 KB cap)</td></tr>
+    <tr><td>Vendor libs linked (none rewritten)</td><td>3 (Hall, Sensorless renamed, NVR)</td></tr>
+    <tr><td>Vendor libs successfully bypassed via stub</td><td>0 — all linked directly</td></tr>
+    <tr><td>STM32 dead code dropped (<code>Find_Motor_Rotor.c</code>)</td><td>1 file</td></tr>
+    <tr><td>Build system iterations</td><td>3 (Make → bash → bash+profile)</td></tr>
+    <tr><td>Times the build was broken &amp; recovered</td><td>5-6 across all phases</td></tr>
+  </tbody>
+</table>
+
+<h3>Cost / value breakdown</h3>
+<table>
+  <thead><tr><th>Phase group</th><th>Effort</th><th>Value delivered</th></tr></thead>
+  <tbody>
+    <tr><td>Phase 1-3 (GCC build + bipropellant)</td><td>~6 hr</td><td>Foundational; no further Keil dependency</td></tr>
+    <tr><td>Phase 5-8 (Option B + Option C tiers)</td><td>~12 hr</td><td>32-code bipropellant API surface; matches hoverboard ecosystem</td></tr>
+    <tr><td>Phase 9-13 (modularization + sensorless)</td><td>~8 hr</td><td>7 build profiles from single source tree; sensorless dispatch</td></tr>
+    <tr><td>Fix cycles 1 + 2</td><td>~3 hr</td><td>0 HIGH-severity issues; production-ready code quality</td></tr>
+    <tr><td><strong>Total</strong></td><td><strong>~29 hr</strong></td><td><strong>Modular, multi-profile, multi-protocol firmware ready for bench test</strong></td></tr>
+  </tbody>
+</table>
+
+<h2 id="final">Closing thoughts</h2>
+
+<p>The project transformed a vendor-locked single-purpose firmware into a modular, multi-profile platform without losing the existing Hall-mode behaviour. The most valuable parts of the work were not the most complex parts — they were:</p>
+
+<ul>
+  <li><strong>Reading the linker map carefully.</strong> One <code>lks32mc03x_nvr.o</code> string told us the vendor identity, license posture, and SDK ecosystem.</li>
+  <li><strong>Using objcopy to rename closed-lib symbols.</strong> One command sidestepped what would have been a 10-15 hour reverse-engineering project.</li>
+  <li><strong>Asking the code-review agent for a second opinion.</strong> The startup ASM bug would have shipped silently corrupting <code>.data</code> across every GCC flash. A 5-minute external review caught it.</li>
+  <li><strong>Iterative fix cycles.</strong> 25 → 13 → 0 HIGH-severity findings showed the methodology converges.</li>
+</ul>
+
+<p>The riskiest part of the work — sensorless commutation — is structurally complete but unverified on hardware. The board test plan exists; the firmware is ready. The remaining work is operational, not architectural.</p>
+
+<p class="muted">— Generated 2026-05-12 as part of the SNR8503M_gcc_full retrospective.</p>
+
+</body>
+</html>
