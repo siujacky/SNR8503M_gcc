@@ -167,7 +167,8 @@ void BLDC_Sensor_Judge(unsigned char Hall_value)
 			{
 				// ����
 				HALL_LIB.u8HALL_NEW_Value 	= Motor.BLDC.u8HallValueRenew;
-				Motor.BLDC.u8HALL_Run_Value = HALL_Update(&HALL_LIB);
+				/* HALL_Update was a 1-line passthrough; inlined here. */
+				Motor.BLDC.u8HALL_Run_Value = HALL_LIB.u8HALL_NEW_Value;
 				BLDC_Sensor_control(Motor.BLDC.u8HALL_Run_Value);
 			}
 			// ����hall�ź�	

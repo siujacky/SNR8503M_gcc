@@ -410,7 +410,67 @@ void INIT_FreerunDetect(void)
 
 //*****************************************************************//
 
+/* ========================================================================
+ * BEMF zero-crossing helpers — implementations of the two sensorless
+ * primitives. Originally provided by the closed SNR_BLDC_SNLS_V1p0.lib;
+ * these are simple textbook implementations that match the call-site
+ * contract observed in the rest of this file and interrupt.c.
+ *
+ * COMP_Motor_Zero_Detect:
+ *   When the comparator output matches the expected edge polarity, the
+ *   speed counter decrements (motor running faster than estimated);
+ *   when it doesn't match, the counter increments (slower). Clamped to
+ *   [phase_min, phase_max]. Canonical closed-loop sensorless speed track
+ *   documented in TI SLVA372, ST AN1944, and similar BLDC app notes.
+ *
+ * Freerun_Zero_Detect:
+ *   Integrator-style debounce: each comparator state advances its own
+ *   counter and decays the opposite. When a counter passes the threshold
+ *   (u32CMP_Freerunstep_0_Mincnt), the current OUT value is committed
+ *   as u8CMP_FreerunstepNew. Standard debounce-then-commit pattern for
+ *   noisy edge detection on the coasting motor.
+ * ======================================================================== */
+void COMP_Motor_Zero_Detect(CMP_Zero_TypeDef *p)
+{
+    if (p == 0) return;
 
+    uint8_t out  = p->u8CMP_Zero_OUT_Value;
+    uint8_t rise = p->u8CMP_Zero_phase_rise;
 
+    if (out == rise) {
+        if (p->u32CMP_Zero_speed_cnt > p->u32CMP_Zero_phase_min) {
+            p->u32CMP_Zero_speed_cnt--;
+        }
+    } else {
+        if (p->u32CMP_Zero_speed_cnt < p->u32CMP_Zero_phase_max) {
+            p->u32CMP_Zero_speed_cnt++;
+        }
+    }
+}
+
+void Freerun_Zero_Detect(CMP_Zero_TypeDef *p)
+{
+    if (p == 0) return;
+
+    uint32_t winning_count;
+
+    if (p->u8CMP_Zero_OUT_Value == 1) {
+        p->u32CMP_Freerunstep_1_cnt++;
+        if (p->u32CMP_Freerunstep_0_cnt > 0) {
+            p->u32CMP_Freerunstep_0_cnt--;
+        }
+        winning_count = p->u32CMP_Freerunstep_1_cnt;
+    } else {
+        p->u32CMP_Freerunstep_0_cnt++;
+        if (p->u32CMP_Freerunstep_1_cnt > 0) {
+            p->u32CMP_Freerunstep_1_cnt--;
+        }
+        winning_count = p->u32CMP_Freerunstep_0_cnt;
+    }
+
+    if (winning_count >= p->u32CMP_Freerunstep_0_Mincnt) {
+        p->u8CMP_FreerunstepNew = p->u8CMP_Zero_OUT_Value;
+    }
+}
 
 #endif /* MODULE_MOTOR_SENSORLESS */

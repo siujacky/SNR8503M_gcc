@@ -52,12 +52,10 @@ void Hardware_init(void)
 	  CMP_init();                       /* �Ƚ�����ʼ�� */	  
     UTimer_init(CLK_DIVISION);        /* UTimer��ʼ�� */
     MCPWM_init();                     /* MCPWM��ʼ�� */
-#if MODULE_MOTOR_HALL
-		BLDC_init();											/* Hall BLDC init from closed lib */
-#endif
-#if MODULE_MOTOR_SENSORLESS
-		{ extern void BLDC_init_snls(void); BLDC_init_snls(); }   /* Sensorless BLDC init from renamed lib */
-#endif
+/* BLDC_init / BLDC_init_snls calls removed — the original closed-lib functions
+ * were license-gate stubs (read NVR trim, compare for equality, infinite-loop
+ * on mismatch) that did no real initialisation. The real Hall/CMP peripheral
+ * setup is done by HALL_Perip_Init / CMP_init above. No replacement needed. */
 	
 		DSP_Cmd(ENABLE);
 	

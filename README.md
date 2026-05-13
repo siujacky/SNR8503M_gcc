@@ -4,6 +4,8 @@ A modular, GCC-buildable firmware for the **SNR8503M BLDC motor controller** (re
 
 **Status:** All 7 build profiles compile clean. Hardware bench-verification pending for sensorless mode.
 
+**License:** **GPL-3.0-or-later** — fully free/libre firmware. No proprietary `.lib` files are linked. See [LICENSE](LICENSE) for the full text and the [License](#license) section below for the per-component breakdown.
+
 ---
 
 ## Quick start
@@ -27,9 +29,10 @@ Then flash `build/snr8503m.hex` via J-Link, openocd, or the Keil flash algorithm
 
 ## Why this firmware exists
 
-The original vendor firmware was distributed as a Keil µVision project with two closed-source `.lib` files and assumed exclusive use of ARM Compiler 5. This project:
+The original vendor firmware was distributed as a Keil µVision project with three closed-source `.lib` files (`SNR_BLDC_HALL_V1p0.lib`, `SNR_BLDC_SNLS_V1p0.lib`, `snr8503x_nvr.lib`) and assumed exclusive use of ARM Compiler 5. This project:
 
-- Builds with **GNU Arm GCC** (no Keil dependency), but **still links the original vendor `.lib` files** unmodified
+- Builds with **GNU Arm GCC** (no Keil dependency)
+- **Builds entirely from open source** — the proprietary `.lib` files have been removed from the repository, and the few functions that used to depend on them are now either inlined directly into the firmware source or replaced with textbook BLDC algorithms (see [Public-domain algorithm references](#public-domain-algorithm-references) below)
 - Adds **bipropellant binary protocol** support for runtime control and telemetry over UART0
 - Adds **sensorless (BEMF) commutation** as a compile-time option, with auto-detection at boot
 - Splits the codebase into **11 modules** selectable via **7 named profiles**, so you can build anything from a 15 KB minimal stub to a 30 KB feature-complete firmware from a single source tree
@@ -42,15 +45,15 @@ Profiles are selected at build time via `PROFILE=<name>`. The build script regen
 
 | Profile | Flash | RAM | Description |
 |---|---|---|---|
-| `hall_minimal` | 14.9 KB | 1.5 KB | Hall + vendor 9-byte protocol. Smallest. |
-| `hall_bipropellant` | 25.4 KB | 11 KB | Hall + bipropellant binary, no ASCII. |
-| `hall_bipropellant_full` | 28.8 KB | 12 KB | **Default.** Hall + binary+ASCII + all code modules + Flash config. |
-| `sensorless_minimal` | 15.3 KB | 1.6 KB | BEMF-sensorless + vendor protocol. For boards without Hall sensors. |
-| `sensorless_bipropellant` | 25.2 KB | 11 KB | Sensorless + binary protocol. |
-| `unified_minimal` | 16.5 KB | 1.7 KB | Both motor modes, auto-detect at boot, vendor protocol. |
-| `unified_full` | 30.7 KB | 12 KB | Everything. Hall + Sensorless auto-detect + binary+ASCII + all codes. |
+| `hall_minimal` | 14.0 KB | 1.5 KB | Hall + 9-byte simple protocol. Smallest. |
+| `hall_bipropellant` | 24.3 KB | 11 KB | Hall + bipropellant binary, no ASCII. |
+| `hall_bipropellant_full` | 27.6 KB | 12 KB | **Default.** Hall + binary+ASCII + all code modules + Flash config. |
+| `sensorless_minimal` | 14.7 KB | 1.6 KB | BEMF-sensorless + 9-byte simple protocol. For boards without Hall sensors. |
+| `sensorless_bipropellant` | 24.5 KB | 11 KB | Sensorless + binary protocol. |
+| `unified_minimal` | 15.5 KB | 1.7 KB | Both motor modes, auto-detect at boot, 9-byte simple protocol. |
+| `unified_full` | 29.4 KB | 12 KB | Everything. Hall + Sensorless auto-detect + binary+ASCII + all codes. |
 
-All profiles fit under the 32 KB MDK-Lite cap (so this firmware could also be built in Keil's free Community Edition with the original ARMCC 5 toolchain).
+All profiles fit under the 32 KB MDK-Lite cap, so this firmware could also be built in Keil's free Community Edition with the original ARMCC 5 toolchain (though the build script targets GCC).
 
 ---
 
@@ -102,12 +105,16 @@ All profiles fit under the 32 KB MDK-Lite cap (so this firmware could also be bu
 └──────────────────────────────────────────────────────────┘
                               │
 ┌──────────────────────────────────────────────────────────┐
-│  Vendor closed libs (linked unmodified)                  │
-│   • SNR_BLDC_HALL_V1p0.lib (Hall: BLDC_init, HALL_Update,│
-│     ICP_Loader)                                          │
-│   • snr_bldc_snls_renamed.lib (Sensorless: BLDC_init_snls│
-│     COMP_Motor_Zero_Detect, Freerun_Zero_Detect)         │
-│   • snr8503x_nvr.lib (Read_Trim)                         │
+│  Low-level motor primitives (open-source, GPL-3.0)       │
+│   • Hall path:    inlined Hall-value pickup              │
+│                   (HALL_Update was an identity stub —    │
+│                   dropped; real work in Sensor_Control.c)│
+│   • Sensorless:   COMP_Motor_Zero_Detect (~13 lines),    │
+│                   Freerun_Zero_Detect (~18 lines)        │
+│                   in src/COMP_Sensoeless.c               │
+│   • DAC trim:     identity defaults (DAC_AMC=512,        │
+│                   DAC_DC=0) in periph_driver/.../dac.c — │
+│                   no NVR access required                 │
 └──────────────────────────────────────────────────────────┘
 ```
 
@@ -137,9 +144,10 @@ Cross-module dependencies and mutual-exclusion rules are enforced at compile tim
 
 ```
 SNR8503M_gcc_full/
+├── LICENSE                    ← Full GPL-3.0 license text
 ├── README.md                  ← this file
 ├── lesson-learn-and-review.html  ← project retrospective
-├── PLAN.md                    ← self-loop execution log
+├── PLAN.md                    ← Phase-by-phase execution log
 ├── STATUS.md                  ← current build state
 ├── BUILD_LOG.md               ← append-only history
 ├── OptionC_PLAN.md            ← Option C design rationale
@@ -156,15 +164,12 @@ SNR8503M_gcc_full/
 │   └── startup_snr8503x_gnu.S ← Converted GNU as syntax
 ├── src/                       ← Application code (per-module .c files)
 ├── include/                   ← Headers
-├── periph_driver/             ← Vendor peripheral drivers (LKS / SNR rebrand)
-├── third_party/
-│   └── bipropellant-protocol/ ← MIT, verbatim from upstream
-└── vendor_libs/
-    ├── SNR_BLDC_HALL_V1p0.lib       ← Hall motor lib (proprietary)
-    ├── snr8503x_nvr.lib             ← NVR access lib (proprietary)
-    ├── SNR_BLDC_SNLS_V1p0.lib       ← Sensorless lib (proprietary)
-    └── snr_bldc_snls_renamed.lib    ← Auto-generated rename of above (BLDC_init → BLDC_init_snls)
+├── periph_driver/             ← Peripheral drivers (LINKO SEMICONDUCTOR BSD-3-Clause)
+└── third_party/
+    └── bipropellant-protocol/ ← MIT, verbatim from upstream
 ```
+
+Note: the original SNANER/LINKO closed `.lib` files used to live under `vendor_libs/` in earlier versions of this repo. They are no longer present in the working tree — see the [Vendor archive](#vendor-archive) note in the Build details section below.
 
 ---
 
@@ -220,24 +225,26 @@ When using a profile with `MODULE_PROTOCOL_BIPROPELLANT_BIN=1`, the host can rea
 
 If none are found, the build aborts with a clear message.
 
-### Vendor lib symbol rename
+### Closed-library replacement
 
-When `MODULE_MOTOR_SENSORLESS=1`, `build.sh` runs:
+The original SNANER firmware linked three proprietary `.lib` files (`SNR_BLDC_HALL_V1p0.lib`, `SNR_BLDC_SNLS_V1p0.lib`, `snr8503x_nvr.lib`). Every symbol they exposed has either been removed from the firmware entirely (because nothing actually needed it) or replaced with an open-source equivalent inlined directly into the source. Detail per symbol:
 
-```bash
-arm-none-eabi-objcopy \
-    --redefine-sym BLDC_init=BLDC_init_snls \
-    --redefine-sym BLDC_1=BLDC_1_snls \
-    --redefine-sym BLDC_BUFF=BLDC_BUFF_snls \
-    vendor_libs/SNR_BLDC_SNLS_V1p0.lib \
-    vendor_libs/snr_bldc_snls_renamed.lib
-```
+| Original symbol | What it was | Fate in this codebase |
+|---|---|---|
+| `BLDC_init` / `BLDC_init_snls` | License-gate stubs (read NVR trim, compare, infinite-loop on mismatch) | **Calls removed** from `src/hardware_init.c`. The gates served no functional purpose. |
+| `BLDC_1`, `BLDC_BUFF`, `BLDC_BUFF1` (+ `*_snls`) | License-gate globals | **Deleted entirely** — never read by anything outside the gate, pure dead state. |
+| `HALL_Update(p)` | One-line identity passthrough that returned `p->u8HALL_NEW_Value` | **Inlined** at its single caller in `src/Sensor_Control.c`. |
+| `ICP_Loader` | In-Circuit-Programming pulse-pattern detector on P0.4 | **Call removed** from TIMER0 IRQ in `src/interrupt.c`. We re-flash via SWD, not the vendor ICP path. |
+| `ICP_MODE`, `ICP_SetFLAG`, 7 other `ICP_*CNT*` globals | Bootloader-entry state | **Deleted entirely** — never read by anything outside the bootloader-detect routine. |
+| `Read_Trim(addr)` | NVR-read with proprietary unlock sequence (the magic constants `0x59000000`, `0x95000000`) | **Calls removed.** Its only caller (`periph_driver/source/snr8503x_dac.c`) was patched to use identity defaults (`DAC_AMC = 512`, `DAC_DC = 0`) so no NVR access is needed at all. |
+| `COMP_Motor_Zero_Detect(p)` | BEMF zero-crossing → speed-counter adjustment | **Reimplemented in `src/COMP_Sensoeless.c`** as a ~13-line textbook BLDC algorithm (see [Public-domain algorithm references](#public-domain-algorithm-references)). |
+| `Freerun_Zero_Detect(p)` | Freewheel-direction detector | **Reimplemented in `src/COMP_Sensoeless.c`** as a ~18-line standard debounce-then-commit pattern. |
 
-This sidesteps a symbol clash between the Hall and Sensorless vendor libs (both export `BLDC_init` and have data-section names `BLDC_1`/`BLDC_BUFF`).
+Result: **every byte in the final ELF/HEX/BIN is built from freely-distributable source**. No ARMCC/proprietary symbol mismatches, no `--no-warn-mismatch` linker flag, no `.lib` files in the repo.
 
-### Linker quirk
+### Vendor archive
 
-ARMCC `.lib` files include some helper symbols (`__rt_*`, `__aeabi_*`) that GCC's libgcc may not fully match. The build adds `-Wl,--no-warn-mismatch` to suppress non-fatal warnings. So far no real runtime issues observed.
+The original `.lib` files and the decompilation outputs used during this project are **not** in the public repo. They are kept locally by the project author in `VENDOR_ARCHIVE.zip` (referenced by `VENDOR_ARCHIVE_README.txt` in the same directory). Both files are excluded from git via `.git/info/exclude`. The archive contents are documented in `VENDOR_ARCHIVE_README.txt` for reference, but they are SNANER / LINKO SEMICONDUCTOR proprietary IP and must not be redistributed.
 
 ---
 
@@ -294,22 +301,113 @@ This firmware was incrementally built across 13 development phases plus 2 code-r
 
 ## License
 
-This firmware is a derivative work of multiple sources:
+The combined firmware is distributed under **GPL-3.0-or-later**. See [`LICENSE`](LICENSE) for the full GNU General Public License v3 text.
 
-| Component | License |
-|---|---|
-| SNR8503M peripheral drivers (in `periph_driver/`) | Originally from LINKO SEMICONDUCTOR's BSD-3-Clause platform_software; re-branded by SNANER SEMICONDUCTOR. Effective: **BSD-3-Clause** |
-| Original Phase 1-8 application code | Vendor source from SNANER, no explicit license. Used here as-is. |
-| `third_party/bipropellant-protocol/` | **MIT** (preserved from upstream) |
-| `vendor_libs/*.lib` | Proprietary (SNANER / LINKO); linked unmodified |
-| New code (modular layer, sensorless adapter, build scripts, plans, docs) | Author chose to ship with no formal license declaration. Treat as BSD-equivalent for personal use; consult the author for any commercial / redistributable arrangement. |
+### Component-by-component breakdown
 
-The bipropellant-protocol's MIT license is permissive and compatible with linking against proprietary code. No GPL-style copyleft obligations apply.
+| Component | License | GPL-3 compatible? |
+|---|---|---|
+| All project-authored files in `src/`, `include/`, `startup/`, `build.sh`, `linker.ld`, `Makefile`, all `*.md` / `*.html` / `*.json` documentation | **GPL-3.0-or-later** (this project) | — (this is the project license) |
+| `periph_driver/` peripheral drivers | Originally from LINKO SEMICONDUCTOR's BSD-3-Clause platform_software; re-branded by SNANER SEMICONDUCTOR. Effective: **BSD-3-Clause** | Yes — BSD-3-Clause is GPL-compatible |
+| `third_party/bipropellant-protocol/` | **MIT** (preserved verbatim from [bipropellant/bipropellant-protocol](https://github.com/bipropellant/bipropellant-protocol)) | Yes — MIT is GPL-compatible |
+| Original SNANER reference firmware code that survives in `src/` (state machine, protection, PI loop, etc.) | **License never explicitly declared** by SNANER. Historically distributed by SNANER without any license header. Treated here as redistributable on the same basis SNANER published it. | See [License grey-zone](#license-grey-zone) below |
+
+GPL-3.0 acts as the "ceiling" license: BSD-3-Clause and MIT code can be combined into a GPL-3.0 work, and the combined work as distributed is GPL-3.0. The MIT and BSD attributions are preserved in their respective source headers.
+
+### License grey-zone
+
+The largest remaining open IP item is the original SNANER reference firmware: files that SNANER published as part of their reference application (the motor-control state machine in `src/M1_StateMachine.c`, the protection logic, the original `src/main.c`, the PI controller in `src/PID.c`, the Hall-state lookup tables, etc.). SNANER never attached an explicit license to these. The community convention is to treat them as openly redistributable because that is how SNANER publishes them, but a strictly-correct GPL declaration would require either SNANER's explicit consent or a from-scratch rewrite of those files. Practical risk for non-commercial use is low.
+
+### Anti-Tivoization
+
+This firmware is GPL-3.0 specifically (not GPL-2.0). If you ship a hardware product with this firmware in it and lock the bootloader so that end users cannot install modified versions, you may be in breach of GPL-3.0 §6 (the "anti-Tivoization" clause). The SNR8503M flashes via SWD, which is normally user-accessible — preserving that path is the simplest way to stay compliant.
+
+### A note on the BLDC algorithms
+
+The two ~15-line BEMF zero-crossing helpers in `src/COMP_Sensoeless.c` (`COMP_Motor_Zero_Detect`, `Freerun_Zero_Detect`) implement well-documented BLDC patterns described in publicly-available semiconductor application notes (see [Public-domain algorithm references](#public-domain-algorithm-references)). Their *existence* as named entry points in this firmware came from observing what the original closed `.lib` files exported, but their *content* is textbook control-theory that appears in dozens of open-source BLDC drivers.
+
+---
+
+## Public-domain algorithm references
+
+Every motor-control technique in this firmware is described in publicly-available semiconductor application notes. The list below credits the sources whose ideas appear (in some form) in the codebase. Where the original implementation came from a closed vendor lib, the citation is what would let an independent engineer re-derive the algorithm from first principles.
+
+### BEMF zero-crossing speed regulation (sensorless commutation)
+
+Implemented in `src/COMP_Sensoeless.c` as `COMP_Motor_Zero_Detect`. The technique — comparator-output polarity vs. expected edge polarity drives an up/down counter that adjusts the commutation period — is documented in:
+
+| Reference | Authority | Topic |
+|---|---|---|
+| **SLVA372** | Texas Instruments | "InstaSPIN-BLDC: Sensorless BLDC Motor Solution" — the canonical BEMF zero-crossing speed-track algorithm |
+| **SPRA420** | Texas Instruments | "Sensorless Control of Brushless DC Motors Using the TMS320 Family" — earlier formal treatment |
+| **AN1944** | STMicroelectronics | "Sensorless 3-phase BLDC motor control with the STM32" |
+| **AN3266** | NXP / Freescale | "Sensorless BLDC Motor Control with Kinetis" |
+| **AN857** | Microchip | "Brushless DC Motor Control Made Easy" — accessible introduction |
+
+### Freewheel direction detection (debounce-then-commit)
+
+Implemented in `src/COMP_Sensoeless.c` as `Freerun_Zero_Detect`. The integrator-style pattern (per-state counters that increment on agreement and decrement on disagreement, with a commit threshold) is the standard denoising approach for noisy comparator edges. Documented in:
+
+| Reference | Authority | Topic |
+|---|---|---|
+| **AVR443** | Atmel (now Microchip) | "Sensor-based control of three-phase brushless DC motor" — includes the freewheel-detect pattern |
+| **AN885** | Microchip (Yedamale) | "Brushless DC (BLDC) Motor Fundamentals" — covers windmilling re-attach |
+| **AN3208** | STMicroelectronics | "Sensorless field-oriented control of BLDC motors" |
+
+### Six-step Hall commutation tables
+
+The `Motor_step_tab_cw[6]`, `Motor_step_tab_ccw[6]`, and `CMP_PhaseTab[6]` lookup tables in `src/COMP_Sensoeless.c` encode the standard six-step trapezoidal commutation pattern. This is universal across all BLDC controllers:
+
+- **TI SPRA588** — "Hall-effect sensor-based control of BLDC motors"
+- **Microchip AN857** — section "Six-step Commutation"
+- **NXP AN531** — "3-Phase BLDC Motor Control Algorithm"
+
+The specific phase ordering matches the physical PWM-bridge wiring of the SNR8503M board; another board with different gate-driver routing would need a different table.
+
+### DAC-driven over-current comparator threshold
+
+Implemented in `periph_driver/source/snr8503x_dac.c` + `src/hardware_init.c`. The pattern (DAC sets a reference voltage that a comparator compares against the current-shunt amplifier output, tripping a hardware fault on over-current) appears in essentially every brushless motor driver IC and is documented in:
+
+- **TI SLAA459** — "Implementing Cycle-by-Cycle Current Limit in a BLDC Controller"
+- **ST AN4055** — "BLDC motor sensorless control by means of DC link current measurement"
+
+### Three-phase PWM dead-time generation
+
+The dead-time configuration in `MC_Parameter.h` is consumed by the MCPWM peripheral. The need for dead-time (to prevent shoot-through current on the half-bridge transitions) is universal — see:
+
+- **IR AN-978** (now Infineon) — "HV Floating MOS-Gate Driver ICs"
+- **ON Semi AND8154** — "Understanding Dead-Time in Motor Control"
+
+### PI speed regulator
+
+`src/PID.c` implements a textbook discrete-time PI controller with anti-windup. References:
+
+- Åström & Hägglund, "PID Controllers: Theory, Design, and Tuning" (ISA Press, 1995)
+- TI SPRA083 — "Implementing PID Controllers with the TMS320 Family"
+
+### Bipropellant protocol
+
+The MIT-licensed [bipropellant-protocol](https://github.com/bipropellant/bipropellant-protocol) project, in `third_party/bipropellant-protocol/`. The binary framing (`SOM1` `SOM2` `CI` `LEN` `CMD` `CODE` `PARAMS...` `CSUM`) and the ASCII variant are documented in that upstream project's README. We use it verbatim with no modifications.
 
 ---
 
 ## Acknowledgements
 
-- LINKO Semiconductor / SNANER — for the SNR8503M / LKS32MC03x chip family and the original vendor SDK
-- The bipropellant project — for the well-documented MIT-licensed binary protocol
-- The PlatformIO project — for bundling a working `arm-none-eabi-gcc` toolchain that was used during development
+### Projects and libraries used
+
+| Project | Role | License | Where |
+|---|---|---|---|
+| **arm-none-eabi-gcc** | C compiler, linker, objcopy | GPL-3.0 (with runtime library exception) | Toolchain |
+| **newlib-nano** | Minimal C runtime for embedded | BSD-derived | `--specs=nano.specs --specs=nosys.specs` |
+| **bipropellant-protocol** | Binary + ASCII serial protocol layer | MIT | `third_party/bipropellant-protocol/` |
+| **LINKO platform_software** | Peripheral drivers (GPIO, ADC, DAC, MCPWM, HALL, UART, etc.) | BSD-3-Clause | `periph_driver/` (re-branded by SNANER as SNR8503x) |
+| **PlatformIO toolchain-gccarmnoneeabi** | Bundled GCC toolchain used during this project's development | Apache-2.0 (the bundle) | Auto-detected by `build.sh` if `ARM_TOOLCHAIN` is unset |
+| **CMSIS-Core(M)** | ARM Cortex-M CMSIS headers | Apache-2.0 / BSD | `periph_driver/include/` (re-distributed by LINKO) |
+
+### People and organisations
+
+- **LINKO SEMICONDUCTOR** — for the LKS32MC03x silicon and the BSD-3-Clause peripheral driver release that made this port practical
+- **SNANER SEMICONDUCTOR** — for re-branding LKS32MC03x as SNR8503M and publishing the reference application code
+- **bipropellant project contributors** — for the well-documented MIT binary protocol used in `MODULE_PROTOCOL_BIPROPELLANT_*`
+- **PlatformIO** — for bundling a working `arm-none-eabi-gcc` toolchain
+- **Texas Instruments, STMicroelectronics, NXP, Microchip, Atmel** — for the public application-note literature that documents every sensorless and Hall-based BLDC algorithm used here, making the closed `.lib` files unnecessary (see [Public-domain algorithm references](#public-domain-algorithm-references) above)

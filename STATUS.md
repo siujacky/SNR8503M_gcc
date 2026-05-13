@@ -5,14 +5,25 @@
 
 ## Current
 
-- **status:** `BLOCKED`
-- **current_phase:** `13`
-- **current_step:** `13.4_hardware_test`
-- **next_step:** `Phase 14 polish (after hardware verify)`
-- **last_result:** `Phase 13.1-13.3 done. ALL 7 PROFILES BUILD CLEAN. Sensorless adapter (Motor_1M1st, CMP_ZeroCross_lib, BLDC_COMP_Input_Only stub) in place. State machine dispatches on g_motor_mode. CMP_IRQHandler routes BEMF to closed-lib. Hall-only paths gated; sensorless mode swaps BLDC_init→BLDC_init_snls.`
-- **last_updated:** `2026-05-12T07:30:00Z`
-- **blocked_reason:** `needs_hardware. Sensorless mode builds but BLDC_COMP_Input_Only is currently a stub — motor won't commutate correctly via BEMF until the SDK's switch-statement implementation is ported. Hall mode is unchanged and verified-good.`
-- **motor_runs:** `true (assuming Phase 1-6 verified good on original branch)`
+- **status:** `READY_FOR_HARDWARE_TEST`
+- **current_phase:** `Post-Phase-14 GPL conversion complete`
+- **next_step:** `Hardware bench verification of sensorless mode + first-board flash of GPL build`
+- **last_result:** `GPL conversion complete. All proprietary .lib files removed from repo. All 7 profiles build clean from fully-libre source. BLDC_init/BLDC_init_snls dead-code removed; BLDC_*/ICP_* dead globals removed; HALL_Update inlined; ICP_Loader call removed; Read_Trim replaced with DAC identity defaults; COMP_Motor_Zero_Detect + Freerun_Zero_Detect reimplemented in src/COMP_Sensoeless.c from public BLDC application notes.`
+- **last_updated:** `2026-05-13T02:30:00Z`
+- **blocked_reason:** `none on the build side. Bench-verification still pending for sensorless commutation.`
+- **motor_runs:** `Hall mode: yes (unchanged from Phase 6.1 baseline). Sensorless mode: builds clean, untested on hardware.`
+
+### Final build sizes (post-GPL conversion)
+
+| Profile | Flash | vs pre-conversion |
+|---|---|---|
+| `hall_minimal` | 14,308 B | -68 B (removed license-gate stubs + .lib link) |
+| `hall_bipropellant` | 24,856 B | -68 B |
+| `hall_bipropellant_full` | 28,276 B | -68 B |
+| `sensorless_minimal` | 15,088 B | -32 B |
+| `sensorless_bipropellant` | 25,052 B | -32 B |
+| `unified_minimal` | 15,840 B | -88 B |
+| `unified_full` | 30,116 B | -88 B |
 
 ## Phase progress
 
@@ -84,18 +95,34 @@
 
 ### UNTOUCHED (design discipline preserved)
 - `src/M1_StateMachine.c`, `src/MC_Drive.c`, `src/PID.c`, `src/Protect.c`, `src/SpeedRamp.c`, etc.
-- All periph_driver/, startup/, third_party/, vendor_libs/
+- All `periph_driver/`, `startup/`, `third_party/`
+
+### Files modified during the GPL conversion (post-Phase-14)
+
+- `src/hardware_init.c` — removed `BLDC_init()` / `BLDC_init_snls()` calls (license-gate stubs)
+- `src/Sensor_Control.c` — inlined `HALL_Update` (was a 1-line passthrough)
+- `src/interrupt.c` — removed `ICP_Loader()` call (was empty stub)
+- `src/COMP_Sensoeless.c` — added open-source `COMP_Motor_Zero_Detect` and `Freerun_Zero_Detect` implementations
+- `periph_driver/source/snr8503x_dac.c` — replaced 6 `Read_Trim()` calls with identity defaults (`DAC_AMC = 512`, `DAC_DC = 0`)
+- `build.sh` — `VENDOR_LIBS=""` (no closed `.lib` linkage), removed `-Wl,--no-warn-mismatch` (no longer needed)
+
+### Files deleted during the GPL conversion
+
+- `vendor_libs/SNR_BLDC_HALL_V1p0.lib` — proprietary, archived to `VENDOR_ARCHIVE.zip` (local only)
+- `vendor_libs/SNR_BLDC_SNLS_V1p0.lib` — proprietary, archived
+- `vendor_libs/snr8503x_nvr.lib` — proprietary, archived
+- `vendor_libs/snr_bldc_snls_renamed.lib` — proprietary derivative, archived
 
 ## Build artifacts
 
 ```
-build/snr8503m.elf   ~248 KB (debug)
-build/snr8503m.hex    ~43 KB (Intel HEX for flashing)
-build/snr8503m.bin    ~17 KB (raw binary)
-build/snr8503m.map   ~118 KB (link map)
+build/snr8503m.elf   debug ELF with symbols
+build/snr8503m.hex   Intel HEX for flashing
+build/snr8503m.bin   raw binary
+build/snr8503m.map   link map
 ```
 
-Size: **text=28,380 / data=160 / bss=11,888** → **28.5 KB Flash, 12 KB RAM**. Under 32 KB MDK-Lite cap.
+Default profile (`hall_bipropellant_full`) size: **text≈28,124 / data≈152 / bss≈12,080** → **~27.6 KB Flash, ~12 KB RAM**. Under the 32 KB MDK-Lite cap. (See the table in the "Current" section above for all 7 profiles.)
 
 ## Critical caveats (READ BEFORE FLASHING)
 

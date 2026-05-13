@@ -29,8 +29,8 @@ void Clock_Init(void);
 void Hardware_init(void);
 void HALL_init(void); 
 void SoftDelay(u32 cnt);
-void BLDC_init(void);
-void ICP_Loader(void);
+/* BLDC_init / ICP_Loader were vendor-lib symbols. Both removed — see README's
+ * "Closed-library replacement" section. No declarations needed any more. */
 
 #endif
 

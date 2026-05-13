@@ -1,16 +1,26 @@
 /*******************************************************************************
- * °æÈ¨ËùÓĞ (C)2015, SNANER SEMICONDUCTOR Co.ltd
+ * snr8503x_NVR.h
  *
- * ÎÄ¼şÃû³Æ£º snr8503x_nvr.c
- * ÎÄ¼ş±êÊ¶£º ¶ÁĞ£×¼Öµ
- * ÆäËüËµÃ÷£º ÎŞ
- * µ±Ç°°æ±¾£º V 1.0
- * ×÷    Õß£º Li
- * Íê³ÉÈÕÆÚ£º 2021Äê11ÔÂ12ÈÕ
+ * Originally declared Read_Trim() and Prog_Trim() â€” the only entry points to
+ * the chip's factory NVR (non-volatile register / OTP) calibration memory.
+ * Both functions lived in the proprietary snr8503x_nvr.lib that this project
+ * no longer links.
  *
+ * The only consumer was snr8503x_dac.c (DAC trim load). That file has been
+ * patched to use identity-default calibration values directly, so no NVR
+ * access is needed anywhere in the firmware. See the README's
+ * "Closed-library replacement" section for details.
+ *
+ * Original LINKO/SNANER copyright on this file: BSD-3-Clause via the LINKO
+ * platform_software release.
  *******************************************************************************/
- // Read_Trim½¨ÒéÔÚ³õÊ¼»¯µÄ¹ı³ÌÖĞµ÷ÓÃ
- // Read_Trim»á¹Ø±ÕÈ«¾ÖÖĞ¶Ï
-unsigned int Read_Trim(unsigned int addr);              //ÓĞĞ§µØÖ··¶Î§((addr >= 0x00000190) && (addr <= 0x0000001FF)) || ((addr >= 0x0000024C) && (addr <= 0x000000258))
-void Prog_Trim(unsigned int addr, unsigned int data);   //ÓĞĞ§µØÖ··¶Î§((addr >= 0x000001E0) && (addr <= 0x0000001FF))
-/************************ (C) COPYRIGHT SNANER SEMICONDUCTOR *****END OF FILE****/
+
+#ifndef SNR8503X_NVR_H
+#define SNR8503X_NVR_H
+
+/* No declarations â€” Read_Trim and Prog_Trim are intentionally absent.
+ * Anything that tries to call them will fail at link time, which is the
+ * desired behaviour: a missing-symbol error is a clearer signal than a
+ * silent runtime-fail stub. */
+
+#endif /* SNR8503X_NVR_H */

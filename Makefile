@@ -41,12 +41,11 @@ LDSCRIPT  := linker.ld
 LDFLAGS   := $(CPU) -T $(LDSCRIPT) -nostartfiles \
              --specs=nano.specs --specs=nosys.specs \
              -Wl,--gc-sections \
-             -Wl,--no-warn-mismatch \
              -Wl,-Map=$(BUILD_DIR)/$(TARGET).map
 
-# Vendor libs (ARMCC-built ELF archives — phase 1.7 link test)
-VENDOR_LIBS := vendor_libs/SNR_BLDC_HALL_V1p0.lib \
-               vendor_libs/snr8503x_nvr.lib
+# No vendor libs — all former closed-lib symbols are now either inlined into
+# the project source files or have been removed entirely (see README).
+VENDOR_LIBS :=
 
 # -----------------------------------------------------------------------------
 # Source files

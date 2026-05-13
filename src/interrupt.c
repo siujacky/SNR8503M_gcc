@@ -333,9 +333,9 @@ void TIMER0_IRQHandler(void)
 			User_sys.struTaskScheduler.nTimeCnt100ms ++;
 			User_sys.struTaskScheduler.nTimeCnt500ms++;
 
-#if MODULE_MOTOR_HALL
-			ICP_Loader();    /* Hall-lib speed-from-period processing */
-#endif
+/* ICP_Loader was a vendor bootloader-entry pulse-pattern detector on P0.4.
+ * Re-flashing this firmware happens via SWD, so the call is unnecessary
+ * and its body was an empty stub in our build. Removed entirely. */
 	 }
 }
 

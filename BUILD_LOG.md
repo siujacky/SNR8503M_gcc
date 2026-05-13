@@ -443,3 +443,60 @@ Reference build for comparison:
 Program Size: Code=10620 RO-data=344 RW-data=128 ZI-data=1120
 SNR8503M_BLDC_Hall_LIB_V24\Obj\SNR_MC_Project.hex (31,257 bytes Intel HEX)
 ```
+
+---
+
+## 2026-05-13T02:30:00Z — Iteration 6: GPL conversion complete
+
+**Result:** 🎉 **Fully libre firmware build.** All proprietary `.lib` files removed from the repository. Every byte in the final ELF/HEX/BIN is now built from freely-distributable source.
+
+### What changed
+
+The previous build (Iteration 5) still linked the three SNANER/LINKO closed `.lib` files plus a renamed copy of the sensorless lib. The Iteration 6 build replaces all of that:
+
+| Symbol from closed lib | What it was | Outcome in this build |
+|---|---|---|
+| `BLDC_init`, `BLDC_init_snls` | License-gate stubs (NVR-trim equality check, infinite-loop trap on mismatch) | Calls removed from `src/hardware_init.c`. Stubs served no functional purpose. |
+| `BLDC_1`, `BLDC_BUFF`, `BLDC_BUFF1` (+ `*_snls` variants) | License-gate globals | Deleted entirely. Never read by anything outside the gate. |
+| 9× `ICP_*` globals + `ICP_Loader` | In-Circuit-Programming pulse-pattern detection (P0.4 entry to vendor bootloader) | Deleted entirely. We re-flash via SWD. |
+| `HALL_Update(p)` | 1-line identity passthrough (`return p->u8HALL_NEW_Value`) | Inlined at single caller in `src/Sensor_Control.c`. |
+| `Read_Trim(addr)` + `Prog_Trim` | NVR-access with proprietary unlock sequence | `Read_Trim` calls in `periph_driver/source/snr8503x_dac.c` replaced with identity defaults (`DAC_AMC = 512`, `DAC_DC = 0`). No NVR access needed anywhere. |
+| `COMP_Motor_Zero_Detect(p)` | BEMF zero-crossing speed-counter regulator | Reimplemented in `src/COMP_Sensoeless.c` from public BLDC application-note material (~13 lines). |
+| `Freerun_Zero_Detect(p)` | Freewheel direction detector | Reimplemented in `src/COMP_Sensoeless.c` as standard debounce-then-commit (~18 lines). |
+
+### Files modified vs Iteration 5
+
+- `build.sh` — `VENDOR_LIBS=""` (was: three `.lib` paths); removed `-Wl,--no-warn-mismatch`; removed the `arm-none-eabi-objcopy --redefine-sym BLDC_init=BLDC_init_snls ...` lib-rename step
+- `src/hardware_init.c`, `src/Sensor_Control.c`, `src/interrupt.c`, `src/COMP_Sensoeless.c`, `periph_driver/source/snr8503x_dac.c` — see table above
+- `README.md`, `STATUS.md`, `BUILD_LOG.md` — documentation updated to reflect new state
+- `LICENSE` — added (full GPL-3.0 text from gnu.org)
+- `VENDOR_ARCHIVE.zip` + `VENDOR_ARCHIVE_README.txt` — created locally (NOT pushed). Contains the original `.lib` files and decompilation output, preserved as personal-archive reference.
+
+### Files deleted via `git rm`
+
+- `vendor_libs/SNR_BLDC_HALL_V1p0.lib`
+- `vendor_libs/SNR_BLDC_SNLS_V1p0.lib`
+- `vendor_libs/snr8503x_nvr.lib`
+- `vendor_libs/snr_bldc_snls_renamed.lib`
+
+(All four are preserved locally in `VENDOR_ARCHIVE.zip`; they remain in the git history of the initial commit. A `git filter-repo` follow-up would be needed to scrub them from history if desired — not done in this iteration.)
+
+### Final size matrix
+
+| Profile | text | data | bss | Total Flash | Δ vs Iteration 5 |
+|---|---|---|---|---|---|
+| `hall_minimal` | 14,156 | 32 | 1,456 | 14,308 B | -480 B |
+| `hall_bipropellant` | 24,704 | 160 | 11,176 | 24,856 B | -480 B |
+| `hall_bipropellant_full` | 28,124 | 152 | 12,080 | 28,276 B | -480 B (default profile) |
+| `sensorless_minimal` | 14,936 | 44 | 1,636 | 15,088 B | -276 B |
+| `sensorless_bipropellant` | 24,900 | 172 | 11,156 | 25,052 B | -276 B |
+| `unified_minimal` | 15,696 | 56 | 1,648 | 15,840 B | -428 B |
+| `unified_full` | 29,964 | 180 | 12,356 | 30,116 B | -628 B |
+
+All 7 profiles still fit under 32 KB. The size reduction comes from removing the license-gate code paths and the NVR-unlock function — pure dead weight in the old build.
+
+### Verification
+
+- `arm-none-eabi-nm build/snr8503m.elf | grep -E 'Read_Trim|Prog_Trim|BLDC_init|BLDC_1|BLDC_BUFF|ICP_'` returns nothing (every previously-exported symbol from the closed libs is gone from the firmware image).
+- `ls vendor_libs/ 2>&1` returns "No such file or directory" (the folder is gone from the working tree).
+- Build line uses no `-Wl,--no-warn-mismatch` (the flag was previously needed for ARMCC `.lib` ABI mismatches; with no `.lib` linkage, it's unnecessary).

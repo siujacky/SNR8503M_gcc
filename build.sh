@@ -137,7 +137,7 @@ WARN="-Wall -Wno-unused-function -Wno-unused-variable -Wno-pointer-sign -Wno-imp
 INCLUDES="-Iinclude -Iperiph_driver/include -Ithird_party/bipropellant-protocol"
 CFLAGS="$CPU $OPT $WARN $INCLUDES -ffunction-sections -fdata-sections -std=gnu99 -fno-common -fmessage-length=0"
 ASFLAGS="$CPU -c"
-LDFLAGS="$CPU -T linker.ld -nostartfiles --specs=nano.specs --specs=nosys.specs -Wl,--gc-sections -Wl,--no-warn-mismatch -Wl,-Map=$BUILD_DIR/$TARGET.map"
+LDFLAGS="$CPU -T linker.ld -nostartfiles --specs=nano.specs --specs=nosys.specs -Wl,--gc-sections -Wl,-Map=$BUILD_DIR/$TARGET.map"
 
 VENDOR_LIBS=""  # populated after PROFILE regeneration (see below)
 
@@ -158,28 +158,11 @@ if [ -n "$PROFILE" ]; then
     write_feature_config "$PROFILE"
 fi
 
-# Populate VENDOR_LIBS based on current feature_config.h (must run AFTER PROFILE regenerate)
-VENDOR_LIBS="vendor_libs/snr8503x_nvr.lib"
-if [ -f include/feature_config.h ] && grep -q "^#define MODULE_MOTOR_HALL *1\b" include/feature_config.h; then
-    VENDOR_LIBS="vendor_libs/SNR_BLDC_HALL_V1p0.lib $VENDOR_LIBS"
-fi
-if [ -f include/feature_config.h ] && grep -q "^#define MODULE_MOTOR_SENSORLESS *1\b" include/feature_config.h; then
-    # FIX-017: explicit existence check before -nt, which silently returns false on missing files
-    if [ ! -f vendor_libs/SNR_BLDC_SNLS_V1p0.lib ]; then
-        echo "ERROR: sensorless lib missing: vendor_libs/SNR_BLDC_SNLS_V1p0.lib" >&2
-        echo "  Required when MODULE_MOTOR_SENSORLESS=1." >&2
-        exit 2
-    fi
-    if [ ! -f vendor_libs/snr_bldc_snls_renamed.lib ] || [ vendor_libs/SNR_BLDC_SNLS_V1p0.lib -nt vendor_libs/snr_bldc_snls_renamed.lib ]; then
-        echo "[lib-rename] BLDC_init/BLDC_1/BLDC_BUFF → *_snls in sensorless lib"
-        "$TOOLCHAIN_BIN/arm-none-eabi-objcopy" \
-            --redefine-sym BLDC_init=BLDC_init_snls \
-            --redefine-sym BLDC_1=BLDC_1_snls \
-            --redefine-sym BLDC_BUFF=BLDC_BUFF_snls \
-            vendor_libs/SNR_BLDC_SNLS_V1p0.lib vendor_libs/snr_bldc_snls_renamed.lib
-    fi
-    VENDOR_LIBS="$VENDOR_LIBS vendor_libs/snr_bldc_snls_renamed.lib"
-fi
+# No vendor libs — all former closed-lib symbols are now either inlined into
+# the project source files or removed entirely (see README's
+# "Closed-library replacement" section). The .lib files are not in this repo;
+# they live in the author's local VENDOR_ARCHIVE.zip for personal reference.
+VENDOR_LIBS=""
 
 # Print enabled modules at top of any build
 if [ -f include/feature_config.h ] && [ "$action" != "clean" ]; then

@@ -72,6 +72,8 @@
 
 <h2 id="scope">2. What was built</h2>
 
+<p class="muted" style="background: #fff8dc; padding: 0.5em 0.8em; border-left: 3px solid #c80; border-radius: 4px;"><strong>Note:</strong> the sections below describe the firmware as it was at the end of Phase 14 — closed <code>.lib</code> files still linked, <code>--no-warn-mismatch</code> and <code>--redefine-sym</code> tricks in the build. After Phase 14 a separate GPL-conversion pass removed all of that machinery; the final architecture is described in the <a href="#epilogue">Epilogue</a> at the bottom of this document.</p>
+
 <h3>Phases delivered</h3>
 <table>
   <thead><tr><th>Phase</th><th>Goal</th><th>Outcome</th></tr></thead>
@@ -241,6 +243,52 @@ Before any production deployment: (a) clean up Phase NN tags into semantic comme
 <p>The riskiest part of the work — sensorless commutation — is structurally complete but unverified on hardware. The board test plan exists; the firmware is ready. The remaining work is operational, not architectural.</p>
 
 <p class="muted">— Generated 2026-05-12 as part of the SNR8503M_gcc_full retrospective.</p>
+
+<hr style="margin: 3em 0 2em 0; border: none; border-top: 1px dashed #999;">
+
+<h2 id="epilogue">Epilogue — GPL conversion (2026-05-13)</h2>
+
+<p>After the original retrospective, the project went one more step further: <strong>removing the proprietary closed-source <code>.lib</code> dependencies entirely</strong> so the final binary contains zero proprietary object code. This was done in several passes:</p>
+
+<ol>
+  <li><strong>First pass: write replacements (<code>src/vendor_replacements.c</code>).</strong> Started by decompiling the three vendor libs and writing function-by-function clean-room replacements. The most decomp-leaky function — <code>Read_Trim</code>, which contained the magic NVR-unlock constants 0x59000000 and 0x95000000 — was the highest IP-risk item.</li>
+
+  <li><strong>Second pass: eliminate <code>Read_Trim</code>.</strong> Realised its only caller (<code>snr8503x_dac.c</code>, for DAC calibration) could be patched to use identity defaults (<code>DAC_AMC = 512</code>, <code>DAC_DC = 0</code>) instead of reading NVR. Removed <code>Read_Trim</code> from <code>vendor_replacements.c</code> entirely. The most IP-risky piece — the NVR unlock magic — is now gone from the codebase.</li>
+
+  <li><strong>Third pass: discover most replacements were dead code.</strong> A code audit showed that <code>BLDC_init</code>, <code>BLDC_init_snls</code>, and 14 of the 15 globals (<code>BLDC_1</code>, <code>BLDC_BUFF</code>, <code>BLDC_BUFF1</code>, <code>ICP_MODE</code>, <code>ICP_SetFLAG</code>, and 7 other <code>ICP_*CNT*</code> variables) were never read by <em>anything</em>. They existed only because the original closed libs exported them; the firmware itself never consumed them. Removed them all.</li>
+
+  <li><strong>Fourth pass: inline what little remained.</strong> <code>HALL_Update</code> was a 1-line passthrough — inlined at its single caller. <code>ICP_Loader</code> was empty — removed its call site. The two real-work functions (<code>COMP_Motor_Zero_Detect</code>, <code>Freerun_Zero_Detect</code>) moved into <code>src/COMP_Sensoeless.c</code> where the rest of the sensorless logic lives. <code>vendor_replacements.c</code> deleted entirely.</li>
+</ol>
+
+<h3>The lesson</h3>
+
+<p>The journey from "linked closed libs" → "clean-room file alongside closed libs" → "no closed libs, dedicated replacement file" → "no closed libs, no replacement file, just inlined open-source code" was a useful exercise in reverse-engineering minimization. Each pass asked the same question: <em>is this code actually needed, or are we just providing it because the original lib did?</em></p>
+
+<p>For the SNR8503M / LKS32MC03x:</p>
+<ul>
+  <li><strong>~85% of the closed-lib code was license-gate machinery</strong> (NVR reads, equality checks, infinite-loop traps). Removing the calls leaves the firmware fully functional.</li>
+  <li><strong>~10% was dead state</strong> (variables that the lib wrote but nothing else ever read).</li>
+  <li><strong>~5% was real work</strong> (the two BEMF zero-crossing helpers) — and even those are textbook patterns from TI / ST / Microchip application notes.</li>
+</ul>
+
+<p>The takeaway for similar small motor-controller chips: <em>before assuming a closed lib does anything important, audit who calls it and read what they do with the results.</em> Most closed motor-control libs at this price point are 90% chip-authentication and 10% commodity algorithm.</p>
+
+<h3>Final size impact</h3>
+
+<table>
+  <thead>
+    <tr><th>Profile</th><th>Before GPL conversion</th><th>After GPL conversion</th><th>Δ</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><code>hall_minimal</code></td><td>14,788 B</td><td>14,308 B</td><td>-480 B</td></tr>
+    <tr><td><code>hall_bipropellant_full</code></td><td>28,756 B</td><td>28,276 B</td><td>-480 B</td></tr>
+    <tr><td><code>unified_full</code></td><td>30,744 B</td><td>30,116 B</td><td>-628 B</td></tr>
+  </tbody>
+</table>
+
+<p>The cleanup made the binary <em>smaller</em>, not larger — because the license-gate code paths in the closed libs were carrying real instruction bytes.</p>
+
+<p class="muted">— Epilogue added 2026-05-13.</p>
 
 </body>
 </html>
